@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { CheckCircle, Scale, ClipboardList, Clock } from 'lucide-react';
 
 export default function About() {
@@ -24,18 +25,67 @@ export default function About() {
     },
   ];
 
+  // Slick cubic-bezier for premium feel
+  const transitionSettings = {
+    duration: 0.85,
+    ease: [0.16, 1, 0.3, 1], // Custom expo-out
+  };
+
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.12,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 25 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: transitionSettings,
+    },
+  };
+
+  const imageVariants = {
+    hidden: { opacity: 0, scale: 0.96, y: 15 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: {
+        duration: 1.1,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
+  };
+
   return (
-    <section id="about" className="py-24 bg-[#FAFAF9]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+    <section id="about" className="py-24 bg-[#FAFAF9] overflow-hidden">
+      <motion.div
+        className="max-w-7xl mx-auto px-6 lg:px-10"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-80px' }}
+      >
         
         {/* Section Header */}
         <div className="mb-16">
-          <span className="text-xs font-semibold tracking-widest text-brand-purple-mid uppercase block mb-3">
+          <motion.span
+            variants={itemVariants}
+            className="text-xs font-semibold tracking-widest text-brand-purple-mid uppercase block mb-3"
+          >
             Who We Are
-          </span>
-          <h2 className="font-syne font-bold text-4xl lg:text-5xl text-brand-black tracking-tight">
+          </motion.span>
+          <motion.h2
+            variants={itemVariants}
+            className="font-syne font-bold text-4xl lg:text-5xl text-brand-black tracking-tight"
+          >
             Where Vision Meets Execution
-          </h2>
+          </motion.h2>
         </div>
 
         {/* Two-Column Grid */}
@@ -43,16 +93,21 @@ export default function About() {
           
           {/* Left Column */}
           <div className="flex flex-col">
-            <p className="font-dmsans text-lg text-brand-gray-mid font-light leading-relaxed max-w-lg mb-10">
+            <motion.p
+              variants={itemVariants}
+              className="font-dmsans text-lg text-brand-gray-mid font-light leading-relaxed max-w-lg mb-10"
+            >
               Established in 2022 and led by Louis Adun, 24ADL is a fast-growing audit and inspection firm providing independent stock audit and inventory verification services across agro and non-agro sectors worldwide.
-            </p>
+            </motion.p>
 
             {/* Value Cards Vertical Stack */}
-            <div className="flex flex-col gap-4">
+            <motion.div className="flex flex-col gap-4" variants={containerVariants}>
               {values.map((val, index) => (
-                <div
+                <motion.div
                   key={index}
-                  className="bg-white border border-gray-200 rounded-xl p-5 flex items-start gap-4 shadow-sm hover:shadow-md transition-shadow duration-200"
+                  variants={itemVariants}
+                  whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                  className="bg-white border border-gray-200 rounded-xl p-5 flex items-start gap-4 shadow-sm hover:shadow-md transition-all duration-300"
                 >
                   <div className="w-10 h-10 bg-brand-purple-light rounded-lg flex items-center justify-center shrink-0">
                     {val.icon}
@@ -65,20 +120,24 @@ export default function About() {
                       {val.text}
                     </p>
                   </div>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
 
           {/* Right Column */}
           <div className="flex flex-col">
-            <img
+            <motion.img
+              variants={imageVariants}
               src="/images/PHOTO-2026-04-06-23-48-31_5_jpg.jpeg"
-              className="w-full h-72 object-cover rounded-2xl mb-6 object-center"
+              className="w-full h-72 object-cover rounded-2xl mb-6 object-center shadow-md"
               alt="Physical verification"
             />
             {/* Philosophy Card */}
-            <div className="bg-brand-purple-primary rounded-2xl p-8 sm:p-10 text-white relative overflow-hidden shadow-lg">
+            <motion.div
+              variants={itemVariants}
+              className="bg-brand-purple-primary rounded-2xl p-8 sm:p-10 text-white relative overflow-hidden shadow-lg"
+            >
               {/* Decorative Quote Mark */}
               <span className="absolute -top-6 -left-2 text-[180px] font-serif text-white/5 select-none pointer-events-none leading-none">
                 “
@@ -91,44 +150,53 @@ export default function About() {
               <span className="relative z-10 font-syne font-bold text-brand-green-lemon text-xs sm:text-sm tracking-widest uppercase block">
                 Our Philosophy
               </span>
-            </div>
+            </motion.div>
 
             {/* Stats Cards Grid */}
-            <div className="grid grid-cols-3 gap-3 mt-6">
+            <motion.div className="grid grid-cols-3 gap-3 mt-6" variants={containerVariants}>
               {/* Stat 1 */}
-              <div className="bg-white border border-gray-200 rounded-xl p-5 flex flex-col items-center justify-center text-center shadow-sm">
+              <motion.div
+                variants={itemVariants}
+                className="bg-white border border-gray-200 rounded-xl p-5 flex flex-col items-center justify-center text-center shadow-sm"
+              >
                 <span className="font-syne font-bold text-xl sm:text-2xl text-brand-purple-primary">
                   2022
                 </span>
                 <span className="font-dmsans text-[11px] sm:text-xs text-brand-gray-mid uppercase tracking-wide mt-1">
                   Founded
                 </span>
-              </div>
+              </motion.div>
 
               {/* Stat 2 */}
-              <div className="bg-white border border-gray-200 rounded-xl p-5 flex flex-col items-center justify-center text-center shadow-sm">
+              <motion.div
+                variants={itemVariants}
+                className="bg-white border border-gray-200 rounded-xl p-5 flex flex-col items-center justify-center text-center shadow-sm"
+              >
                 <span className="font-syne font-bold text-xl sm:text-2xl text-brand-purple-primary">
                   Agro +
                 </span>
                 <span className="font-dmsans text-[11px] sm:text-xs text-brand-gray-mid uppercase tracking-wide mt-1">
                   Non-Agro
                 </span>
-              </div>
+              </motion.div>
 
               {/* Stat 3 */}
-              <div className="bg-white border border-gray-200 rounded-xl p-5 flex flex-col items-center justify-center text-center shadow-sm">
+              <motion.div
+                variants={itemVariants}
+                className="bg-white border border-gray-200 rounded-xl p-5 flex flex-col items-center justify-center text-center shadow-sm"
+              >
                 <span className="font-syne font-bold text-xl sm:text-2xl text-brand-purple-primary">
                   Global
                 </span>
                 <span className="font-dmsans text-[11px] sm:text-xs text-brand-gray-mid uppercase tracking-wide mt-1">
                   Reach
                 </span>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
 
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
