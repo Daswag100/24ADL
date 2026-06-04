@@ -36,12 +36,17 @@ export default function Navbar({ activeSection }) {
     >
       <div className="max-w-7xl mx-auto h-full px-6 lg:px-10 flex items-center justify-between">
         
-        {/* Logo Section */}
+        {/* Logo Section - Shows square mark on mobile, wide logo on desktop */}
         <a href="#" className="flex items-center group">
           <div style={{ mixBlendMode: 'multiply' }} className="flex items-center">
             <img
+              src="/24ADL_Favicon.png"
+              className="h-8 w-8 object-contain block sm:hidden"
+              alt="24ADL Logo Mark"
+            />
+            <img
               src="/24ADL_Logo__Coloured_.png"
-              className="h-9 w-auto object-contain"
+              className="h-9 w-auto object-contain hidden sm:block"
               alt="24ADL Logo"
             />
           </div>

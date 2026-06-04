@@ -42,7 +42,7 @@ export default function Hero() {
 
           {/* Headline H1 */}
           <h1
-            className={`font-syne font-extrabold text-4xl sm:text-6xl lg:text-[80px] text-white tracking-tight leading-[1.05] mb-6 transform transition-all duration-700 delay-200 ${
+            className={`font-syne font-extrabold text-3xl sm:text-6xl lg:text-[80px] text-white tracking-tight leading-[1.05] mb-6 transform transition-all duration-700 delay-200 ${
               isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
             }`}
           >

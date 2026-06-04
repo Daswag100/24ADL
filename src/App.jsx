@@ -49,7 +49,7 @@ function App() {
         <Navbar activeSection={activeSection} />
 
         {/* Sequential content flow */}
-        <main>
+        <main className="pt-20 md:pt-24">
           {/* 1. Hero Section */}
           <Hero />
 
