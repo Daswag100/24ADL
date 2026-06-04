@@ -18,6 +18,7 @@ export default function Navbar({ currentHash }) {
   }, []);
 
   const navLinks = [
+    { label: 'Home', href: '#' },
     { label: 'About Us', href: '#about' },
     { label: 'Services', href: '#services' },
     { label: 'Industries', href: '#industries' },
@@ -35,7 +36,7 @@ export default function Navbar({ currentHash }) {
     >
       <div className="max-w-7xl mx-auto h-full px-6 lg:px-10 flex items-center justify-between">
         
-        {/* Logo Section */}
+        {/* Logo Section - Now only contains the branded logo mark */}
         <a href="#" className="flex items-center group">
           <div style={{ mixBlendMode: 'multiply' }} className="flex items-center">
             <img
@@ -44,15 +45,15 @@ export default function Navbar({ currentHash }) {
               alt="24ADL Logo"
             />
           </div>
-          <span className="hidden sm:inline-block font-syne font-bold text-brand-black ml-3 text-base lg:text-lg tracking-tight transition-colors duration-200 group-hover:text-brand-purple-primary">
-            Home
-          </span>
         </a>
 
-        {/* Center Links - Desktop */}
+        {/* Center Links - Desktop (now includes Home styled identical to other links) */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => {
-            const isActive = currentHash === link.href;
+            // Highlight Home when on '#' or '#home' or empty
+            const isActive =
+              currentHash === link.href ||
+              (link.href === '#' && (currentHash === '#' || currentHash === '#home' || currentHash === ''));
             return (
               <a
                 key={link.label}
@@ -102,7 +103,9 @@ export default function Navbar({ currentHash }) {
       >
         <div className="flex flex-col gap-4">
           {navLinks.map((link) => {
-            const isActive = currentHash === link.href;
+            const isActive =
+              currentHash === link.href ||
+              (link.href === '#' && (currentHash === '#' || currentHash === '#home' || currentHash === ''));
             return (
               <a
                 key={link.label}
