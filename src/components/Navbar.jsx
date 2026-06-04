@@ -36,16 +36,16 @@ export default function Navbar({ activeSection }) {
     >
       <div className="max-w-7xl mx-auto h-full px-6 lg:px-10 flex items-center justify-between">
         
-        {/* Logo Section - Shows square mark + "24ADL" text on mobile, wide logo on desktop */}
+        {/* Logo Section - Shows square mark + "24ADL Inspection" text on mobile, wide logo on desktop */}
         <a href="#" className="flex items-center group">
           <div style={{ mixBlendMode: 'multiply' }} className="flex items-center">
             <img
               src="/24ADL_Favicon.png"
-              className="h-8 w-8 object-contain block sm:hidden"
+              className="h-10 w-10 object-contain block sm:hidden"
               alt="24ADL Logo Mark"
             />
-            <span className="block sm:hidden font-syne font-bold text-brand-black ml-2 text-sm tracking-tight transition-colors duration-200 group-hover:text-brand-purple-primary">
-              24ADL
+            <span className="block sm:hidden font-syne font-bold text-brand-black ml-2 text-[13px] tracking-tight transition-colors duration-200 group-hover:text-brand-purple-primary">
+              24ADL Inspection
             </span>
             <img
               src="/24ADL_Logo__Coloured_.png"
