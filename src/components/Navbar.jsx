@@ -18,7 +18,7 @@ export default function Navbar({ currentHash }) {
   }, []);
 
   const navLinks = [
-    { label: 'About', href: '#about' },
+    { label: 'About Us', href: '#about' },
     { label: 'Services', href: '#services' },
     { label: 'Industries', href: '#industries' },
     { label: 'Approach', href: '#approach' },
@@ -45,7 +45,7 @@ export default function Navbar({ currentHash }) {
             />
           </div>
           <span className="hidden sm:inline-block font-syne font-bold text-brand-black ml-3 text-base lg:text-lg tracking-tight transition-colors duration-200 group-hover:text-brand-purple-primary">
-            24ADL Inspection & Audit
+            Home
           </span>
         </a>
 
