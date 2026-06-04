@@ -37,7 +37,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-[#111827] text-white">
+    <section id="contact" className="py-14 md:py-24 bg-[#111827] text-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         
         {/* Section Header */}
@@ -51,7 +51,7 @@ export default function Contact() {
         </div>
 
         {/* Supporting Image Strip */}
-        <div className="relative w-full h-52 rounded-2xl mb-12 overflow-hidden shadow-md">
+        <div className="relative w-full h-36 md:h-52 rounded-2xl mb-8 md:mb-12 overflow-hidden shadow-md">
           <img
             src="/images/PHOTO-2026-04-06-23-48-31_9_jpg.jpeg"
             className="w-full h-full object-cover object-center"

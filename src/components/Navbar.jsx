@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
-export default function Navbar({ currentHash }) {
+export default function Navbar({ activeSection }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -36,7 +36,7 @@ export default function Navbar({ currentHash }) {
     >
       <div className="max-w-7xl mx-auto h-full px-6 lg:px-10 flex items-center justify-between">
         
-        {/* Logo Section - Now only contains the branded logo mark */}
+        {/* Logo Section */}
         <a href="#" className="flex items-center group">
           <div style={{ mixBlendMode: 'multiply' }} className="flex items-center">
             <img
@@ -47,13 +47,11 @@ export default function Navbar({ currentHash }) {
           </div>
         </a>
 
-        {/* Center Links - Desktop (now includes Home styled identical to other links) */}
+        {/* Center Links - Desktop (highlight matches spied section) */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => {
-            // Highlight Home when on '#' or '#home' or empty
-            const isActive =
-              currentHash === link.href ||
-              (link.href === '#' && (currentHash === '#' || currentHash === '#home' || currentHash === ''));
+            const targetSection = link.href === '#' ? 'home' : link.href.replace('#', '');
+            const isActive = activeSection === targetSection;
             return (
               <a
                 key={link.label}
@@ -103,9 +101,8 @@ export default function Navbar({ currentHash }) {
       >
         <div className="flex flex-col gap-4">
           {navLinks.map((link) => {
-            const isActive =
-              currentHash === link.href ||
-              (link.href === '#' && (currentHash === '#' || currentHash === '#home' || currentHash === ''));
+            const targetSection = link.href === '#' ? 'home' : link.href.replace('#', '');
+            const isActive = activeSection === targetSection;
             return (
               <a
                 key={link.label}

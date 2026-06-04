@@ -1,92 +1,88 @@
 import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import HomeHub from './components/HomeHub';
 import About from './components/About';
+import WhyUs from './components/WhyUs';
 import Services from './components/Services';
+import Deliverables from './components/Deliverables';
 import Approach from './components/Approach';
 import Industries from './components/Industries';
-import WhyUs from './components/WhyUs';
 import GlobalReach from './components/GlobalReach';
-import Deliverables from './components/Deliverables';
-import Contact from './components/Contact';
 import Careers from './components/Careers';
+import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 function App() {
-  const [currentHash, setCurrentHash] = useState(window.location.hash || '#');
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash || '#';
-      setCurrentHash(hash);
-      
-      // Instantly reset scroll height to top on route change
-      window.scrollTo({ top: 0, behavior: 'instant' });
+    // Scroll-spy observer setup
+    const observerOptions = {
+      root: null,
+      rootMargin: '-40% 0px -50% 0px', // Triggers when the section crosses the upper/middle viewport area
+      threshold: 0,
     };
 
-    window.addEventListener('hashchange', handleHashChange);
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
     
-    // Trigger scroll-to-top on initial mount if hash is present
-    if (window.location.hash) {
-      window.scrollTo({ top: 0, behavior: 'instant' });
-    }
+    // Select all section elements that have an ID attribute
+    const sections = document.querySelectorAll('section[id]');
+    sections.forEach((section) => observer.observe(section));
 
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    return () => {
+      sections.forEach((section) => observer.unobserve(section));
+    };
   }, []);
-
-  // Determine what components to render based on URL hash
-  const renderActivePage = () => {
-    switch (currentHash) {
-      case '#about':
-        return (
-          <>
-            <About />
-            <WhyUs />
-          </>
-        );
-      case '#services':
-        return (
-          <>
-            <Services />
-            <Deliverables />
-          </>
-        );
-      case '#industries':
-        return <Industries />;
-      case '#approach':
-        return <Approach />;
-      case '#clients':
-        return <GlobalReach />;
-      case '#contact':
-        return <Contact />;
-      case '#careers':
-        return <Careers />;
-      case '#home':
-      case '#':
-      default:
-        return (
-          <>
-            <Hero />
-            <HomeHub />
-          </>
-        );
-    }
-  };
 
   return (
     <div className="min-h-screen bg-brand-white text-brand-black font-dmsans selection:bg-brand-purple-light selection:text-brand-purple-primary flex flex-col justify-between">
       <div>
-        {/* Navigation Bar - receives active hash to handle menu state highlights */}
-        <Navbar currentHash={currentHash} />
+        {/* Navigation Bar - tracks the scroll-spied active section */}
+        <Navbar activeSection={activeSection} />
 
-        {/* Dynamic page content */}
-        <main className="pt-16">
-          {renderActivePage()}
+        {/* Sequential content flow */}
+        <main>
+          {/* 1. Hero Section */}
+          <Hero />
+
+          {/* 2. About Us Section */}
+          <About />
+
+          {/* 3. Why Us Section */}
+          <WhyUs />
+
+          {/* 4. Services Section */}
+          <Services />
+
+          {/* 5. Deliverables Section */}
+          <Deliverables />
+
+          {/* 6. Approach Section */}
+          <Approach />
+
+          {/* 7. Industries We Serve Section */}
+          <Industries />
+
+          {/* 8. Global Reach & Clients Section */}
+          <GlobalReach />
+
+          {/* 9. Careers Section */}
+          <Careers />
+
+          {/* 10. Contact Section */}
+          <Contact />
         </main>
       </div>
 
-      {/* Footer is constant across all views */}
+      {/* 11. Footer Section */}
       <Footer />
     </div>
   );

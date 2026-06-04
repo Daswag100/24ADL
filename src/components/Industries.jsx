@@ -1,4 +1,8 @@
+import { useState } from 'react';
+
 export default function Industries() {
+  const [showAll, setShowAll] = useState(false);
+
   const industries = [
     'Agro-processing & Commodity Trade',
     'Warehousing & Distribution',
@@ -15,7 +19,7 @@ export default function Industries() {
   ];
 
   return (
-    <section id="industries" className="py-24 bg-gray-50">
+    <section id="industries" className="py-14 md:py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         
         {/* Section Header */}
@@ -33,24 +37,39 @@ export default function Industries() {
 
         {/* Industries Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-14">
-          {industries.map((ind, index) => (
-            <div
-              key={index}
-              className="bg-white border border-gray-200 rounded-xl px-5 py-4 flex items-center gap-3 hover:bg-brand-purple-light/25 hover:border-brand-purple-primary hover:-translate-y-0.5 hover:shadow-md transition-all duration-200 cursor-pointer active:scale-[0.99] group"
-            >
-              {/* Purple Dot */}
-              <span className="w-2 h-2 rounded-full bg-purple-600 shrink-0 group-hover:bg-brand-purple-primary group-hover:scale-125 transition-all duration-200" />
-              
-              {/* Industry Name */}
-              <span className="font-dmsans text-sm font-medium text-gray-800 group-hover:text-brand-purple-primary transition-colors duration-200">
-                {ind}
-              </span>
-            </div>
-          ))}
+          {industries.map((ind, index) => {
+            const isHiddenOnMobile = index >= 6 && !showAll;
+            return (
+              <div
+                key={index}
+                className={`bg-white border border-gray-200 rounded-xl px-5 py-4 items-center gap-3 hover:bg-brand-purple-light/25 hover:border-brand-purple-primary hover:-translate-y-0.5 hover:shadow-md transition-all duration-200 cursor-pointer active:scale-[0.99] group ${
+                  isHiddenOnMobile ? 'hidden sm:flex' : 'flex'
+                }`}
+              >
+                {/* Purple Dot */}
+                <span className="w-2 h-2 rounded-full bg-purple-600 shrink-0 group-hover:bg-brand-purple-primary group-hover:scale-125 transition-all duration-200" />
+                
+                {/* Industry Name */}
+                <span className="font-dmsans text-sm font-medium text-gray-800 group-hover:text-brand-purple-primary transition-colors duration-200">
+                  {ind}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Mobile Toggle Button - Only displays on screens < 640px */}
+        <div className="sm:hidden mt-8 flex justify-center">
+          <button
+            onClick={() => setShowAll(!showAll)}
+            className="font-syne font-bold text-sm text-brand-purple-primary bg-brand-purple-light/40 border border-brand-purple-primary/10 px-6 py-3 rounded-full hover:bg-brand-purple-primary hover:text-white transition-all duration-300 cursor-pointer"
+          >
+            {showAll ? 'Show Less Sectors' : 'Show All Sectors'}
+          </button>
         </div>
 
         {/* Footnote */}
-        <p className="font-dmsans text-sm text-gray-400 mt-6 text-center font-normal">
+        <p className="font-dmsans text-sm text-gray-400 mt-8 text-center font-normal">
           We work with businesses ranging from small enterprises to large-scale operations.
         </p>
 

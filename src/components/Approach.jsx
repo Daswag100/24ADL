@@ -37,7 +37,7 @@ export default function Approach() {
   return (
     <section
       id="approach"
-      className="relative py-24 bg-gray-900 text-white overflow-hidden bg-cover bg-center"
+      className="relative py-14 md:py-24 bg-gray-900 text-white overflow-hidden bg-cover bg-center"
       style={{ backgroundImage: "url('/images/PHOTO-2026-04-06-23-48-31_6_jpg.jpeg')" }}
     >
       {/* Heavy dark overlay */}
@@ -62,7 +62,7 @@ export default function Approach() {
         </div>
 
         {/* Steps Grid Container */}
-        <div className="mt-16 border-t border-white/10 pt-16">
+        <div className="mt-10 md:mt-16 border-t border-white/10 pt-10 md:pt-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-y-12 lg:gap-y-0">
             {steps.map((step, index) => (
               <div

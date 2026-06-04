@@ -14,11 +14,11 @@ export default function GlobalReach() {
   const regions = ['Africa', 'Europe', 'Asia', 'North America', 'Middle East'];
 
   return (
-    <section id="clients" className="py-24 bg-brand-purple-primary text-white">
+    <section id="clients" className="py-14 md:py-24 bg-brand-purple-primary text-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         
         {/* Section Header */}
-        <div className="mb-16">
+        <div className="mb-10 md:mb-16">
           <span className="text-xs font-semibold tracking-widest text-white/50 uppercase block mb-3">
             OUR ENGAGEMENT
           </span>
@@ -31,7 +31,7 @@ export default function GlobalReach() {
         </div>
 
         {/* Atmosphere Image with Purple Overlay */}
-        <div className="relative w-full h-64 rounded-2xl mb-12 overflow-hidden shadow-md">
+        <div className="relative w-full h-44 md:h-64 rounded-2xl mb-8 overflow-hidden shadow-md">
           <img
             src="/images/PHOTO-2026-04-06-23-48-31_8_jpg.jpeg"
             className="w-full h-full object-cover object-center"

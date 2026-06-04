@@ -44,7 +44,7 @@ export default function Careers() {
   };
 
   return (
-    <section id="careers" className="py-24 bg-[#FAFAF9] overflow-hidden">
+    <section id="careers" className="py-14 md:py-24 bg-[#FAFAF9] overflow-hidden">
       <motion.div
         className="max-w-7xl mx-auto px-6 lg:px-10"
         variants={containerVariants}
@@ -78,7 +78,7 @@ export default function Careers() {
         {/* Central Application Call-To-Action Card */}
         <motion.div
           variants={itemVariants}
-          className="max-w-xl mx-auto bg-white border border-gray-200/80 rounded-2xl p-8 sm:p-12 shadow-sm text-center mb-20 relative overflow-hidden"
+          className="max-w-xl mx-auto bg-white border border-gray-200/80 rounded-2xl p-8 sm:p-12 shadow-sm text-center mb-10 md:mb-20 relative overflow-hidden"
         >
           {/* Briefcase Icon Container */}
           <div className="w-16 h-16 bg-brand-purple-light/60 rounded-full flex items-center justify-center mx-auto mb-8 text-brand-purple-primary">
@@ -114,7 +114,7 @@ export default function Careers() {
         </motion.div>
 
         {/* Divider */}
-        <div className="border-t border-gray-200/60 my-16 max-w-5xl mx-auto" />
+        <div className="border-t border-gray-200/60 my-10 md:my-16 max-w-5xl mx-auto" />
 
         {/* Perks / Benefits Grid */}
         <div className="max-w-5xl mx-auto">
