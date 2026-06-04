@@ -23,6 +23,7 @@ export default function Navbar({ currentHash }) {
     { label: 'Industries', href: '#industries' },
     { label: 'Approach', href: '#approach' },
     { label: 'Clients', href: '#clients' },
+    { label: 'Careers', href: '#careers' },
     { label: 'Contact', href: '#contact' },
   ];
 

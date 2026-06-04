@@ -10,6 +10,7 @@ import WhyUs from './components/WhyUs';
 import GlobalReach from './components/GlobalReach';
 import Deliverables from './components/Deliverables';
 import Contact from './components/Contact';
+import Careers from './components/Careers';
 import Footer from './components/Footer';
 
 function App() {
@@ -59,6 +60,8 @@ function App() {
         return <GlobalReach />;
       case '#contact':
         return <Contact />;
+      case '#careers':
+        return <Careers />;
       case '#home':
       case '#':
       default:
