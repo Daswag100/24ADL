@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, MapPin, Globe } from 'lucide-react';
+import { Mail, MapPin, Globe, Phone } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -76,10 +76,28 @@ export default function Contact() {
                     Email
                   </span>
                   <a
-                    href="mailto:adlinspection.operations@outlook.com"
+                    href="mailto:info@24adlinspection.com"
                     className="font-dmsans text-base text-green-400 font-medium hover:underline break-all"
                   >
-                    adlinspection.operations@outlook.com
+                    info@24adlinspection.com
+                  </a>
+                </div>
+              </div>
+
+              {/* Phone Item */}
+              <div className="flex items-start gap-4">
+                <div className="w-11 h-11 border border-white/15 rounded-xl flex items-center justify-center shrink-0 bg-white/5">
+                  <Phone className="h-5 w-5 text-white/60" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-dmsans text-[11px] text-white/35 uppercase tracking-wide mb-1">
+                    Phone
+                  </span>
+                  <a
+                    href="tel:+2347030637458"
+                    className="font-dmsans text-base text-green-400 font-medium hover:underline"
+                  >
+                    +234 7030637458
                   </a>
                 </div>
               </div>

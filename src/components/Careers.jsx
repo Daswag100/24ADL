@@ -92,10 +92,10 @@ export default function Careers() {
           <p className="font-dmsans text-base text-brand-gray-mid leading-relaxed mb-6">
             If your skills match the role, email your CV to{' '}
             <a
-              href="mailto:hradmin@24adlinspection.com"
+              href="mailto:recruitment@24adlinspection.com"
               className="text-brand-purple-primary font-bold hover:underline"
             >
-              hradmin@24adlinspection.com
+              recruitment@24adlinspection.com
             </a>.
           </p>
 
@@ -105,11 +105,11 @@ export default function Careers() {
 
           {/* Email row action */}
           <a
-            href="mailto:hradmin@24adlinspection.com"
+            href="mailto:recruitment@24adlinspection.com"
             className="inline-flex items-center gap-3 bg-brand-purple-light/30 border border-brand-purple-primary/10 text-brand-purple-primary font-dmsans font-medium text-sm px-6 py-3 rounded-full hover:bg-brand-purple-primary hover:text-white transition-all duration-300"
           >
             <Mail className="h-4 w-4" />
-            <span>hradmin@24adlinspection.com</span>
+            <span>recruitment@24adlinspection.com</span>
           </a>
         </motion.div>
 
