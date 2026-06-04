@@ -36,13 +36,13 @@ export default function Industries() {
           {industries.map((ind, index) => (
             <div
               key={index}
-              className="bg-white border border-gray-200 rounded-xl px-5 py-4 flex items-center gap-3 hover:border-purple-400 hover:-translate-y-0.5 transition-all duration-150 shadow-sm hover:shadow active:scale-[0.99] cursor-default"
+              className="bg-white border border-gray-200 rounded-xl px-5 py-4 flex items-center gap-3 hover:bg-brand-purple-light/25 hover:border-brand-purple-primary hover:-translate-y-0.5 hover:shadow-md transition-all duration-200 cursor-pointer active:scale-[0.99] group"
             >
               {/* Purple Dot */}
-              <span className="w-2 h-2 rounded-full bg-purple-800 shrink-0" />
+              <span className="w-2 h-2 rounded-full bg-purple-600 shrink-0 group-hover:bg-brand-purple-primary group-hover:scale-125 transition-all duration-200" />
               
               {/* Industry Name */}
-              <span className="font-dmsans text-sm font-medium text-gray-800">
+              <span className="font-dmsans text-sm font-medium text-gray-800 group-hover:text-brand-purple-primary transition-colors duration-200">
                 {ind}
               </span>
             </div>
