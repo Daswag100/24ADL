@@ -39,42 +39,61 @@ export default function Hero() {
   const count9 = useCountUp(9, 1200, statsInView);
   const count4 = useCountUp(4, 800, statsInView);
 
-  const headlineFirstLine = ["Ensuring", "Accuracy."];
-
-  // Typewriter implementation
+  // Typewriter implementation (PitchMatter Style)
   const typewriterPhrases = ["Strengthening Control.", "Reducing Losses.", "Built on Verification."];
-  const [phraseIndex, setPhraseIndex] = useState(0);
-  const [currentText, setCurrentText] = useState("");
+  const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
+  const [phraseIndex, setPhraseIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [cursorOpacity, setCursorOpacity] = useState(1);
 
+  // Blinking cursor | effect toggling opacity between 0 and 1 every 530ms
   useEffect(() => {
-    let timer;
+    const cursorInterval = setInterval(() => {
+      setCursorOpacity((prev) => (prev === 1 ? 0 : 1));
+    }, 530);
+    return () => clearInterval(cursorInterval);
+  }, []);
+
+  // Typewriter logic: typing 62ms, deleting 38ms, pause 2200ms
+  useEffect(() => {
+    if (isPaused) return;
+
     const activePhrase = typewriterPhrases[phraseIndex];
+    const speed = isDeleting ? 38 : 62;
 
-    if (!isDeleting) {
-      if (currentText.length < activePhrase.length) {
-        timer = setTimeout(() => {
-          setCurrentText(activePhrase.substring(0, currentText.length + 1));
-        }, 60);
+    const handleTick = () => {
+      if (!isDeleting) {
+        if (displayText.length < activePhrase.length) {
+          setDisplayText(activePhrase.substring(0, displayText.length + 1));
+        } else {
+          setIsPaused(true);
+        }
       } else {
-        // Pause for 2s when complete
-        timer = setTimeout(() => {
-          setIsDeleting(true);
-        }, 2000);
+        if (displayText.length > 0) {
+          setDisplayText(activePhrase.substring(0, displayText.length - 1));
+        } else {
+          setIsDeleting(false);
+          setPhraseIndex((prev) => (prev + 1) % typewriterPhrases.length);
+        }
       }
-    } else {
-      if (currentText.length > 0) {
-        timer = setTimeout(() => {
-          setCurrentText(activePhrase.substring(0, currentText.length - 1));
-        }, 40);
-      } else {
-        setIsDeleting(false);
-        setPhraseIndex((prev) => (prev + 1) % typewriterPhrases.length);
-      }
-    }
+    };
 
-    return () => clearTimeout(timer);
-  }, [currentText, isDeleting, phraseIndex]);
+    const intervalId = setInterval(handleTick, speed);
+    return () => clearInterval(intervalId);
+  }, [displayText, isDeleting, phraseIndex, isPaused]);
+
+  // Handle the 2200ms pause timer when isPaused becomes true
+  useEffect(() => {
+    if (!isPaused) return;
+
+    const timeoutId = setTimeout(() => {
+      setIsDeleting(true);
+      setIsPaused(false);
+    }, 2200);
+
+    return () => clearTimeout(timeoutId);
+  }, [isPaused]);
 
   return (
     <section
@@ -107,38 +126,40 @@ export default function Hero() {
           </motion.div>
 
           {/* Headline H1 with Word-by-Word Animation & Typewriter */}
-          <h1 className="font-syne font-extrabold text-3xl sm:text-6xl lg:text-[76px] text-white tracking-tight leading-[1.05] select-none">
-            <span className="block mb-2">
-              {headlineFirstLine.map((word, idx) => (
-                <motion.span
-                  key={idx}
-                  initial={{ y: 16, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{
-                    delay: 0.3 + idx * 0.06,
-                    duration: 0.5,
-                    ease: [0.22, 1, 0.36, 1]
-                  }}
-                  className="inline-block mr-3 sm:mr-4"
-                >
-                  {word}
-                </motion.span>
-              ))}
-            </span>
+          {/* Headline H1 — Static, large, white */}
+          <h1 
+            className="font-syne font-bold text-white tracking-tight select-none leading-[1.05]"
+            style={{ fontSize: 'clamp(2.8rem, 8vw, 6rem)' }}
+          >
+            <span className="block">Ensuring</span>
+            <span className="block">Accuracy.</span>
           </h1>
 
-          {/* Typewriter Line with Fixed Height Container and Smaller Font Size */}
-          <div className="min-h-[80px] lg:min-h-[120px] flex items-center mb-6 w-full">
+          {/* Line 3 — Typewriter, smaller, green */}
+          <div 
+            className="mb-8 w-full select-none"
+            style={{ overflow: 'hidden', whiteSpace: 'nowrap' }}
+          >
             <span
-              className="inline-block text-brand-green-lemon font-syne font-extrabold tracking-tight select-none"
-              style={{ 
-                fontSize: 'clamp(1.8rem, 5vw, 4.2rem)', 
-                lineHeight: '1.1',
+              className="inline-block font-syne font-bold"
+              style={{
+                color: '#22C55E',
+                fontSize: 'clamp(1.2rem, 4.5vw, 2rem)',
+                lineHeight: '1.3',
                 whiteSpace: 'nowrap'
               }}
             >
-              {currentText}
-              <span className="hidden sm:inline cursor-blink ml-1 text-brand-green-lemon">|</span>
+              {displayText}
+              <span 
+                style={{ 
+                  color: '#22C55E', 
+                  opacity: cursorOpacity,
+                  marginLeft: '2px',
+                  display: 'inline'
+                }}
+              >
+                |
+              </span>
             </span>
           </div>
 
