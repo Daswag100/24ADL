@@ -92,7 +92,7 @@ export default function Careers() {
             Interested in joining our team?
           </h3>
 
-          <p className="font-dmsans text-base text-brand-gray-mid dark:text-gray-400 leading-relaxed mb-8">
+          <p className="font-dmsans text-base text-brand-gray-mid dark:text-gray-400 leading-relaxed mb-6">
             If you believe you can add value to our company, please send your CV plus cover letter and any relevant qualifications or supporting documents to{' '}
             <a
               href="mailto:recruitment@24adlinspection.com"
@@ -100,6 +100,10 @@ export default function Careers() {
             >
               recruitment@24adlinspection.com
             </a>.
+          </p>
+
+          <p className="font-dmsans text-base text-brand-gray-mid dark:text-gray-400 leading-relaxed mb-8">
+            We welcome applicants for any role that matches their skills and experience. Qualified candidates with outstanding profiles will be contacted for further consideration.
           </p>
 
           {/* Email row action */}
@@ -128,7 +132,7 @@ export default function Careers() {
             variants={itemVariants}
             className="font-dmsans text-base text-brand-gray-mid dark:text-gray-400 text-center max-w-2xl mx-auto mb-12 font-light"
           >
-            We welcome applicants for any role that matches their skills and experience. Qualified candidates with outstanding profiles will be contacted for further consideration.
+            Discover why professional auditors join our team and build their careers with 24ADL.
           </motion.p>
 
           <motion.div
