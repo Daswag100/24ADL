@@ -194,7 +194,7 @@ export default function Services() {
 
         {/* Tab Banner */}
         {getTabBanner() && (
-          <div className="relative w-full h-64 sm:h-80 md:h-[380px] lg:h-[440px] rounded-2xl mb-8 mt-10 overflow-hidden shadow-sm bg-gray-100 dark:bg-gray-800">
+          <div className="relative w-full h-64 md:h-80 rounded-2xl mb-8 mt-10 overflow-hidden shadow-sm bg-gray-100 dark:bg-gray-800">
             <img
               src={getTabBanner()}
               className="w-full h-full object-cover object-top"
