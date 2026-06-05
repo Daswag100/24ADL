@@ -133,7 +133,7 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8 text-center sm:text-left">
           {/* Copyright */}
           <div className="font-dmsans text-xs text-white/20">
-            &copy; 2025 24ADL. All rights reserved.
+            &copy; 2026 24ADL. All rights reserved.
           </div>
           {/* Tagline */}
           <div className="font-syne font-bold text-xs text-brand-green-lemon tracking-wide uppercase">
