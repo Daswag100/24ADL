@@ -1,47 +1,65 @@
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, Scale, ClipboardList, Clock } from 'lucide-react';
 
 export default function About() {
   const values = [
     {
-      icon: <CheckCircle className="h-5 w-5 text-brand-purple-primary" />,
+      icon: <CheckCircle className="h-5 w-5 text-brand-purple-primary dark:text-brand-green-lemon" />,
       title: 'Accuracy',
       text: 'We prioritize precision and reliable verification in every engagement.',
     },
     {
-      icon: <Scale className="h-5 w-5 text-brand-purple-primary" />,
+      icon: <Scale className="h-5 w-5 text-brand-purple-primary dark:text-brand-green-lemon" />,
       title: 'Integrity',
       text: 'We maintain independence and professionalism — no conflict of interest, ever.',
     },
     {
-      icon: <ClipboardList className="h-5 w-5 text-brand-purple-primary" />,
+      icon: <ClipboardList className="h-5 w-5 text-brand-purple-primary dark:text-brand-green-lemon" />,
       title: 'Accountability',
       text: 'We support businesses in strengthening operational control and reporting reliability.',
     },
     {
-      icon: <Clock className="h-5 w-5 text-brand-purple-primary" />,
+      icon: <Clock className="h-5 w-5 text-brand-purple-primary dark:text-brand-green-lemon" />,
       title: 'Reliability',
       text: 'Consistent, dependable audit support — delivered on time, every time.',
     },
   ];
 
+  const slideshowImages = [
+    '/images/PHOTO-2026-04-06-23-48-31_5_jpg.jpeg',
+    '/images/PHOTO-2026-04-06-23-48-31_3_jpg.jpeg',
+    '/images/PHOTO-2026-04-06-23-48-31_jpg.jpeg',
+    '/images/PHOTO-2026-04-06-23-48-31_13_jpg.jpeg',
+    '/images/PHOTO-2026-04-06-23-48-32_jpg.jpeg',
+  ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % slideshowImages.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
   // Slick cubic-bezier for premium feel
   const transitionSettings = {
     duration: 0.85,
-    ease: [0.16, 1, 0.3, 1], // Custom expo-out
+    ease: [0.22, 1, 0.36, 1], // Custom easeOutQuart
   };
 
   const containerVariants = {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.12,
+        staggerChildren: 0.1,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 25 },
+    hidden: { opacity: 0, y: 16 },
     visible: {
       opacity: 1,
       y: 0,
@@ -49,55 +67,53 @@ export default function About() {
     },
   };
 
-  const imageVariants = {
-    hidden: { opacity: 0, scale: 0.96, y: 15 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      transition: {
-        duration: 1.1,
-        ease: [0.16, 1, 0.3, 1],
-      },
-    },
-  };
-
   return (
-    <section id="about" className="py-14 md:py-24 bg-[#FAFAF9] overflow-hidden">
-      <motion.div
-        className="max-w-7xl mx-auto px-6 lg:px-10"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-80px' }}
-      >
+    <section id="about" className="py-14 md:py-24 bg-[#FAFAF9] dark:bg-gray-900 border-b dark:border-gray-800/30 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
         
         {/* Section Header */}
-        <div className="mb-16">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
+          className="mb-16"
+        >
           <motion.span
-            variants={itemVariants}
-            className="text-xs font-semibold tracking-widest text-brand-purple-mid uppercase block mb-3"
+            variants={{
+              hidden: { y: 20, opacity: 0 },
+              visible: { y: 0, opacity: 1, transition: { duration: 0.6, delay: 0 } }
+            }}
+            className="text-xs font-semibold tracking-widest text-brand-purple-mid dark:text-brand-green-lemon uppercase block mb-3"
           >
             Who We Are
           </motion.span>
           <motion.h2
-            variants={itemVariants}
-            className="font-syne font-bold text-4xl lg:text-5xl text-brand-black tracking-tight"
+            variants={{
+              hidden: { y: 20, opacity: 0 },
+              visible: { y: 0, opacity: 1, transition: { duration: 0.6, delay: 0.1 } }
+            }}
+            className="font-syne font-bold text-4xl lg:text-5xl text-brand-black dark:text-white tracking-tight"
           >
             Where Vision Meets Execution
           </motion.h2>
-        </div>
+        </motion.div>
 
         {/* Two-Column Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+        <motion.div
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
+        >
           
           {/* Left Column */}
           <div className="flex flex-col">
             <motion.p
               variants={itemVariants}
-              className="font-dmsans text-lg text-brand-gray-mid font-light leading-relaxed max-w-lg mb-10"
+              className="font-dmsans text-lg text-brand-gray-mid dark:text-gray-400 font-light leading-relaxed max-w-lg mb-10"
             >
-              Established in 2022 and led by Louis Adun, 24ADL is a fast-growing audit and inspection firm providing independent stock audit and inventory verification services across agro and non-agro sectors worldwide.
+              Established in 2022, 24ADL is a fast-growing audit and inspection firm providing independent stock audit and inventory verification services across agro and non-agro sectors worldwide.
             </motion.p>
 
             {/* Value Cards Vertical Stack */}
@@ -107,16 +123,16 @@ export default function About() {
                   key={index}
                   variants={itemVariants}
                   whileHover={{ y: -3, transition: { duration: 0.2 } }}
-                  className="bg-white border border-gray-200 rounded-xl p-5 flex items-start gap-4 shadow-sm hover:shadow-md transition-all duration-300"
+                  className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 flex items-start gap-4 shadow-sm hover:shadow-md transition-all duration-300"
                 >
-                  <div className="w-10 h-10 bg-brand-purple-light rounded-lg flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 bg-brand-purple-light dark:bg-purple-950/40 rounded-lg flex items-center justify-center shrink-0">
                     {val.icon}
                   </div>
                   <div className="flex flex-col">
-                    <h4 className="font-syne font-bold text-brand-black text-base mb-1">
+                    <h4 className="font-syne font-bold text-brand-black dark:text-white text-base mb-1">
                       {val.title}
                     </h4>
-                    <p className="font-dmsans text-sm text-brand-gray-mid font-normal leading-relaxed">
+                    <p className="font-dmsans text-sm text-brand-gray-mid dark:text-gray-400 font-normal leading-relaxed">
                       {val.text}
                     </p>
                   </div>
@@ -127,12 +143,36 @@ export default function About() {
 
           {/* Right Column */}
           <div className="flex flex-col">
-            <motion.img
-              variants={imageVariants}
-              src="/images/PHOTO-2026-04-06-23-48-31_5_jpg.jpeg"
-              className="w-full h-72 object-cover rounded-2xl mb-6 object-center shadow-md"
-              alt="Physical verification"
-            />
+            
+            {/* Auto-Rotating Image Slideshow */}
+            <div className="relative w-full h-80 rounded-2xl mb-6 overflow-hidden shadow-md bg-gray-100 dark:bg-gray-800">
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={currentIndex}
+                  src={slideshowImages[currentIndex]}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1, transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] } }}
+                  exit={{ opacity: 0, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } }}
+                  className="absolute inset-0 w-full h-full object-cover object-center"
+                  alt="24ADL Physical Verification and Auditing"
+                />
+              </AnimatePresence>
+              
+              {/* Dot Indicators */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                {slideshowImages.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentIndex(idx)}
+                    className={`w-2 h-2 rounded-full transition-colors duration-300 cursor-pointer ${
+                      currentIndex === idx ? 'bg-brand-green-lemon' : 'bg-white/30'
+                    }`}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+
             {/* Philosophy Card */}
             <motion.div
               variants={itemVariants}
@@ -157,12 +197,12 @@ export default function About() {
               {/* Stat 1 */}
               <motion.div
                 variants={itemVariants}
-                className="bg-white border border-gray-200 rounded-xl p-5 flex flex-col items-center justify-center text-center shadow-sm"
+                className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 flex flex-col items-center justify-center text-center shadow-sm"
               >
-                <span className="font-syne font-bold text-xl sm:text-2xl text-brand-purple-primary">
+                <span className="font-syne font-bold text-xl sm:text-2xl text-brand-purple-primary dark:text-brand-green-lemon">
                   2022
                 </span>
-                <span className="font-dmsans text-[11px] sm:text-xs text-brand-gray-mid uppercase tracking-wide mt-1">
+                <span className="font-dmsans text-[11px] sm:text-xs text-brand-gray-mid dark:text-gray-400 uppercase tracking-wide mt-1">
                   Founded
                 </span>
               </motion.div>
@@ -170,12 +210,12 @@ export default function About() {
               {/* Stat 2 */}
               <motion.div
                 variants={itemVariants}
-                className="bg-white border border-gray-200 rounded-xl p-5 flex flex-col items-center justify-center text-center shadow-sm"
+                className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 flex flex-col items-center justify-center text-center shadow-sm"
               >
-                <span className="font-syne font-bold text-xl sm:text-2xl text-brand-purple-primary">
+                <span className="font-syne font-bold text-xl sm:text-2xl text-brand-purple-primary dark:text-brand-green-lemon">
                   Agro +
                 </span>
-                <span className="font-dmsans text-[11px] sm:text-xs text-brand-gray-mid uppercase tracking-wide mt-1">
+                <span className="font-dmsans text-[11px] sm:text-xs text-brand-gray-mid dark:text-gray-400 uppercase tracking-wide mt-1">
                   Non-Agro
                 </span>
               </motion.div>
@@ -183,20 +223,20 @@ export default function About() {
               {/* Stat 3 */}
               <motion.div
                 variants={itemVariants}
-                className="bg-white border border-gray-200 rounded-xl p-5 flex flex-col items-center justify-center text-center shadow-sm"
+                className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 flex flex-col items-center justify-center text-center shadow-sm"
               >
-                <span className="font-syne font-bold text-xl sm:text-2xl text-brand-purple-primary">
+                <span className="font-syne font-bold text-xl sm:text-2xl text-brand-purple-primary dark:text-brand-green-lemon">
                   Global
                 </span>
-                <span className="font-dmsans text-[11px] sm:text-xs text-brand-gray-mid uppercase tracking-wide mt-1">
+                <span className="font-dmsans text-[11px] sm:text-xs text-brand-gray-mid dark:text-gray-400 uppercase tracking-wide mt-1">
                   Reach
                 </span>
               </motion.div>
             </motion.div>
           </div>
 
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 }

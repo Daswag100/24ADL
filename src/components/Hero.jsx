@@ -1,15 +1,46 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 
-export default function Hero() {
-  const [isMounted, setIsMounted] = useState(false);
+function useCountUp(target, duration, startTrigger = true) {
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    // Small delay to trigger smooth transition after mounting
-    const timer = setTimeout(() => {
-      setIsMounted(true);
-    }, 50);
-    return () => clearTimeout(timer);
-  }, []);
+    if (!startTrigger) return;
+    let startTimestamp = null;
+    let animationFrameId = null;
+
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      // Quad easeOut: progress * (2 - progress)
+      const easeProgress = progress * (2 - progress);
+      setCount(Math.floor(easeProgress * target));
+      if (progress < 1) {
+        animationFrameId = window.requestAnimationFrame(step);
+      }
+    };
+    animationFrameId = window.requestAnimationFrame(step);
+
+    return () => {
+      if (animationFrameId) {
+        window.cancelAnimationFrame(animationFrameId);
+      }
+    };
+  }, [target, duration, startTrigger]);
+
+  return count;
+}
+
+export default function Hero() {
+  const statsRef = useRef(null);
+  const statsInView = useInView(statsRef, { once: true, margin: '-80px' });
+
+  const count2022 = useCountUp(2022, 1800, statsInView);
+  const count9 = useCountUp(9, 1200, statsInView);
+  const count4 = useCountUp(4, 800, statsInView);
+
+  const headlineFirstLine = ["Ensuring", "Accuracy."];
+  const headlineSecondLine = ["Strengthening", "Control."];
 
   return (
     <section
@@ -29,41 +60,72 @@ export default function Hero() {
         <div className="max-w-3xl flex flex-col text-left">
           
           {/* Eyebrow Badge */}
-          <div
-            className={`inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white rounded-full px-4 py-1.5 text-xs sm:text-sm w-fit mb-8 transform transition-all duration-700 ${
-              isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
-            }`}
+          <motion.div
+            initial={{ y: 16, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white rounded-full px-4 py-1.5 text-xs sm:text-sm w-fit mb-8"
           >
             <span className="w-2 h-2 bg-brand-green-lemon rounded-full animate-pulse" />
             <span className="font-dmsans font-medium tracking-wide uppercase text-[11px] sm:text-xs">
               Independent Stock Audit & Verification
             </span>
-          </div>
+          </motion.div>
 
-          {/* Headline H1 */}
-          <h1
-            className={`font-syne font-extrabold text-3xl sm:text-6xl lg:text-[80px] text-white tracking-tight leading-[1.05] mb-6 transform transition-all duration-700 delay-200 ${
-              isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
-            }`}
-          >
-            Ensuring Accuracy. <br />
-            <span className="text-brand-green-lemon">Strengthening Control.</span>
+          {/* Headline H1 with Word-by-Word Animation */}
+          <h1 className="font-syne font-extrabold text-3xl sm:text-6xl lg:text-[76px] text-white tracking-tight leading-[1.05] mb-6 select-none">
+            <span className="block mb-2">
+              {headlineFirstLine.map((word, idx) => (
+                <motion.span
+                  key={idx}
+                  initial={{ y: 16, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{
+                    delay: 0.3 + idx * 0.06,
+                    duration: 0.5,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
+                  className="inline-block mr-3 sm:mr-4"
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </span>
+            <span className="block text-brand-green-lemon">
+              {headlineSecondLine.map((word, idx) => (
+                <motion.span
+                  key={idx}
+                  initial={{ y: 16, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{
+                    delay: 0.3 + (idx + headlineFirstLine.length) * 0.06,
+                    duration: 0.5,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
+                  className="inline-block mr-3 sm:mr-4"
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </span>
           </h1>
 
           {/* Subheading */}
-          <p
-            className={`font-dmsans text-base sm:text-lg lg:text-xl text-white/70 max-w-xl leading-relaxed font-light mb-10 transform transition-all duration-700 delay-300 ${
-              isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
-            }`}
+          <motion.p
+            initial={{ y: 16, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.7, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="font-dmsans text-base sm:text-lg lg:text-xl text-white/70 max-w-xl leading-relaxed font-light mb-10"
           >
             We help businesses prevent unnoticed inventory losses through independent verification — across agro and non-agro sectors, from Lagos to global markets.
-          </p>
+          </motion.p>
 
           {/* Buttons CTA */}
-          <div
-            className={`flex flex-row flex-wrap gap-4 mb-20 transform transition-all duration-700 delay-400 ${
-              isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
-            }`}
+          <motion.div
+            initial={{ y: 16, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.9, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-row flex-wrap gap-4 mb-20"
           >
             <a
               href="#contact"
@@ -77,20 +139,22 @@ export default function Hero() {
             >
               Our Services
             </a>
-          </div>
+          </motion.div>
 
           {/* Stats Bar */}
-          <div
-            className={`border-t border-white/10 pt-10 transform transition-all duration-700 delay-500 ${
-              isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
-            }`}
+          <motion.div
+            ref={statsRef}
+            initial={{ y: 16, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 1.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="border-t border-white/10 pt-10"
           >
             <div className="flex flex-row flex-wrap gap-8 sm:gap-16">
               
               {/* Stat 1 */}
               <div className="flex flex-col">
-                <span className="font-syne font-bold text-3xl sm:text-4xl text-white mb-1.5">
-                  2022
+                <span className="font-syne font-bold text-3xl sm:text-4xl text-white mb-1.5 min-w-[70px]">
+                  {count2022}
                 </span>
                 <span className="font-dmsans text-xs sm:text-sm text-white/55 tracking-wider uppercase">
                   Year Founded
@@ -99,8 +163,8 @@ export default function Hero() {
 
               {/* Stat 2 */}
               <div className="flex flex-col">
-                <span className="font-syne font-bold text-3xl sm:text-4xl text-white mb-1.5">
-                  9+
+                <span className="font-syne font-bold text-3xl sm:text-4xl text-white mb-1.5 min-w-[50px]">
+                  {count9 === 9 ? '9+' : count9}
                 </span>
                 <span className="font-dmsans text-xs sm:text-sm text-white/55 tracking-wider uppercase">
                   Global Partners
@@ -109,8 +173,8 @@ export default function Hero() {
 
               {/* Stat 3 */}
               <div className="flex flex-col">
-                <span className="font-syne font-bold text-3xl sm:text-4xl text-white mb-1.5">
-                  4
+                <span className="font-syne font-bold text-3xl sm:text-4xl text-white mb-1.5 min-w-[30px]">
+                  {count4}
                 </span>
                 <span className="font-dmsans text-xs sm:text-sm text-white/55 tracking-wider uppercase">
                   Continents Served
@@ -118,7 +182,7 @@ export default function Hero() {
               </div>
 
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </div>

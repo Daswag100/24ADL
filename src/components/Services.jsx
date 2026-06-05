@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import {
   Wheat,
   FlaskConical,
@@ -132,24 +133,47 @@ export default function Services() {
   };
 
   return (
-    <section id="services" className="py-14 md:py-24 bg-white">
+    <section id="services" className="py-14 md:py-24 bg-white dark:bg-gray-900 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         
         {/* Section Header */}
-        <div className="mb-12">
-          <span className="text-xs font-semibold tracking-widest text-[#4C1D95] uppercase block mb-3">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
+          className="mb-12"
+        >
+          <motion.span
+            variants={{
+              hidden: { y: 20, opacity: 0 },
+              visible: { y: 0, opacity: 1, transition: { duration: 0.6, delay: 0 } }
+            }}
+            className="text-xs font-semibold tracking-widest text-[#4C1D95] dark:text-brand-green-lemon uppercase block mb-3"
+          >
             WHAT WE DO
-          </span>
-          <h2 className="font-syne font-bold text-4xl lg:text-5xl text-brand-black tracking-tight mb-4">
+          </motion.span>
+          <motion.h2
+            variants={{
+              hidden: { y: 20, opacity: 0 },
+              visible: { y: 0, opacity: 1, transition: { duration: 0.6, delay: 0.1 } }
+            }}
+            className="font-syne font-bold text-4xl lg:text-5xl text-brand-black dark:text-white tracking-tight mb-4"
+          >
             Our Services
-          </h2>
-          <p className="font-dmsans text-base sm:text-lg text-gray-500 font-light max-w-xl">
+          </motion.h2>
+          <motion.p
+            variants={{
+              hidden: { y: 20, opacity: 0 },
+              visible: { y: 0, opacity: 1, transition: { duration: 0.6, delay: 0.2 } }
+            }}
+            className="font-dmsans text-base sm:text-lg text-gray-500 dark:text-gray-400 font-light max-w-xl"
+          >
             End-to-end stock audit solutions covering both agricultural and non-agricultural operations.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* Tab Buttons Switcher */}
-        <div className="flex flex-wrap gap-2 mt-8 border-b border-gray-100 pb-6">
+        <div className="flex flex-wrap gap-2 mt-8 border-b border-gray-100 dark:border-gray-800 pb-6">
           {tabs.map((tab) => (
             <button
               key={tab.id}
@@ -160,7 +184,7 @@ export default function Services() {
               className={`px-5 py-2.5 rounded-full text-sm font-semibold font-syne transition-all duration-200 cursor-pointer ${
                 activeTab === tab.id
                   ? 'bg-[#4C1D95] text-white border-transparent'
-                  : 'bg-white border-gray-200 border-[1.5px] text-gray-500 hover:border-purple-500'
+                  : 'bg-white dark:bg-gray-850 border-gray-200 dark:border-gray-700 border-[1.5px] text-gray-500 dark:text-gray-400 hover:border-purple-500 dark:hover:border-purple-500'
               }`}
             >
               {tab.label}
@@ -170,41 +194,63 @@ export default function Services() {
 
         {/* Tab Banner */}
         {getTabBanner() && (
-          <div className="relative w-full h-56 rounded-2xl mb-8 mt-10 overflow-hidden shadow-sm">
+          <div className="relative w-full h-64 rounded-2xl mb-8 mt-10 overflow-hidden shadow-sm bg-gray-100 dark:bg-gray-800">
             <img
               src={getTabBanner()}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-center"
               alt={`${activeTab} services banner`}
             />
-            <div className="absolute inset-0 bg-purple-900/20 rounded-2xl pointer-events-none" />
+            <div className="absolute inset-0 bg-purple-900/20 dark:bg-purple-950/40 rounded-2xl pointer-events-none" />
           </div>
         )}
 
         {/* Dynamic Card Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-2">
+        <motion.div
+          key={activeTab}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: 0.08,
+              }
+            }
+          }}
+          initial="hidden"
+          animate="visible"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-2"
+        >
           {getActiveCards().map((service, index) => {
             const IconComponent = service.icon;
             const isSelected = activeCard === index;
 
             return (
-              <div
+              <motion.div
                 key={index}
                 onClick={() => setActiveCard(index)}
+                variants={{
+                  hidden: { y: 24, opacity: 0 },
+                  visible: {
+                    y: 0,
+                    opacity: 1,
+                    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
+                  }
+                }}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
                 className={`transition-all duration-200 cursor-pointer rounded-2xl p-7 flex flex-col h-full group ${
                   isSelected
                     ? 'bg-[#4C1D95] border border-transparent scale-[1.02] shadow-md'
-                    : 'bg-white border border-gray-200 hover:border-purple-500 hover:shadow-sm'
+                    : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-purple-500 dark:hover:border-purple-500 hover:shadow-sm'
                 }`}
               >
                 {/* Icon Container */}
                 <div
                   className={`w-11 h-11 rounded-xl flex items-center justify-center mb-5 shrink-0 transition-colors duration-200 ${
-                    isSelected ? 'bg-white/15' : 'bg-violet-50'
+                    isSelected ? 'bg-white/15' : 'bg-violet-50 dark:bg-purple-950/50'
                   }`}
                 >
                   <IconComponent
                     className={`h-5 w-5 transition-colors duration-200 ${
-                      isSelected ? 'text-white' : 'text-purple-700'
+                      isSelected ? 'text-white' : 'text-purple-700 dark:text-brand-green-lemon'
                     }`}
                   />
                 </div>
@@ -212,22 +258,22 @@ export default function Services() {
                 {/* Title & Description */}
                 <h3
                   className={`font-syne font-bold text-base mb-2 transition-colors duration-200 ${
-                    isSelected ? 'text-white' : 'text-gray-900'
+                    isSelected ? 'text-white' : 'text-gray-900 dark:text-white'
                   }`}
                 >
                   {service.title}
                 </h3>
                 <p
                   className={`font-dmsans text-sm leading-relaxed font-normal flex-grow transition-colors duration-200 ${
-                    isSelected ? 'text-white/70' : 'text-gray-500'
+                    isSelected ? 'text-white/70' : 'text-gray-500 dark:text-gray-400'
                   }`}
                 >
                   {service.description}
                 </p>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
       </div>
     </section>

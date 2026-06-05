@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 
 export default function Deliverables() {
@@ -11,7 +12,7 @@ export default function Deliverables() {
   ];
 
   return (
-    <section id="deliverables" className="py-14 md:py-24 bg-gray-50">
+    <section id="deliverables" className="py-14 md:py-24 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         
         {/* Two-Column Grid */}
@@ -19,28 +20,41 @@ export default function Deliverables() {
           
           {/* Left Column */}
           <div className="flex flex-col justify-center">
-            {/* Section Header */}
-            <span className="text-xs font-semibold tracking-widest text-brand-purple-mid uppercase block mb-3">
-              WHAT YOU GET
-            </span>
-            <h2 className="font-syne font-bold text-4xl lg:text-5xl text-gray-900 tracking-tight mb-3">
-              Every Audit Delivers
-            </h2>
-            <p className="font-dmsans text-gray-500 font-light text-lg mt-3">
-              Clear documentation. Real numbers. Recommendations you can actually use.
-            </p>
+            {/* Section Header with Fade Up */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-80px' }}
+              className="mb-8"
+            >
+              <motion.span
+                variants={{
+                  hidden: { y: 20, opacity: 0 },
+                  visible: { y: 0, opacity: 1, transition: { duration: 0.6, delay: 0 } }
+                }}
+                className="text-xs font-semibold tracking-widest text-brand-purple-mid dark:text-brand-green-lemon uppercase block mb-3"
+              >
+                WHAT YOU GET
+              </motion.span>
+              <h2 className="font-syne font-bold text-4xl lg:text-5xl text-gray-900 dark:text-white tracking-tight mb-3">
+                Every Audit Delivers
+              </h2>
+              <p className="font-dmsans text-gray-500 dark:text-gray-400 font-light text-lg mt-3">
+                Clear documentation. Real numbers. Recommendations you can actually use.
+              </p>
+            </motion.div>
 
             {/* Deliverables List */}
-            <div className="flex flex-col gap-3.5 mt-10">
+            <div className="flex flex-col gap-3.5 mt-2">
               {items.map((item, idx) => (
                 <div
                   key={idx}
-                  className="bg-white border border-gray-200 rounded-xl px-5 py-4 flex items-center gap-4 shadow-sm hover:shadow transition-shadow duration-200"
+                  className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-5 py-4 flex items-center gap-4 shadow-sm hover:shadow dark:hover:shadow-gray-950/20 transition-all duration-200"
                 >
                   <div className="w-7 h-7 rounded-full bg-green-500 flex items-center justify-center shrink-0">
                     <Check className="h-3.5 w-3.5 text-black stroke-[3]" />
                   </div>
-                  <span className="font-dmsans text-base font-medium text-gray-800">
+                  <span className="font-dmsans text-base font-medium text-gray-800 dark:text-gray-200">
                     {item}
                   </span>
                 </div>
@@ -48,7 +62,7 @@ export default function Deliverables() {
             </div>
           </div>
 
-          {/* Right Column - Promotional Purple Card */}
+          {/* Right Column - Promotional Purple Card (Near-black/purple remains unchanged) */}
           <div className="flex">
             <div className="bg-[#4C1D95] rounded-2xl pt-0 px-8 pb-8 sm:px-12 sm:pb-12 flex flex-col justify-between text-white w-full shadow-lg min-h-96 lg:min-h-full overflow-hidden">
               

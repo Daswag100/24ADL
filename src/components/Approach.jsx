@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { ClipboardList, AlertTriangle, Eye, BarChart2, FileText } from 'lucide-react';
 
 export default function Approach() {
@@ -48,25 +49,69 @@ export default function Approach() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10">
         
-        {/* Section Header */}
-        <div className="mb-12">
-          <span className="text-xs font-semibold tracking-widest text-[#22C55E] uppercase block mb-3">
+        {/* Section Header with Fade Up */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
+          className="mb-12"
+        >
+          <motion.span
+            variants={{
+              hidden: { y: 20, opacity: 0 },
+              visible: { y: 0, opacity: 1, transition: { duration: 0.6, delay: 0 } }
+            }}
+            className="text-xs font-semibold tracking-widest text-[#22C55E] uppercase block mb-3"
+          >
             HOW WE WORK
-          </span>
-          <h2 className="font-syne font-bold text-4xl lg:text-5xl text-white tracking-tight mb-4">
+          </motion.span>
+          <motion.h2
+            variants={{
+              hidden: { y: 20, opacity: 0 },
+              visible: { y: 0, opacity: 1, transition: { duration: 0.6, delay: 0.1 } }
+            }}
+            className="font-syne font-bold text-4xl lg:text-5xl text-white tracking-tight mb-4"
+          >
             Our Approach
-          </h2>
-          <p className="font-dmsans text-lg text-white/50 font-light max-w-2xl leading-relaxed">
+          </motion.h2>
+          <motion.p
+            variants={{
+              hidden: { y: 20, opacity: 0 },
+              visible: { y: 0, opacity: 1, transition: { duration: 0.6, delay: 0.2 } }
+            }}
+            className="font-dmsans text-lg text-white/50 font-light max-w-2xl leading-relaxed"
+          >
             A structured five-stage process designed to ensure accuracy, transparency, and results you can act on.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        {/* Steps Grid Container */}
+        {/* Steps Grid Container with Staggered Left-to-Right Entry */}
         <div className="mt-10 md:mt-16 border-t border-white/10 pt-10 md:pt-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-y-12 lg:gap-y-0">
+          <motion.div
+            variants={{
+              hidden: {},
+              visible: {
+                transition: {
+                  staggerChildren: 0.12,
+                }
+              }
+            }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-80px' }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-y-12 lg:gap-y-0"
+          >
             {steps.map((step, index) => (
-              <div
+              <motion.div
                 key={step.num}
+                variants={{
+                  hidden: { x: -20, opacity: 0 },
+                  visible: {
+                    x: 0,
+                    opacity: 1,
+                    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
+                  }
+                }}
                 className="px-6 flex flex-col items-start border-white/10 border-r-0 lg:border-r last:lg:border-r-0"
               >
                 {/* Step Number */}
@@ -88,9 +133,9 @@ export default function Approach() {
                 <p className="font-dmsans text-sm text-white/45 leading-relaxed font-normal">
                   {step.description}
                 </p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
       </div>

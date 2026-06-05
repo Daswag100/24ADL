@@ -11,11 +11,20 @@ import GlobalReach from './components/GlobalReach';
 import Careers from './components/Careers';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import LeadPopup from './components/LeadPopup';
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
+    // Read and apply theme preference on mount to prevent white flash
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+
     // Scroll-spy observer setup
     const observerOptions = {
       root: null,
@@ -43,7 +52,7 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-brand-white text-brand-black font-dmsans selection:bg-brand-purple-light selection:text-brand-purple-primary flex flex-col justify-between">
+    <div className="min-h-screen bg-brand-white dark:bg-gray-900 text-brand-black dark:text-white font-dmsans selection:bg-brand-purple-light selection:text-brand-purple-primary flex flex-col justify-between overflow-x-hidden w-full relative transition-colors duration-300">
       <div>
         {/* Navigation Bar - tracks the scroll-spied active section */}
         <Navbar activeSection={activeSection} />
@@ -84,6 +93,9 @@ function App() {
 
       {/* 11. Footer Section */}
       <Footer />
+
+      {/* Lead Capture Popup */}
+      <LeadPopup />
     </div>
   );
 }
