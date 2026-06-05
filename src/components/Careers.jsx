@@ -92,18 +92,14 @@ export default function Careers() {
             Interested in joining our team?
           </h3>
 
-          <p className="font-dmsans text-base text-brand-gray-mid dark:text-gray-400 leading-relaxed mb-6">
-            If your skills match the role, email your CV to{' '}
+          <p className="font-dmsans text-base text-brand-gray-mid dark:text-gray-400 leading-relaxed mb-8">
+            If you believe you can add value to our company, please send your CV plus cover letter and any relevant qualifications or supporting documents to{' '}
             <a
               href="mailto:recruitment@24adlinspection.com"
               className="text-brand-purple-primary dark:text-brand-green-lemon font-bold hover:underline"
             >
               recruitment@24adlinspection.com
             </a>.
-          </p>
-
-          <p className="font-dmsans text-sm text-brand-gray-mid/80 dark:text-gray-500 leading-relaxed mb-8 border-t border-gray-100 dark:border-gray-750 pt-6">
-            Please include the job title in the subject line and a brief cover note highlighting your relevant experience.
           </p>
 
           {/* Email row action */}
@@ -123,10 +119,17 @@ export default function Careers() {
         <div className="max-w-5xl mx-auto">
           <motion.h4
             variants={itemVariants}
-            className="font-syne font-bold text-2xl text-brand-black dark:text-white text-center mb-12"
+            className="font-syne font-bold text-2xl text-brand-black dark:text-white text-center mb-4"
           >
             Why Professional Auditors Choose 24ADL
           </motion.h4>
+
+          <motion.p
+            variants={itemVariants}
+            className="font-dmsans text-base text-brand-gray-mid dark:text-gray-400 text-center max-w-2xl mx-auto mb-12 font-light"
+          >
+            We welcome applicants for any role that matches their skills and experience. Qualified candidates with outstanding profiles will be contacted for further consideration.
+          </motion.p>
 
           <motion.div
             className="grid grid-cols-1 md:grid-cols-3 gap-8"
