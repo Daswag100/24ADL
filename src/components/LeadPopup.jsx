@@ -17,10 +17,10 @@ export default function LeadPopup() {
     const dismissed = sessionStorage.getItem('popupDismissed');
     if (dismissed === 'true') return;
 
-    // Show popup after 5 seconds
+    // Show popup after 10 seconds
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 5000);
+    }, 10000);
 
     return () => clearTimeout(timer);
   }, []);
