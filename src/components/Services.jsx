@@ -194,10 +194,10 @@ export default function Services() {
 
         {/* Tab Banner */}
         {getTabBanner() && (
-          <div className="relative w-full h-64 md:h-80 rounded-2xl mb-8 mt-10 overflow-hidden shadow-sm bg-gray-100 dark:bg-gray-800">
+          <div className="relative w-full md:max-w-2xl mx-auto h-64 md:h-[380px] rounded-2xl mb-8 mt-6 overflow-hidden shadow-sm bg-gray-100 dark:bg-gray-800">
             <img
               src={getTabBanner()}
-              className="w-full h-full object-cover object-top"
+              className="w-full h-full object-cover object-[center_30%]"
               alt={`${activeTab} services banner`}
             />
             <div className="absolute inset-0 bg-purple-900/20 dark:bg-purple-950/40 rounded-2xl pointer-events-none" />
