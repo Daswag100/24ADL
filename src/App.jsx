@@ -12,6 +12,7 @@ import Careers from './components/Careers';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import LeadPopup from './components/LeadPopup';
+import ThemeToggle from './components/ThemeToggle';
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -96,6 +97,9 @@ function App() {
 
       {/* Lead Capture Popup */}
       <LeadPopup />
+
+      {/* Fixed Side Dark Mode Toggle */}
+      <ThemeToggle />
     </div>
   );
 }

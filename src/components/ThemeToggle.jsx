@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Sun, Moon } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 export default function ThemeToggle() {
   const [isDark, setIsDark] = useState(false);
@@ -32,20 +31,14 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="p-2.5 rounded-md border border-gray-200 dark:border-gray-800 text-gray-500 hover:text-brand-purple-primary dark:text-gray-400 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors flex items-center justify-center cursor-pointer relative overflow-hidden"
+      className="fixed right-4 top-1/2 -translate-y-1/2 z-50 w-10 h-10 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-md flex items-center justify-center cursor-pointer transition-colors hover:bg-gray-50 dark:hover:bg-gray-700"
       aria-label="Toggle dark mode"
     >
-      <motion.div
-        animate={{ rotate: isDark ? 180 : 0 }}
-        transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className="flex items-center justify-center"
-      >
-        {isDark ? (
-          <Sun className="h-5 w-5 text-brand-green-lemon" />
-        ) : (
-          <Moon className="h-5 w-5 text-brand-purple-primary" />
-        )}
-      </motion.div>
+      {isDark ? (
+        <Sun className="h-[18px] w-[18px] text-gray-200" />
+      ) : (
+        <Moon className="h-[18px] w-[18px] text-gray-700" />
+      )}
     </button>
   );
 }

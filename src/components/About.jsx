@@ -12,7 +12,7 @@ export default function About() {
     {
       icon: <Scale className="h-5 w-5 text-brand-purple-primary dark:text-brand-green-lemon" />,
       title: 'Integrity',
-      text: 'We maintain independence and professionalism — no conflict of interest, ever.',
+      text: 'We maintain independence and professionalism, with no conflict of interest, ever.',
     },
     {
       icon: <ClipboardList className="h-5 w-5 text-brand-purple-primary dark:text-brand-green-lemon" />,
@@ -22,7 +22,7 @@ export default function About() {
     {
       icon: <Clock className="h-5 w-5 text-brand-purple-primary dark:text-brand-green-lemon" />,
       title: 'Reliability',
-      text: 'Consistent, dependable audit support — delivered on time, every time.',
+      text: 'Consistent, dependable audit support, delivered on time, every time.',
     },
   ];
 
@@ -184,7 +184,7 @@ export default function About() {
               </span>
               
               <blockquote className="relative z-10 font-dmsans text-lg sm:text-xl font-light leading-relaxed italic mb-8">
-                "Accurate information is the foundation of every successful business decision. At 24ADL, we are committed to delivering truth, clarity, and accountability in inventory management — because what you can verify, you can control."
+                "Accurate information is the foundation of every successful business decision. At 24ADL, we are committed to delivering truth, clarity, and accountability in inventory management, because what you can verify, you can control."
               </blockquote>
 
               <span className="relative z-10 font-syne font-bold text-brand-green-lemon text-xs sm:text-sm tracking-widest uppercase block">

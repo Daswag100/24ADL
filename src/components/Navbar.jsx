@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import ThemeToggle from './ThemeToggle';
 
 export default function Navbar({ activeSection }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -76,8 +75,6 @@ export default function Navbar({ activeSection }) {
 
         {/* Right CTA / Mobile Toggle */}
         <div className="flex items-center gap-3">
-          <ThemeToggle />
-          
           <a
             href="#contact"
             className="bg-brand-purple-primary text-white font-syne font-bold text-sm px-5 py-2.5 rounded-md hover:bg-[#3B1575] transition-all duration-200 shadow-sm hover:shadow active:scale-[0.98]"

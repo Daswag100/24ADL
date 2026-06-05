@@ -4,7 +4,7 @@ import { Check } from 'lucide-react';
 export default function Deliverables() {
   const items = [
     'Comprehensive stock audit report',
-    'Variance analysis — physical vs. recorded stock',
+    'Variance analysis: physical vs. recorded stock',
     'Inventory control assessment',
     'Shortage, excess & invalid stock detection',
     'Practical recommendations for improvement',
@@ -84,7 +84,7 @@ export default function Deliverables() {
                   
                   {/* Paragraph */}
                   <p className="font-dmsans text-white/55 font-light text-base leading-relaxed mt-4">
-                    Most inventory losses go undetected until they become critical. An independent audit gives you the numbers you can trust — and a clear picture of where your controls need to improve.
+                    Most inventory losses go undetected until they become critical. An independent audit gives you the numbers you can trust, and a clear picture of where your controls need to improve.
                   </p>
                 </div>
               </div>

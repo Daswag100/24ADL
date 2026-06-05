@@ -40,7 +40,41 @@ export default function Hero() {
   const count4 = useCountUp(4, 800, statsInView);
 
   const headlineFirstLine = ["Ensuring", "Accuracy."];
-  const headlineSecondLine = ["Strengthening", "Control."];
+
+  // Typewriter implementation
+  const typewriterPhrases = ["Strengthening Control.", "Reducing Losses.", "Built on Verification."];
+  const [phraseIndex, setPhraseIndex] = useState(0);
+  const [currentText, setCurrentText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    let timer;
+    const activePhrase = typewriterPhrases[phraseIndex];
+
+    if (!isDeleting) {
+      if (currentText.length < activePhrase.length) {
+        timer = setTimeout(() => {
+          setCurrentText(activePhrase.substring(0, currentText.length + 1));
+        }, 60);
+      } else {
+        // Pause for 2s when complete
+        timer = setTimeout(() => {
+          setIsDeleting(true);
+        }, 2000);
+      }
+    } else {
+      if (currentText.length > 0) {
+        timer = setTimeout(() => {
+          setCurrentText(activePhrase.substring(0, currentText.length - 1));
+        }, 40);
+      } else {
+        setIsDeleting(false);
+        setPhraseIndex((prev) => (prev + 1) % typewriterPhrases.length);
+      }
+    }
+
+    return () => clearTimeout(timer);
+  }, [currentText, isDeleting, phraseIndex]);
 
   return (
     <section
@@ -72,8 +106,8 @@ export default function Hero() {
             </span>
           </motion.div>
 
-          {/* Headline H1 with Word-by-Word Animation */}
-          <h1 className="font-syne font-extrabold text-3xl sm:text-6xl lg:text-[76px] text-white tracking-tight leading-[1.05] mb-6 select-none">
+          {/* Headline H1 with Word-by-Word Animation & Typewriter */}
+          <h1 className="font-syne font-extrabold text-3xl sm:text-6xl lg:text-[76px] text-white tracking-tight leading-[1.05] select-none">
             <span className="block mb-2">
               {headlineFirstLine.map((word, idx) => (
                 <motion.span
@@ -91,24 +125,22 @@ export default function Hero() {
                 </motion.span>
               ))}
             </span>
-            <span className="block text-brand-green-lemon">
-              {headlineSecondLine.map((word, idx) => (
-                <motion.span
-                  key={idx}
-                  initial={{ y: 16, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{
-                    delay: 0.3 + (idx + headlineFirstLine.length) * 0.06,
-                    duration: 0.5,
-                    ease: [0.22, 1, 0.36, 1]
-                  }}
-                  className="inline-block mr-3 sm:mr-4"
-                >
-                  {word}
-                </motion.span>
-              ))}
-            </span>
           </h1>
+
+          {/* Typewriter Line with Fixed Height Container and Smaller Font Size */}
+          <div className="min-h-[80px] lg:min-h-[120px] flex items-center mb-6 w-full">
+            <span
+              className="inline-block text-brand-green-lemon font-syne font-extrabold tracking-tight select-none"
+              style={{ 
+                fontSize: 'clamp(1.8rem, 5vw, 4.2rem)', 
+                lineHeight: '1.1',
+                whiteSpace: 'nowrap'
+              }}
+            >
+              {currentText}
+              <span className="hidden sm:inline cursor-blink ml-1 text-brand-green-lemon">|</span>
+            </span>
+          </div>
 
           {/* Subheading */}
           <motion.p
@@ -117,7 +149,7 @@ export default function Hero() {
             transition={{ delay: 0.7, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="font-dmsans text-base sm:text-lg lg:text-xl text-white/70 max-w-xl leading-relaxed font-light mb-10"
           >
-            We help businesses prevent unnoticed inventory losses through independent verification — across agro and non-agro sectors, from Lagos to global markets.
+            We help businesses prevent unnoticed inventory losses through independent verification, across agro and non-agro sectors, from Lagos to global markets.
           </motion.p>
 
           {/* Buttons CTA */}

@@ -115,7 +115,7 @@ export default function GlobalReach() {
 
             {/* Paragraph */}
             <p className="font-dmsans text-white/50 font-light text-base leading-relaxed mt-4">
-              Every engagement is handled with the same level of precision and professionalism — whether it's a warehouse in Lagos or a commodity trader in the Netherlands.
+              Every engagement is handled with the same level of precision and professionalism, whether it's a warehouse in Lagos or a commodity trader in the Netherlands.
             </p>
 
             {/* Region Tags - flex-wrap gap-2 on mobile */}

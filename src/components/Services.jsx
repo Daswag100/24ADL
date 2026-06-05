@@ -25,12 +25,12 @@ export default function Services() {
     {
       icon: Wheat,
       title: 'Farm Produce Verification',
-      description: "Physical verification and quantification of grains, crops, and livestock — ensuring what's recorded matches what's on the ground.",
+      description: "Physical verification and quantification of grains, crops, and livestock, ensuring what's recorded matches what's on the ground.",
     },
     {
       icon: FlaskConical,
       title: 'Agricultural Input Audit',
-      description: 'Independent audit of fertilizers, seeds, and chemical inputs — verifying quantities, quality, and storage compliance.',
+      description: 'Independent audit of fertilizers, seeds, and chemical inputs to verify quantities, quality, and storage compliance.',
     },
     {
       icon: Warehouse,
@@ -40,12 +40,12 @@ export default function Services() {
     {
       icon: TrendingDown,
       title: 'Post-Harvest Loss Assessment',
-      description: 'Identifying and quantifying post-harvest losses across the supply chain — spoilage, waste, and shrinkage detection.',
+      description: 'Identifying and quantifying post-harvest losses across the supply chain, including spoilage, waste, and shrinkage detection.',
     },
     {
       icon: Thermometer,
       title: 'Storage Condition Monitoring',
-      description: 'Monitoring and reporting on storage conditions that affect stock quality — temperature, humidity, and facility standards.',
+      description: 'Monitoring and reporting on storage conditions that affect stock quality, such as temperature, humidity, and facility standards.',
     },
   ];
 
@@ -53,7 +53,7 @@ export default function Services() {
     {
       icon: ShoppingCart,
       title: 'Retail Inventory Verification',
-      description: 'Retail stock audits across shops, supermarkets, and distribution centers — physical count reconciled against system records.',
+      description: 'Retail stock audits across shops, supermarkets, and distribution centers, where physical counts are reconciled against system records.',
     },
     {
       icon: Factory,
@@ -63,7 +63,7 @@ export default function Services() {
     {
       icon: Truck,
       title: 'Warehouse & Logistics Inventory',
-      description: 'End-to-end inventory checks across warehousing and logistics operations — from receipt to dispatch reconciliation.',
+      description: 'End-to-end inventory checks across warehousing and logistics operations, from receipt to dispatch reconciliation.',
     },
     {
       icon: Package,
@@ -73,7 +73,7 @@ export default function Services() {
     {
       icon: Wrench,
       title: 'Spare Parts & Equipment Audit',
-      description: 'Audit of spare parts inventories and equipment registers — critical for manufacturers and industrial operators.',
+      description: 'Audit of spare parts inventories and equipment registers, which is critical for manufacturers and industrial operators.',
     },
   ];
 
@@ -86,12 +86,12 @@ export default function Services() {
     {
       icon: RefreshCcw,
       title: 'Stock Reconciliation',
-      description: 'Systematic reconciliation of physical stock counts against book records — identifying variances, excesses, and shortages.',
+      description: 'Systematic reconciliation of physical stock counts against book records to identify variances, excesses, and shortages.',
     },
     {
       icon: ShieldCheck,
       title: 'Compliance Verification',
-      description: 'Verifying inventory compliance with regulatory, contractual, or lender requirements — supporting banks and financiers.',
+      description: 'Verifying inventory compliance with regulatory, contractual, or lender requirements, supporting banks and financiers.',
     },
     {
       icon: FileSearch,

@@ -120,7 +120,7 @@ export default function LeadPopup() {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      placeholder="Your full name"
+                      placeholder="John Doe"
                       required
                       className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md px-3.5 py-2.5 text-sm text-brand-black dark:text-white placeholder-gray-400 outline-none focus:border-purple-500/60 dark:focus:border-brand-green-lemon/60 transition-colors font-dmsans"
                     />

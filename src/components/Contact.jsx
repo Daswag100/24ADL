@@ -140,12 +140,12 @@ export default function Contact() {
               </span>
               <div className="flex flex-col">
                 <div className="flex justify-between py-2.5 border-b border-white/6">
-                  <span className="font-dmsans text-sm text-white/55">Monday &ndash; Friday</span>
-                  <span className="font-dmsans text-sm text-white font-medium">9:00 AM &ndash; 6:00 PM</span>
+                  <span className="font-dmsans text-sm text-white/55">Monday to Friday</span>
+                  <span className="font-dmsans text-sm text-white font-medium">9:00 AM to 6:00 PM</span>
                 </div>
                 <div className="flex justify-between py-2.5 border-b border-white/6">
                   <span className="font-dmsans text-sm text-white/55">Saturday</span>
-                  <span className="font-dmsans text-sm text-white font-medium">9:00 AM &ndash; 12:00 PM</span>
+                  <span className="font-dmsans text-sm text-white font-medium">9:00 AM to 12:00 PM</span>
                 </div>
                 <div className="flex justify-between py-2.5">
                   <span className="font-dmsans text-sm text-white/55">Sunday</span>
@@ -183,7 +183,7 @@ export default function Contact() {
                       name="firstName"
                       value={formData.firstName}
                       onChange={handleChange}
-                      placeholder="Louis"
+                      placeholder="John"
                       required
                       className="bg-white/6 border border-white/12 rounded-md px-4 py-3 text-white text-sm placeholder-white/25 outline-none focus:border-purple-500/60 transition-colors w-full font-dmsans"
                     />
@@ -198,7 +198,7 @@ export default function Contact() {
                       name="lastName"
                       value={formData.lastName}
                       onChange={handleChange}
-                      placeholder="Adun"
+                      placeholder="Doe"
                       required
                       className="bg-white/6 border border-white/12 rounded-md px-4 py-3 text-white text-sm placeholder-white/25 outline-none focus:border-purple-500/60 transition-colors w-full font-dmsans"
                     />

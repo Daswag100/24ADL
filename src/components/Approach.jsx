@@ -19,7 +19,7 @@ export default function Approach() {
       num: '03',
       icon: <Eye className="h-5 w-5 text-white/60" />,
       title: 'Physical Verification',
-      description: 'On-site physical count and direct observation — the core of every 24ADL engagement.',
+      description: 'On-site physical count and direct observation: the core of every 24ADL engagement.',
     },
     {
       num: '04',
