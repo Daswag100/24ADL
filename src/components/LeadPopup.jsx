@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
+import { useFormspark } from "@formspark/use-formspark";
 
 export default function LeadPopup() {
   const [isVisible, setIsVisible] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    company: '',
-    email: '',
-    service: '',
-  });
-  const [submitted, setSubmitted] = useState(false);
+  const [fullName, setFullName] = useState('');
+  const [company, setCompany] = useState('');
+  const [email, setEmail] = useState('');
+  const [service, setService] = useState('');
+
+  const [submit, submitting] = useFormspark({ formId: "qeypsxfRN" });
 
   useEffect(() => {
     // Check session storage
@@ -30,19 +30,13 @@ export default function LeadPopup() {
     sessionStorage.setItem('popupDismissed', 'true');
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  const onClose = handleClose;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Lead form data submitted:', formData);
-    setSubmitted(true);
-    // Auto close after 2 seconds on success
-    setTimeout(() => {
-      handleClose();
-    }, 2500);
+    await submit({ fullName, company, email, service });
+    alert("Request received! We will be in touch within 24 hours.");
+    onClose();
   };
 
   return (
@@ -95,106 +89,93 @@ export default function LeadPopup() {
 
             {/* Form Content */}
             <div className="p-8">
-              {submitted ? (
-                <div className="py-8 text-center flex flex-col items-center justify-center">
-                  <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mb-4">
-                    <span className="text-green-500 text-lg font-bold">&check;</span>
-                  </div>
-                  <h4 className="font-syne font-bold text-lg text-brand-black dark:text-white mb-1">
-                    Request Received!
-                  </h4>
-                  <p className="font-dmsans text-sm text-brand-gray-mid dark:text-gray-400 max-w-xs leading-relaxed">
-                    We have logged your request and our audit specialists will contact you shortly.
-                  </p>
+              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                {/* Name */}
+                <div>
+                  <label htmlFor="popup-name" className="block font-dmsans text-xs text-brand-gray-mid dark:text-gray-400 mb-1">
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    id="popup-name"
+                    name="fullName"
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    placeholder="John Doe"
+                    required
+                    className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md px-3.5 py-2.5 text-sm text-brand-black dark:text-white placeholder-gray-400 outline-none focus:border-purple-500/60 dark:focus:border-brand-green-lemon/60 transition-colors font-dmsans"
+                  />
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                  {/* Name */}
-                  <div>
-                    <label htmlFor="popup-name" className="block font-dmsans text-xs text-brand-gray-mid dark:text-gray-400 mb-1">
-                      Full Name
-                    </label>
-                    <input
-                      type="text"
-                      id="popup-name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="John Doe"
-                      required
-                      className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md px-3.5 py-2.5 text-sm text-brand-black dark:text-white placeholder-gray-400 outline-none focus:border-purple-500/60 dark:focus:border-brand-green-lemon/60 transition-colors font-dmsans"
-                    />
-                  </div>
 
-                  {/* Company */}
-                  <div>
-                    <label htmlFor="popup-company" className="block font-dmsans text-xs text-brand-gray-mid dark:text-gray-400 mb-1">
-                      Company
-                    </label>
-                    <input
-                      type="text"
-                      id="popup-company"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleChange}
-                      placeholder="Your company name"
-                      required
-                      className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md px-3.5 py-2.5 text-sm text-brand-black dark:text-white placeholder-gray-400 outline-none focus:border-purple-500/60 dark:focus:border-brand-green-lemon/60 transition-colors font-dmsans"
-                    />
-                  </div>
+                {/* Company */}
+                <div>
+                  <label htmlFor="popup-company" className="block font-dmsans text-xs text-brand-gray-mid dark:text-gray-400 mb-1">
+                    Company
+                  </label>
+                  <input
+                    type="text"
+                    id="popup-company"
+                    name="company"
+                    value={company}
+                    onChange={(e) => setCompany(e.target.value)}
+                    placeholder="Your company name"
+                    required
+                    className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md px-3.5 py-2.5 text-sm text-brand-black dark:text-white placeholder-gray-400 outline-none focus:border-purple-500/60 dark:focus:border-brand-green-lemon/60 transition-colors font-dmsans"
+                  />
+                </div>
 
-                  {/* Email */}
-                  <div>
-                    <label htmlFor="popup-email" className="block font-dmsans text-xs text-brand-gray-mid dark:text-gray-400 mb-1">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      id="popup-email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="your@email.com"
-                      required
-                      className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md px-3.5 py-2.5 text-sm text-brand-black dark:text-white placeholder-gray-400 outline-none focus:border-purple-500/60 dark:focus:border-brand-green-lemon/60 transition-colors font-dmsans"
-                    />
-                  </div>
+                {/* Email */}
+                <div>
+                  <label htmlFor="popup-email" className="block font-dmsans text-xs text-brand-gray-mid dark:text-gray-400 mb-1">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="popup-email"
+                    name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="your@email.com"
+                    required
+                    className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md px-3.5 py-2.5 text-sm text-brand-black dark:text-white placeholder-gray-400 outline-none focus:border-purple-500/60 dark:focus:border-brand-green-lemon/60 transition-colors font-dmsans"
+                  />
+                </div>
 
-                  {/* Service Dropdown */}
-                  <div>
-                    <label htmlFor="popup-service" className="block font-dmsans text-xs text-brand-gray-mid dark:text-gray-400 mb-1">
-                      Service Interested In
-                    </label>
-                    <select
-                      id="popup-service"
-                      name="service"
-                      value={formData.service}
-                      onChange={handleChange}
-                      required
-                      className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md px-3.5 py-2.5 text-sm text-brand-black dark:text-white outline-none focus:border-purple-500/60 dark:focus:border-brand-green-lemon/60 transition-colors font-dmsans cursor-pointer"
-                    >
-                      <option value="" disabled>
-                        Select a service
-                      </option>
-                      <option value="Agro Audit Services">Agro Audit Services</option>
-                      <option value="Non-Agro Inventory Verification">Non-Agro Inventory Verification</option>
-                      <option value="Retail Stock Audit">Retail Stock Audit</option>
-                      <option value="Manufacturing Audit">Manufacturing Audit</option>
-                      <option value="Compliance Verification">Compliance Verification</option>
-                      <option value="Stock Reconciliation">Stock Reconciliation</option>
-                      <option value="Other / Not Sure Yet">Other / Not Sure Yet</option>
-                    </select>
-                  </div>
-
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    className="w-full bg-[#22C55E] text-black font-syne font-bold py-3.5 rounded-md text-sm mt-2 hover:bg-[#1cb054] transition-colors active:scale-[0.99] cursor-pointer shadow-lg shadow-[#22C55E]/10"
+                {/* Service Dropdown */}
+                <div>
+                  <label htmlFor="popup-service" className="block font-dmsans text-xs text-brand-gray-mid dark:text-gray-400 mb-1">
+                    Service Interested In
+                  </label>
+                  <select
+                    id="popup-service"
+                    name="service"
+                    value={service}
+                    onChange={(e) => setService(e.target.value)}
+                    required
+                    className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md px-3.5 py-2.5 text-sm text-brand-black dark:text-white outline-none focus:border-purple-500/60 dark:focus:border-brand-green-lemon/60 transition-colors font-dmsans cursor-pointer"
                   >
-                    Request an Audit
-                  </button>
-                </form>
-              )}
+                    <option value="" disabled>
+                      Select a service
+                    </option>
+                    <option value="Agro Audit Services">Agro Audit Services</option>
+                    <option value="Non-Agro Inventory Verification">Non-Agro Inventory Verification</option>
+                    <option value="Retail Stock Audit">Retail Stock Audit</option>
+                    <option value="Manufacturing Audit">Manufacturing Audit</option>
+                    <option value="Compliance Verification">Compliance Verification</option>
+                    <option value="Stock Reconciliation">Stock Reconciliation</option>
+                    <option value="Other / Not Sure Yet">Other / Not Sure Yet</option>
+                  </select>
+                </div>
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="w-full bg-[#22C55E] text-black font-syne font-bold py-3.5 rounded-md text-sm mt-2 hover:bg-[#1cb054] transition-colors active:scale-[0.99] cursor-pointer shadow-lg shadow-[#22C55E]/10 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {submitting ? "Sending..." : "Request an Audit"}
+                </button>
+              </form>
             </div>
 
           </motion.div>

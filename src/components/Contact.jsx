@@ -1,39 +1,34 @@
 import { useState } from 'react';
 import { Mail, MapPin, Globe, Phone } from 'lucide-react';
+import { useFormspark } from "@formspark/use-formspark";
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    company: '',
-    email: '',
-    service: '',
-    message: '',
-  });
-  const [submitted, setSubmitted] = useState(false);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [company, setCompany] = useState('');
+  const [email, setEmail] = useState('');
+  const [service, setService] = useState('');
+  const [message, setMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const [submit, submitting] = useFormspark({ formId: "X4ooZ4Qkm" });
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulate successful form submission
-    console.log('Form data submitted:', formData);
-    setSubmitted(true);
-    // Reset form after a timeout
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({
-        firstName: '',
-        lastName: '',
-        company: '',
-        email: '',
-        service: '',
-        message: '',
-      });
-    }, 4000);
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    await submit({
+      firstName,
+      lastName,
+      company,
+      email,
+      service,
+      message,
+    });
+    alert("Message sent! We will be in touch within 24 hours.");
+    setFirstName('');
+    setLastName('');
+    setCompany('');
+    setEmail('');
+    setService('');
+    setMessage('');
   };
 
   return (
@@ -157,19 +152,6 @@ export default function Contact() {
 
           {/* Right Column - Contact Form */}
           <div className="bg-white/5 border border-white/8 rounded-2xl p-8 shadow-lg">
-            {submitted ? (
-              <div className="py-16 text-center flex flex-col items-center justify-center">
-                <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mb-6">
-                  <span className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-black text-xl font-bold">
-                    &check;
-                  </span>
-                </div>
-                <h3 className="font-syne font-bold text-2xl text-white mb-2">Message Sent Successfully!</h3>
-                <p className="font-dmsans text-white/60 text-sm max-w-sm">
-                  Thank you for reaching out. A member of the 24ADL audit team will contact you shortly.
-                </p>
-              </div>
-            ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 {/* First & Last Name */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -181,8 +163,8 @@ export default function Contact() {
                       type="text"
                       id="firstName"
                       name="firstName"
-                      value={formData.firstName}
-                      onChange={handleChange}
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
                       placeholder="John"
                       required
                       className="bg-white/6 border border-white/12 rounded-md px-4 py-3 text-white text-sm placeholder-white/25 outline-none focus:border-purple-500/60 transition-colors w-full font-dmsans"
@@ -196,8 +178,8 @@ export default function Contact() {
                       type="text"
                       id="lastName"
                       name="lastName"
-                      value={formData.lastName}
-                      onChange={handleChange}
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
                       placeholder="Doe"
                       required
                       className="bg-white/6 border border-white/12 rounded-md px-4 py-3 text-white text-sm placeholder-white/25 outline-none focus:border-purple-500/60 transition-colors w-full font-dmsans"
@@ -214,8 +196,8 @@ export default function Contact() {
                     type="text"
                     id="company"
                     name="company"
-                    value={formData.company}
-                    onChange={handleChange}
+                    value={company}
+                    onChange={(e) => setCompany(e.target.value)}
                     placeholder="Your company name"
                     required
                     className="bg-white/6 border border-white/12 rounded-md px-4 py-3 text-white text-sm placeholder-white/25 outline-none focus:border-purple-500/60 transition-colors w-full font-dmsans"
@@ -231,8 +213,8 @@ export default function Contact() {
                     type="email"
                     id="email"
                     name="email"
-                    value={formData.email}
-                    onChange={handleChange}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="you@company.com"
                     required
                     className="bg-white/6 border border-white/12 rounded-md px-4 py-3 text-white text-sm placeholder-white/25 outline-none focus:border-purple-500/60 transition-colors w-full font-dmsans"
@@ -247,8 +229,8 @@ export default function Contact() {
                   <select
                     id="service"
                     name="service"
-                    value={formData.service}
-                    onChange={handleChange}
+                    value={service}
+                    onChange={(e) => setService(e.target.value)}
                     required
                     className="bg-[#1b212f] border border-white/12 rounded-md px-4 py-3 text-white text-sm outline-none focus:border-purple-500/60 transition-colors w-full font-dmsans cursor-pointer"
                   >
@@ -274,8 +256,8 @@ export default function Contact() {
                     id="message"
                     name="message"
                     rows={4}
-                    value={formData.message}
-                    onChange={handleChange}
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
                     placeholder="Describe your inventory challenge, scale of operation, or what you'd like us to verify..."
                     required
                     className="bg-white/6 border border-white/12 rounded-md px-4 py-3 text-white text-sm placeholder-white/25 outline-none focus:border-purple-500/60 transition-colors w-full font-dmsans resize-none"
@@ -285,12 +267,12 @@ export default function Contact() {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full bg-[#22C55E] text-black font-syne font-bold py-3.5 rounded-md text-base mt-2 hover:bg-[#1cb054] transition-all duration-200 active:scale-[0.99] cursor-pointer shadow-lg shadow-[#22C55E]/10"
+                  disabled={submitting}
+                  className="w-full bg-[#22C55E] text-black font-syne font-bold py-3.5 rounded-md text-base mt-2 hover:bg-[#1cb054] transition-all duration-200 active:scale-[0.99] cursor-pointer shadow-lg shadow-[#22C55E]/10 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Send Message
+                  {submitting ? "Sending..." : "Send Message"}
                 </button>
               </form>
-            )}
           </div>
 
         </div>
