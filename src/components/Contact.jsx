@@ -157,20 +157,20 @@ export default function Contact() {
 
           <div className="bg-white/5 border border-white/8 rounded-2xl p-8 shadow-lg">
             {submitted ? (
-              <div className="text-center py-12">
-                <div className="w-16 h-16 rounded-full bg-green-500 flex items-center justify-center mx-auto mb-6">
-                  <Check className="text-white" size={32} />
+              <div className="flex flex-col items-center justify-center text-center py-16">
+                <div className="w-16 h-16 rounded-full bg-green-500 flex items-center justify-center mb-6">
+                  <Check className="text-black" size={32} />
                 </div>
-                <h3 className="font-syne font-bold text-2xl text-white mb-3">
+                <h3 className="text-2xl font-bold text-white mb-3" style={{fontFamily:'Syne'}}>
                   Message Received
                 </h3>
-                <p className="font-dmsans text-white/60 text-base mb-8 max-w-sm mx-auto">
+                <p className="text-white/60 text-base mb-8 max-w-sm">
                   Thank you for reaching out. Our team will review your enquiry and get back to you within 24 hours.
                 </p>
                 <button
                   type="button"
                   onClick={handleReset}
-                  className="bg-white/10 border border-white/20 text-white px-6 py-3 rounded-md text-sm font-medium hover:bg-white/15 transition-all duration-200 cursor-pointer"
+                  className="bg-white/10 border border-white/20 text-white px-6 py-3 rounded-md text-sm font-medium hover:bg-white/20 transition-colors"
                 >
                   Send Another Message
                 </button>
