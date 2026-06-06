@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, MapPin, Globe, Phone } from 'lucide-react';
+import { Mail, MapPin, Globe, Phone, Check } from 'lucide-react';
 import { useFormspark } from "@formspark/use-formspark";
 
 export default function Contact() {
@@ -9,6 +9,7 @@ export default function Contact() {
   const [email, setEmail] = useState('');
   const [service, setService] = useState('');
   const [message, setMessage] = useState('');
+  const [submitted, setSubmitted] = useState(false);
 
   const [submit, submitting] = useFormspark({ formId: "X4ooZ4Qkm" });
 
@@ -22,13 +23,17 @@ export default function Contact() {
       service,
       message,
     });
-    alert("Message sent! We will be in touch within 24 hours.");
+    setSubmitted(true);
+  };
+
+  const handleReset = () => {
     setFirstName('');
     setLastName('');
     setCompany('');
     setEmail('');
     setService('');
     setMessage('');
+    setSubmitted(false);
   };
 
   return (
@@ -150,8 +155,27 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Right Column - Contact Form */}
           <div className="bg-white/5 border border-white/8 rounded-2xl p-8 shadow-lg">
+            {submitted ? (
+              <div className="text-center py-12">
+                <div className="w-16 h-16 rounded-full bg-green-500 flex items-center justify-center mx-auto mb-6">
+                  <Check className="text-white" size={32} />
+                </div>
+                <h3 className="font-syne font-bold text-2xl text-white mb-3">
+                  Message Received
+                </h3>
+                <p className="font-dmsans text-white/60 text-base mb-8 max-w-sm mx-auto">
+                  Thank you for reaching out. Our team will review your enquiry and get back to you within 24 hours.
+                </p>
+                <button
+                  type="button"
+                  onClick={handleReset}
+                  className="bg-white/10 border border-white/20 text-white px-6 py-3 rounded-md text-sm font-medium hover:bg-white/15 transition-all duration-200 cursor-pointer"
+                >
+                  Send Another Message
+                </button>
+              </div>
+            ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 {/* First & Last Name */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -273,6 +297,7 @@ export default function Contact() {
                   {submitting ? "Sending..." : "Send Message"}
                 </button>
               </form>
+            )}
           </div>
 
         </div>
