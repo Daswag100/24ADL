@@ -30,6 +30,7 @@ export default function ThemeToggle() {
 
   return (
     <button
+      id="theme-toggle-btn"
       onClick={toggleTheme}
       className="fixed right-4 top-1/2 -translate-y-1/2 z-50 w-10 h-10 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-md flex items-center justify-center cursor-pointer transition-colors hover:bg-gray-50 dark:hover:bg-gray-700"
       aria-label="Toggle dark mode"

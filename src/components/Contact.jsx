@@ -169,6 +169,7 @@ export default function Contact() {
                 </p>
                 <button
                   type="button"
+                  id="contact-form-reset"
                   onClick={handleReset}
                   className="bg-white/10 border border-white/20 text-white px-6 py-3 rounded-md text-sm font-medium hover:bg-white/15 transition-all duration-200 cursor-pointer"
                 >
@@ -291,6 +292,7 @@ export default function Contact() {
                 {/* Submit Button */}
                 <button
                   type="submit"
+                  id="contact-form-submit"
                   disabled={submitting}
                   className="w-full bg-[#22C55E] text-black font-syne font-bold py-3.5 rounded-md text-base mt-2 hover:bg-[#1cb054] transition-all duration-200 active:scale-[0.99] cursor-pointer shadow-lg shadow-[#22C55E]/10 disabled:opacity-50 disabled:cursor-not-allowed"
                 >

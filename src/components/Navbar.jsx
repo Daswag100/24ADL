@@ -39,7 +39,7 @@ export default function Navbar({ activeSection }) {
       <div className="max-w-7xl mx-auto h-full px-6 lg:px-10 flex items-center justify-between">
         
         {/* Logo Section - Shows wide logo on all screens with appropriate sizing */}
-        <a href="#" className="flex items-center group">
+        <a id="nav-logo-link" href="#" className="flex items-center group">
           <div className="flex items-center overflow-hidden">
             <img
               src="/24ADL_Logo__Coloured_.png"
@@ -57,6 +57,7 @@ export default function Navbar({ activeSection }) {
             return (
               <a
                 key={link.label}
+                id={`nav-link-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
                 href={link.href}
                 className={`font-dmsans text-[14px] transition-colors duration-200 relative ${
                   isActive
@@ -76,6 +77,7 @@ export default function Navbar({ activeSection }) {
         {/* Right CTA / Mobile Toggle */}
         <div className="flex items-center gap-3">
           <a
+            id="nav-cta-contact"
             href="#contact"
             className="bg-brand-purple-primary text-white font-syne font-bold text-sm px-5 py-2.5 rounded-md hover:bg-[#3B1575] transition-all duration-200 shadow-sm hover:shadow active:scale-[0.98]"
           >
@@ -84,6 +86,7 @@ export default function Navbar({ activeSection }) {
 
           {/* Mobile Menu Button */}
           <button
+            id="nav-mobile-toggle-btn"
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden p-2 text-brand-gray-dark hover:text-brand-purple-primary dark:text-gray-400 dark:hover:text-white hover:bg-brand-purple-light/20 dark:hover:bg-gray-800 rounded-md transition-colors"
             aria-label="Toggle navigation menu"
@@ -108,6 +111,7 @@ export default function Navbar({ activeSection }) {
             return (
               <a
                 key={link.label}
+                id={`nav-link-mobile-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
                 className={`font-dmsans text-[15px] py-2 transition-colors border-b border-gray-50 dark:border-gray-800/50 last:border-b-0 ${

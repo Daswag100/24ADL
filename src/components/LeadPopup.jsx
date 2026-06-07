@@ -79,6 +79,7 @@ export default function LeadPopup() {
 
               {/* Close Button on Top Purple Header Strip */}
               <button
+                id="lead-popup-header-close"
                 onClick={handleClose}
                 className="absolute top-4 right-4 text-white/60 hover:text-white transition-colors cursor-pointer p-1"
                 aria-label="Close popup"
@@ -102,6 +103,7 @@ export default function LeadPopup() {
                   </p>
                   <button
                     type="button"
+                    id="lead-popup-success-close"
                     onClick={onClose}
                     className="bg-green-500 text-black font-bold px-6 py-3 rounded-md w-full text-sm hover:bg-green-600 transition-colors cursor-pointer"
                   >
@@ -190,6 +192,7 @@ export default function LeadPopup() {
                   {/* Submit Button */}
                   <button
                     type="submit"
+                    id="lead-popup-submit"
                     disabled={submitting}
                     className="w-full bg-[#22C55E] text-black font-syne font-bold py-3.5 rounded-md text-sm mt-2 hover:bg-[#1cb054] transition-colors active:scale-[0.99] cursor-pointer shadow-lg shadow-[#22C55E]/10 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
