@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -15,8 +15,9 @@ import Footer from './components/Footer';
 import LeadPopup from './components/LeadPopup';
 import ThemeToggle from './components/ThemeToggle';
 import CookieBanner from './components/CookieBanner';
-import LegalPages from './components/LegalPages';
-import BlogPages from './components/BlogPages';
+
+const LegalPages = lazy(() => import('./components/LegalPages'));
+const BlogPages = lazy(() => import('./components/BlogPages'));
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -157,10 +158,18 @@ function App() {
           {/* Lead Capture Popup */}
           <LeadPopup />
         </div>
-      ) : currentPage === 'blog' || currentPage === 'blog-detail' ? (
-        <BlogPages currentPage={currentPage} />
       ) : (
-        <LegalPages currentPage={currentPage} />
+        <Suspense fallback={
+          <div className="min-h-screen flex items-center justify-center bg-brand-white dark:bg-gray-950">
+            <div className="w-8 h-8 border-2 border-purple-900 border-t-transparent dark:border-brand-green-lemon dark:border-t-transparent rounded-full animate-spin" />
+          </div>
+        }>
+          {currentPage === 'blog' || currentPage === 'blog-detail' ? (
+            <BlogPages currentPage={currentPage} />
+          ) : (
+            <LegalPages currentPage={currentPage} />
+          )}
+        </Suspense>
       )}
 
       {/* Fixed Side Dark Mode Toggle */}
