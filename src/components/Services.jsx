@@ -246,6 +246,7 @@ export default function Services() {
               <motion.div
                 key={index}
                 onClick={() => setActiveIndex(isOpen ? null : index)}
+                onMouseEnter={() => setActiveIndex(index)}
                 variants={{
                   hidden: { y: 24, opacity: 0 },
                   visible: {
