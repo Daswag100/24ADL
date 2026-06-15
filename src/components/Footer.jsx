@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin } from 'lucide-react';
 
 export default function Footer() {
@@ -13,15 +14,6 @@ export default function Footer() {
     { label: 'Contact', href: '/contact' },
   ];
 
-  const handleLinkClick = (e, href) => {
-    e.preventDefault();
-    if (window.__navigate) {
-      window.__navigate(href);
-    } else {
-      window.location.pathname = href;
-    }
-  };
-
   return (
     <footer className="bg-[#050505] text-white border-t border-white/8 pt-16 pb-12 pb-safe">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
@@ -31,9 +23,8 @@ export default function Footer() {
           
           {/* Column 1 - Brand Info & Socials */}
           <div className="flex flex-col gap-5">
-            <a 
-              href="/" 
-              onClick={(e) => handleLinkClick(e, '/')}
+            <Link 
+              to="/" 
               className="flex items-center group w-fit"
             >
               <img
@@ -41,7 +32,7 @@ export default function Footer() {
                 className="h-8 w-auto object-contain"
                 alt="24ADL Inspection and Audit Services logo"
               />
-            </a>
+            </Link>
             <p className="font-dmsans text-sm text-white/40 leading-relaxed max-w-sm">
               Independent stock audit and inventory verification services across agricultural and non-agricultural sectors worldwide.
             </p>
@@ -106,14 +97,13 @@ export default function Footer() {
             </span>
             <div className="grid grid-cols-2 gap-x-4 gap-y-2">
               {navLinks.map((link, idx) => (
-                <a
+                <Link
                   key={idx}
-                  href={link.href}
-                  onClick={(e) => handleLinkClick(e, link.href)}
+                  to={link.href}
                   className="font-dmsans text-sm text-white/50 hover:text-brand-purple-mid transition-colors duration-200"
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -165,10 +155,10 @@ export default function Footer() {
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-xs text-white/30 font-dmsans">
             <span>&copy; 2026 24ADL. All rights reserved.</span>
             <div className="flex flex-wrap gap-x-4 gap-y-1 justify-center">
-              <a href="/privacy" onClick={(e) => handleLinkClick(e, '/privacy')} className="hover:text-brand-green-lemon transition-colors">Privacy Policy</a>
-              <a href="/terms" onClick={(e) => handleLinkClick(e, '/terms')} className="hover:text-brand-green-lemon transition-colors">Terms & Conditions</a>
-              <a href="/cookies" onClick={(e) => handleLinkClick(e, '/cookies')} className="hover:text-brand-green-lemon transition-colors">Cookie Policy</a>
-              <a href="/disclaimer" onClick={(e) => handleLinkClick(e, '/disclaimer')} className="hover:text-brand-green-lemon transition-colors">Disclaimer</a>
+              <Link to="/privacy-policy" className="hover:text-brand-green-lemon transition-colors">Privacy Policy</Link>
+              <Link to="/terms-and-conditions" className="hover:text-brand-green-lemon transition-colors">Terms & Conditions</Link>
+              <Link to="/cookies" className="hover:text-brand-green-lemon transition-colors">Cookie Policy</Link>
+              <Link to="/disclaimer" className="hover:text-brand-green-lemon transition-colors">Disclaimer</Link>
             </div>
           </div>
           {/* Tagline */}

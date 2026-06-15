@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, ChevronDown } from 'lucide-react';
 
 export default function Navbar() {
@@ -46,15 +46,6 @@ export default function Navbar() {
     { label: 'Contact', href: '/contact' },
   ];
 
-  const handleLinkClick = (e, href) => {
-    e.preventDefault();
-    if (window.__navigate) {
-      window.__navigate(href);
-    } else {
-      window.location.pathname = href;
-    }
-  };
-
   return (
     <nav
       className={`fixed top-0 left-0 right-0 h-16 border-b z-50 transition-all duration-300 ${
@@ -66,10 +57,9 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto h-full px-6 lg:px-10 flex items-center justify-between">
         
         {/* Logo Section */}
-        <a 
+        <Link 
           id="nav-logo-link" 
-          href="/" 
-          onClick={(e) => handleLinkClick(e, '/')}
+          to="/" 
           className="flex items-center group"
         >
           <div className="flex items-center overflow-hidden">
@@ -79,7 +69,7 @@ export default function Navbar() {
               alt="24ADL Inspection and Audit Services logo"
             />
           </div>
-        </a>
+        </Link>
 
         {/* Center Links - Desktop (reduced gap from gap-8 to gap-6) */}
         <div className="hidden md:flex items-center gap-6">
@@ -87,11 +77,10 @@ export default function Navbar() {
           {desktopLinks.slice(0, 1).map((link) => {
             const isActive = location.pathname === '/';
             return (
-              <a
+              <Link
                 key={link.label}
                 id={`nav-link-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
-                href={link.href}
-                onClick={(e) => handleLinkClick(e, link.href)}
+                to={link.href}
                 className={`font-dmsans text-[14px] transition-colors duration-200 relative ${
                   isActive
                     ? 'text-brand-purple-primary font-semibold dark:text-brand-green-lemon'
@@ -102,7 +91,7 @@ export default function Navbar() {
                 {isActive && (
                   <span className="absolute -bottom-[22px] left-0 right-0 h-[2px] bg-brand-purple-primary dark:bg-brand-green-lemon rounded-full" />
                 )}
-              </a>
+              </Link>
             );
           })}
 
@@ -110,11 +99,10 @@ export default function Navbar() {
           {desktopLinks.slice(1, 2).map((link) => {
             const isActive = location.pathname === '/about';
             return (
-              <a
+              <Link
                 key={link.label}
                 id={`nav-link-about-us`}
-                href={link.href}
-                onClick={(e) => handleLinkClick(e, link.href)}
+                to={link.href}
                 className={`font-dmsans text-[14px] transition-colors duration-200 relative ${
                   isActive
                     ? 'text-brand-purple-primary font-semibold dark:text-brand-green-lemon'
@@ -125,7 +113,7 @@ export default function Navbar() {
                 {isActive && (
                   <span className="absolute -bottom-[22px] left-0 right-0 h-[2px] bg-brand-purple-primary dark:bg-brand-green-lemon rounded-full" />
                 )}
-              </a>
+              </Link>
             );
           })}
 
@@ -156,18 +144,15 @@ export default function Navbar() {
                   { label: 'Careers', href: '/careers' },
                   { label: 'FAQ', href: '/faq' },
                 ].map((item) => (
-                  <a
+                  <Link
                     key={item.label}
                     id={`nav-dropdown-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
-                    href={item.href}
-                    onClick={(e) => {
-                      setCompanyMenuOpen(false);
-                      handleLinkClick(e, item.href);
-                    }}
+                    to={item.href}
+                    onClick={() => setCompanyMenuOpen(false)}
                     className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 font-dmsans transition-colors"
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 ))}
               </div>
             )}
@@ -177,11 +162,10 @@ export default function Navbar() {
           {desktopLinks.slice(2, 5).map((link) => {
             const isActive = location.pathname === link.href;
             return (
-              <a
+              <Link
                 key={link.label}
                 id={`nav-link-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
-                href={link.href}
-                onClick={(e) => handleLinkClick(e, link.href)}
+                to={link.href}
                 className={`font-dmsans text-[14px] transition-colors duration-200 relative ${
                   isActive
                     ? 'text-brand-purple-primary font-semibold dark:text-brand-green-lemon'
@@ -192,7 +176,7 @@ export default function Navbar() {
                 {isActive && (
                   <span className="absolute -bottom-[22px] left-0 right-0 h-[2px] bg-brand-purple-primary dark:bg-brand-green-lemon rounded-full" />
                 )}
-              </a>
+              </Link>
             );
           })}
         </div>
@@ -211,14 +195,13 @@ export default function Navbar() {
             </span>
           </a>
 
-          <a
+          <Link
             id="nav-cta-contact"
-            href="/contact"
-            onClick={(e) => handleLinkClick(e, '/contact')}
+            to="/contact"
             className="bg-brand-purple-primary text-white font-syne font-bold text-sm px-5 py-2.5 rounded-md hover:bg-[#3B1575] transition-all duration-200 shadow-sm hover:shadow active:scale-[0.98]"
           >
             Get in Touch
-          </a>
+          </Link>
 
           {/* Mobile Menu Button */}
           <button
@@ -245,14 +228,11 @@ export default function Navbar() {
           {desktopLinks.slice(0, 2).map((link) => {
             const isActive = location.pathname === link.href;
             return (
-              <a
+              <Link
                 key={link.label}
                 id={`nav-link-mobile-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
-                href={link.href}
-                onClick={(e) => {
-                  setIsOpen(false);
-                  handleLinkClick(e, link.href);
-                }}
+                to={link.href}
+                onClick={() => setIsOpen(false)}
                 className={`font-dmsans text-[15px] py-2 transition-colors border-b border-gray-50 dark:border-gray-800/50 ${
                   isActive
                     ? 'text-brand-purple-primary dark:text-brand-green-lemon font-bold'
@@ -260,7 +240,7 @@ export default function Navbar() {
                 }`}
               >
                 {link.label}
-              </a>
+              </Link>
             );
           })}
 
@@ -285,14 +265,11 @@ export default function Navbar() {
                   { label: 'Careers', href: '/careers' },
                   { label: 'FAQ', href: '/faq' },
                 ].map((item) => (
-                  <a
+                  <Link
                     key={item.label}
                     id={`nav-link-mobile-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
-                    href={item.href}
-                    onClick={(e) => {
-                      setIsOpen(false);
-                      handleLinkClick(e, item.href);
-                    }}
+                    to={item.href}
+                    onClick={() => setIsOpen(false)}
                     className={`font-dmsans text-[14px] py-1 transition-colors block ${
                       location.pathname === item.href
                         ? 'text-brand-purple-primary dark:text-brand-green-lemon font-bold'
@@ -300,7 +277,7 @@ export default function Navbar() {
                     }`}
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 ))}
               </div>
             )}
@@ -310,14 +287,11 @@ export default function Navbar() {
           {desktopLinks.slice(2).map((link) => {
             const isActive = location.pathname === link.href;
             return (
-              <a
+              <Link
                 key={link.label}
                 id={`nav-link-mobile-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
-                href={link.href}
-                onClick={(e) => {
-                  setIsOpen(false);
-                  handleLinkClick(e, link.href);
-                }}
+                to={link.href}
+                onClick={() => setIsOpen(false)}
                 className={`font-dmsans text-[15px] py-2 transition-colors border-b border-gray-50 dark:border-gray-800/50 last:border-b-0 ${
                   isActive
                     ? 'text-brand-purple-primary dark:text-brand-green-lemon font-bold'
@@ -325,7 +299,7 @@ export default function Navbar() {
                 }`}
               >
                 {link.label}
-              </a>
+              </Link>
             );
           })}
 

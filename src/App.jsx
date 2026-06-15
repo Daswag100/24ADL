@@ -25,6 +25,15 @@ const loadingSpinner = (
   </div>
 );
 
+// ScrollToTop scrolls the window to the top on every route change
+function ScrollToTop() {
+  const location = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [location.pathname]);
+  return null;
+}
+
 // RouteTracker for Google Analytics 4 tracking on route change
 function RouteTracker() {
   const location = useLocation();
@@ -64,6 +73,9 @@ function AppContent() {
       
       {/* Navigation Bar */}
       <Navbar />
+
+      {/* Scroll to top indicator */}
+      <ScrollToTop />
 
       {/* GA4 Route tracker */}
       <RouteTracker />
