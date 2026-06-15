@@ -23,6 +23,15 @@ function App() {
   const [activeSection, setActiveSection] = useState('home');
   const [currentPage, setCurrentPage] = useState('home'); // 'home', 'privacy', 'terms', 'cookies', 'disclaimer', 'blog', 'blog-detail'
 
+  // GA4 Page View Tracking on custom route changes (since App uses custom state routing instead of react-router-dom)
+  useEffect(() => {
+    if (window.gtag) {
+      window.gtag('config', 'G-94HCB4H4C3', {
+        page_path: window.location.pathname,
+      });
+    }
+  }, [currentPage]);
+
   useEffect(() => {
     // Read and apply theme preference on mount to prevent white flash
     const savedTheme = localStorage.getItem('theme');
