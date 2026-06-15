@@ -98,9 +98,11 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen lg:h-screen lg:min-h-0 w-full overflow-hidden flex flex-col justify-center pt-20 pb-12 lg:pt-20 lg:pb-10 bg-cover bg-center bg-no-repeat"
+      className="relative w-full overflow-hidden flex flex-col justify-center pt-20 pb-12 lg:pt-20 lg:pb-10 bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: "url('/images/PHOTO-2026-04-06-23-48-31_3_jpg.jpeg')"
+        backgroundImage: "url('/images/PHOTO-2026-04-06-23-48-31_3_jpg.jpeg')",
+        minHeight: '80vh',
+        maxHeight: '90vh',
       }}
     >
       {/* Dark Overlay for Readability */}
