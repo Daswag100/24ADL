@@ -15,37 +15,38 @@ import {
   RefreshCcw,
   ShieldCheck,
   FileSearch,
+  ChevronDown,
 } from 'lucide-react';
 
 export default function Services() {
   const [activeTab, setActiveTab] = useState('agro');
-  const [activeCard, setActiveCard] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(null);
 
   const agroServices = [
     {
       icon: Wheat,
       title: 'Farm Produce Verification',
-      description: "Physical verification and quantification of grains, crops, and livestock, ensuring what's recorded matches what's on the ground.",
+      description: "We conduct independent physical verification and quantification of grains, crops, and livestock. This ensures that your records align perfectly with what is on the ground, minimizing shrinkage and reporting discrepancies.",
     },
     {
       icon: FlaskConical,
       title: 'Agricultural Input Audit',
-      description: 'Independent audit of fertilizers, seeds, and chemical inputs to verify quantities, quality, and storage compliance.',
+      description: 'A detailed audit of seeds, fertilizers, chemical inputs, and agrochemicals. We verify quantities, analyze quality standards, and assess storage facility compliance to protect your agricultural investments.',
     },
     {
       icon: Warehouse,
       title: 'Warehouse & Silo Verification',
-      description: 'On-site stock verification for storage facilities including silo capacity checks and comparison with warehouse records.',
+      description: 'Our team performs on-site verification of storage facilities, silos, and warehouses. We conduct capacity assessments, gauge volume levels, and reconcile physical findings with internal ledger systems.',
     },
     {
       icon: TrendingDown,
       title: 'Post-Harvest Loss Assessment',
-      description: 'Identifying and quantifying post-harvest losses across the supply chain, including spoilage, waste, and shrinkage detection.',
+      description: 'We identify, measure, and analyze losses at every stage of the post-harvest supply chain. By pinpointing issues like spoilage, damage, and pilferage, we help you implement corrective measures to preserve value.',
     },
     {
       icon: Thermometer,
       title: 'Storage Condition Monitoring',
-      description: 'Monitoring and reporting on storage conditions that affect stock quality, such as temperature, humidity, and facility standards.',
+      description: 'Continuous audit and monitoring of temperature, humidity, and ventilation controls within your storage areas. This prevents early spoilage, maintains product quality, and ensures strict adherence to international safety standards.',
     },
   ];
 
@@ -53,27 +54,27 @@ export default function Services() {
     {
       icon: ShoppingCart,
       title: 'Retail Inventory Verification',
-      description: 'Retail stock audits across shops, supermarkets, and distribution centers, where physical counts are reconciled against system records.',
+      description: 'Comprehensive retail audits across stores, supermarkets, and regional distribution networks. We perform physical counts of products, audit point-of-sale systems, and reconcile stock discrepancies immediately.',
     },
     {
       icon: Factory,
       title: 'Manufacturing Stock Audit',
-      description: 'Audit of raw materials, work-in-progress, and finished goods across factories and production facilities.',
+      description: 'Independent audits of raw materials, work-in-progress (WIP), and finished goods in production plants. We trace production yields, analyze scrap rates, and audit material control registers for maximum precision.',
     },
     {
       icon: Truck,
       title: 'Warehouse & Logistics Inventory',
-      description: 'End-to-end inventory checks across warehousing and logistics operations, from receipt to dispatch reconciliation.',
+      description: 'End-to-end checks covering the receipt, dispatch, and handling of stock within your distribution hubs. We map process flows and audit logistics manifests to ensure every unit is accounted for in transit.',
     },
     {
       icon: Package,
       title: 'Raw Materials Verification',
-      description: 'Independent verification of raw material stocks and finished goods, ensuring recorded values reflect actual physical holdings.',
+      description: 'Independent count and verification of raw input stocks prior to manufacturing. This ensures production teams have accurate resource levels and prevents stock-outs or over-purchasing of materials.',
     },
     {
       icon: Wrench,
       title: 'Spare Parts & Equipment Audit',
-      description: 'Audit of spare parts inventories and equipment registers, which is critical for manufacturers and industrial operators.',
+      description: 'Audit of critical spare parts, machine components, maintenance tools, and active equipment registers. We help industrial operators prevent downtime and secure high-value maintenance assets.',
     },
   ];
 
@@ -81,22 +82,22 @@ export default function Services() {
     {
       icon: BarChart2,
       title: 'Inventory Control Assessment',
-      description: 'Evaluating your existing inventory control systems and recommending improvements to reduce losses and improve accuracy.',
+      description: 'We evaluate your internal inventory systems, custody chains, and warehouse security protocols. Our experts provide a roadmap of actionable recommendations to reduce shrinkage and tighten operational controls.',
     },
     {
       icon: RefreshCcw,
       title: 'Stock Reconciliation',
-      description: 'Systematic reconciliation of physical stock counts against book records to identify variances, excesses, and shortages.',
+      description: 'A methodical, line-by-line reconciliation of physical audit counts against your book records. We identify the root causes of variances, locate missing entries, and adjust records to reflect reality.',
     },
     {
       icon: ShieldCheck,
       title: 'Compliance Verification',
-      description: 'Verifying inventory compliance with regulatory, contractual, or lender requirements, supporting banks and financiers.',
+      description: 'We verify that inventory management practices align with regulatory, contractual, or lender requirements. This provides third-party assurance for banks, trading houses, and financial institutions.',
     },
     {
       icon: FileSearch,
       title: 'Operational Audit Support',
-      description: 'Broader operational audit support to help organizations strengthen internal controls and reporting frameworks.',
+      description: 'Customized support services to help your team prepare for external audits and improve internal control frameworks. We assist in structuring audit trails, documentation, and reporting templates.',
     },
   ];
 
@@ -148,7 +149,7 @@ export default function Services() {
               hidden: { y: 20, opacity: 0 },
               visible: { y: 0, opacity: 1, transition: { duration: 0.6, delay: 0 } }
             }}
-            className="text-xs font-semibold tracking-widest text-[#4C1D95] dark:text-brand-green-lemon uppercase block mb-3"
+            className="text-xs font-semibold tracking-widest text-[#4C1D95] dark:text-brand-green-lemon uppercase block mb-3 font-dmsans"
           >
             WHAT WE DO
           </motion.span>
@@ -179,7 +180,7 @@ export default function Services() {
               key={tab.id}
               onClick={() => {
                 setActiveTab(tab.id);
-                setActiveCard(null); // Reset selected card index
+                setActiveIndex(null); // Reset expanded index when tab changes
               }}
               className={`px-5 py-2.5 rounded-full text-sm font-semibold font-syne transition-all duration-200 cursor-pointer ${
                 activeTab === tab.id
@@ -204,7 +205,7 @@ export default function Services() {
           </div>
         )}
 
-        {/* Dynamic Card Grid */}
+        {/* Dynamic Card Grid (Accordion List style) */}
         <motion.div
           key={activeTab}
           variants={{
@@ -221,12 +222,12 @@ export default function Services() {
         >
           {getActiveCards().map((service, index) => {
             const IconComponent = service.icon;
-            const isSelected = activeCard === index;
+            const isOpen = activeIndex === index;
 
             return (
               <motion.div
                 key={index}
-                onClick={() => setActiveCard(index)}
+                onClick={() => setActiveIndex(isOpen ? null : index)}
                 variants={{
                   hidden: { y: 24, opacity: 0 },
                   visible: {
@@ -235,41 +236,47 @@ export default function Services() {
                     transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
                   }
                 }}
-                whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                className={`transition-all duration-200 cursor-pointer rounded-2xl p-7 flex flex-col h-full group ${
-                  isSelected
-                    ? 'bg-[#4C1D95] border border-transparent scale-[1.02] shadow-md'
-                    : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-purple-500 dark:hover:border-purple-500 hover:shadow-sm'
+                className={`transition-colors duration-300 cursor-pointer border rounded-xl p-5 flex flex-col justify-between bg-white dark:bg-gray-800 ${
+                  isOpen
+                    ? 'border-purple-500 dark:border-brand-green-lemon shadow-sm'
+                    : 'border-gray-200 dark:border-gray-700 hover:border-purple-300 dark:hover:border-purple-500'
                 }`}
               >
-                {/* Icon Container */}
-                <div
-                  className={`w-11 h-11 rounded-xl flex items-center justify-center mb-5 shrink-0 transition-colors duration-200 ${
-                    isSelected ? 'bg-white/15' : 'bg-violet-50 dark:bg-purple-950/50'
-                  }`}
-                >
-                  <IconComponent
-                    className={`h-5 w-5 transition-colors duration-200 ${
-                      isSelected ? 'text-white' : 'text-purple-700 dark:text-brand-green-lemon'
+                {/* Collapsed Header */}
+                <div className="flex items-center justify-between w-full">
+                  <div className="flex items-center gap-3.5">
+                    {/* Icon Container */}
+                    <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 bg-violet-50 dark:bg-purple-950/50">
+                      <IconComponent className="h-5 w-5 text-purple-700 dark:text-brand-green-lemon" />
+                    </div>
+                    <span className="font-syne font-bold text-base text-gray-900 dark:text-white">
+                      {service.title}
+                    </span>
+                  </div>
+                  <ChevronDown
+                    className={`h-5 w-5 text-gray-400 transition-transform duration-300 shrink-0 ${
+                      isOpen ? 'rotate-180' : ''
                     }`}
                   />
                 </div>
 
-                {/* Title & Description */}
-                <h3
-                  className={`font-syne font-bold text-base mb-2 transition-colors duration-200 ${
-                    isSelected ? 'text-white' : 'text-gray-900 dark:text-white'
-                  }`}
+                {/* Expanded Detail (Framer Motion height auto from 0, opacity 1 from 0) */}
+                <motion.div
+                  initial={false}
+                  animate={{
+                    height: isOpen ? 'auto' : 0,
+                    opacity: isOpen ? 1 : 0,
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="overflow-hidden"
                 >
-                  {service.title}
-                </h3>
-                <p
-                  className={`font-dmsans text-sm leading-relaxed font-normal flex-grow transition-colors duration-200 ${
-                    isSelected ? 'text-white/70' : 'text-gray-500 dark:text-gray-400'
-                  }`}
-                >
-                  {service.description}
-                </p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mt-3 pt-3 border-t border-gray-100 dark:border-gray-800 font-dmsans">
+                    {service.description}
+                  </p>
+                </motion.div>
               </motion.div>
             );
           })}
