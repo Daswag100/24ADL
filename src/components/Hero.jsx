@@ -102,7 +102,6 @@ export default function Hero() {
       style={{
         backgroundImage: "url('/images/PHOTO-2026-04-06-23-48-31_3_jpg.jpeg')",
         minHeight: '80vh',
-        maxHeight: '90vh',
       }}
     >
       {/* Dark Overlay for Readability */}
@@ -140,7 +139,6 @@ export default function Hero() {
           {/* Line 3 — Typewriter, smaller, green */}
           <div 
             className="mb-3 lg:mb-2 w-full select-none"
-            style={{ overflow: 'hidden', whiteSpace: 'nowrap' }}
           >
             <span
               className="inline-block font-syne font-bold"
@@ -148,7 +146,6 @@ export default function Hero() {
                 color: '#22C55E',
                 fontSize: 'clamp(1.2rem, 4.5vw, 2rem)',
                 lineHeight: '1.3',
-                whiteSpace: 'nowrap'
               }}
             >
               {displayText}
