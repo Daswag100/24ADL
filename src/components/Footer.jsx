@@ -124,6 +124,13 @@ export default function Footer() {
                 <Phone className="h-4 w-4 text-[#22C55E]" />
                 <span>+234 8033179732</span>
               </a>
+              <a
+                href="tel:+2347030637458"
+                className="flex items-center gap-3 font-dmsans text-sm text-white/50 hover:text-brand-purple-mid transition-colors duration-200 w-fit"
+              >
+                <Phone className="h-4 w-4 text-[#22C55E]" />
+                <span>+234 7030637458</span>
+              </a>
 
               {/* Email */}
               <a

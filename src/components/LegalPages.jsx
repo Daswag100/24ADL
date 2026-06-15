@@ -144,7 +144,7 @@ export default function LegalPages({ currentPage }) {
                     <Phone className="w-5 h-5 text-brand-purple-primary dark:text-brand-green-lemon shrink-0" />
                     <div>
                       <div className="text-xs text-gray-400 uppercase">Phone / WhatsApp</div>
-                      <a href="tel:+2348033179732" className="font-semibold text-gray-700 dark:text-gray-200 hover:underline">+234 8033179732</a>
+                      <a href="tel:+2348033179732" className="font-semibold text-gray-700 dark:text-gray-200 hover:underline">+234 8033179732</a> / <a href="tel:+2347030637458" className="font-semibold text-gray-700 dark:text-gray-200 hover:underline">+234 7030637458</a>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">

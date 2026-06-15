@@ -37,8 +37,8 @@ export default function Navbar({ activeSection }) {
 
   const desktopLinks = [
     { label: 'Home', href: '/' },
+    { label: 'About Us', href: '/about' },
     { label: 'Services', href: '/services' },
-    { label: 'Industries', href: '/industries' },
     { label: 'Blog', href: '/blog' },
     { label: 'Clients', href: '/clients' },
     { label: 'Contact', href: '/contact' },
@@ -81,10 +81,9 @@ export default function Navbar({ activeSection }) {
 
         {/* Center Links - Desktop (reduced gap from gap-8 to gap-6) */}
         <div className="hidden md:flex items-center gap-6">
-          {/* Home, Services, Industries, Blog, Clients */}
-          {desktopLinks.slice(0, 5).map((link) => {
-            const targetSection = link.href === '/' ? 'home' : link.href.replace('/', '');
-            const isActive = activeSection === targetSection;
+          {/* Home */}
+          {desktopLinks.slice(0, 1).map((link) => {
+            const isActive = activeSection === 'home';
             return (
               <a
                 key={link.label}
@@ -105,7 +104,30 @@ export default function Navbar({ activeSection }) {
             );
           })}
 
-          {/* Company Dropdown Link */}
+          {/* About Us — standalone */}
+          {desktopLinks.slice(1, 2).map((link) => {
+            const isActive = activeSection === 'about';
+            return (
+              <a
+                key={link.label}
+                id={`nav-link-about-us`}
+                href={link.href}
+                onClick={(e) => handleLinkClick(e, link.href)}
+                className={`font-dmsans text-[14px] transition-colors duration-200 relative ${
+                  isActive
+                    ? 'text-brand-purple-primary font-semibold dark:text-brand-green-lemon'
+                    : 'text-brand-gray-mid font-medium hover:text-brand-purple-primary dark:text-gray-400 dark:hover:text-white'
+                }`}
+              >
+                {link.label}
+                {isActive && (
+                  <span className="absolute -bottom-[22px] left-0 right-0 h-[2px] bg-brand-purple-primary dark:bg-brand-green-lemon rounded-full" />
+                )}
+              </a>
+            );
+          })}
+
+          {/* Company Dropdown (before Services) */}
           <div
             className="relative py-4"
             onMouseEnter={handleMouseEnter}
@@ -127,9 +149,10 @@ export default function Navbar({ activeSection }) {
             {companyMenuOpen && (
               <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg py-2 min-w-[160px] z-50">
                 {[
-                  { label: 'About Us', href: '/about' },
+                  { label: 'Industries', href: '/industries' },
                   { label: 'Approach', href: '/approach' },
                   { label: 'Careers', href: '/careers' },
+                  { label: 'FAQ', href: '/faq' },
                 ].map((item) => (
                   <a
                     key={item.label}
@@ -148,8 +171,8 @@ export default function Navbar({ activeSection }) {
             )}
           </div>
 
-          {/* Contact */}
-          {desktopLinks.slice(5).map((link) => {
+          {/* Services, Blog, Clients — after Company dropdown */}
+          {desktopLinks.slice(2, 5).map((link) => {
             const targetSection = link.href.replace('/', '');
             const isActive = activeSection === targetSection;
             return (
@@ -181,7 +204,10 @@ export default function Navbar({ activeSection }) {
             className="hidden lg:flex items-center gap-2 font-dmsans text-sm font-semibold text-brand-purple-primary dark:text-brand-green-lemon hover:opacity-80 transition-opacity"
           >
             <Phone className="h-4 w-4" />
-            <span>+234 8033179732</span>
+            <span className="flex flex-col leading-tight">
+              <span>+234 8033179732</span>
+              <span>+234 7030637458</span>
+            </span>
           </a>
 
           <a
@@ -214,8 +240,8 @@ export default function Navbar({ activeSection }) {
         }`}
       >
         <div className="flex flex-col gap-3">
-          {/* Home, Services, Industries, Blog, Clients */}
-          {desktopLinks.slice(0, 5).map((link) => {
+          {/* Home + About Us */}
+          {desktopLinks.slice(0, 2).map((link) => {
             const targetSection = link.href === '/' ? 'home' : link.href.replace('/', '');
             const isActive = activeSection === targetSection;
             return (
@@ -254,9 +280,10 @@ export default function Navbar({ activeSection }) {
                   Company
                 </span>
                 {[
-                  { label: 'About Us', href: '/about' },
+                  { label: 'Industries', href: '/industries' },
                   { label: 'Approach', href: '/approach' },
                   { label: 'Careers', href: '/careers' },
+                  { label: 'FAQ', href: '/faq' },
                 ].map((item) => (
                   <a
                     key={item.label}
@@ -279,8 +306,8 @@ export default function Navbar({ activeSection }) {
             )}
           </div>
 
-          {/* Contact */}
-          {desktopLinks.slice(5).map((link) => {
+          {/* Services, Blog, Clients, Contact */}
+          {desktopLinks.slice(2).map((link) => {
             const targetSection = link.href.replace('/', '');
             const isActive = activeSection === targetSection;
             return (
@@ -303,15 +330,26 @@ export default function Navbar({ activeSection }) {
             );
           })}
 
-          <a
-            id="nav-phone-link-mobile"
-            href="tel:+2348033179732"
-            onClick={() => setIsOpen(false)}
-            className="flex items-center gap-2 font-dmsans text-[15px] py-2 text-brand-purple-primary dark:text-brand-green-lemon font-semibold hover:opacity-80 transition-opacity border-t border-gray-50 dark:border-gray-800/50 mt-1"
-          >
-            <Phone className="h-4 w-4" />
-            <span>+234 8033179732</span>
-          </a>
+          <div className="flex flex-col gap-1 border-t border-gray-50 dark:border-gray-800/50 mt-1 pt-2">
+            <a
+              id="nav-phone-link-mobile"
+              href="tel:+2348033179732"
+              onClick={() => setIsOpen(false)}
+              className="flex items-center gap-2 font-dmsans text-[15px] py-1 text-brand-purple-primary dark:text-brand-green-lemon font-semibold hover:opacity-80 transition-opacity"
+            >
+              <Phone className="h-4 w-4" />
+              <span>+234 8033179732</span>
+            </a>
+            <a
+              id="nav-phone-link-mobile-2"
+              href="tel:+2347030637458"
+              onClick={() => setIsOpen(false)}
+              className="flex items-center gap-2 font-dmsans text-[15px] py-1 text-brand-purple-primary dark:text-brand-green-lemon font-semibold hover:opacity-80 transition-opacity"
+            >
+              <Phone className="h-4 w-4" />
+              <span>+234 7030637458</span>
+            </a>
+          </div>
         </div>
       </div>
     </nav>

@@ -99,6 +99,12 @@ export default function Contact() {
                   >
                     +234 8033179732
                   </a>
+                  <a
+                    href="tel:+2347030637458"
+                    className="font-dmsans text-base text-green-400 font-medium hover:underline mt-0.5"
+                  >
+                    +234 7030637458
+                  </a>
                 </div>
               </div>
 

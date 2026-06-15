@@ -65,7 +65,7 @@ export default function FAQ() {
     {
       category: 'Engagement',
       question: 'How do we book an audit?',
-      answer: 'You can contact us through the website form, email us at info@24adlinspection.com, or call us at +234 8033179732 to discuss the scope, location, timeline, and stock category.',
+      answer: 'You can contact us through the website form, email us at info@24adlinspection.com, or call us at +234 8033179732 / +234 7030637458 to discuss the scope, location, timeline, and stock category.',
     },
     {
       category: 'Engagement',
