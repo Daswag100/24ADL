@@ -1,36 +1,48 @@
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, lazy, Suspense } from 'react';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import WhyUs from './components/WhyUs';
-import Services from './components/Services';
-import Deliverables from './components/Deliverables';
-import Approach from './components/Approach';
-import Industries from './components/Industries';
-import GlobalReach from './components/GlobalReach';
-import Careers from './components/Careers';
-import FAQ from './components/FAQ';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
-import LeadPopup from './components/LeadPopup';
 import ThemeToggle from './components/ThemeToggle';
 import CookieBanner from './components/CookieBanner';
+import HomePage from './pages/HomePage';
 
-const LegalPages = lazy(() => import('./components/LegalPages'));
-const BlogPages = lazy(() => import('./components/BlogPages'));
+// Lazy loaded page components
+const ServicesPage = lazy(() => import('./pages/ServicesPage'));
+const IndustriesPage = lazy(() => import('./pages/IndustriesPage'));
+const ApproachPage = lazy(() => import('./pages/ApproachPage'));
+const ClientsPage = lazy(() => import('./pages/ClientsPage'));
+const CareersPage = lazy(() => import('./pages/CareersPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const BlogPage = lazy(() => import('./pages/BlogPage'));
+const ArticlePage = lazy(() => import('./pages/ArticlePage'));
+const FAQPage = lazy(() => import('./pages/FAQPage'));
+const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'));
+const TermsPage = lazy(() => import('./pages/TermsPage'));
 
-function App() {
-  const [activeSection, setActiveSection] = useState('home');
-  const [currentPage, setCurrentPage] = useState('home'); // 'home', 'privacy', 'terms', 'cookies', 'disclaimer', 'blog', 'blog-detail'
+const loadingSpinner = (
+  <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-950">
+    <div className="w-8 h-8 border-2 border-purple-900 border-t-transparent dark:border-brand-green-lemon dark:border-t-transparent rounded-full animate-spin" />
+  </div>
+);
 
-  // GA4 Page View Tracking on custom route changes (since App uses custom state routing instead of react-router-dom)
+// RouteTracker for Google Analytics 4 tracking on route change
+function RouteTracker() {
+  const location = useLocation();
+
   useEffect(() => {
     if (window.gtag) {
       window.gtag('config', 'G-94HCB4H4C3', {
-        page_path: window.location.pathname,
+        page_path: location.pathname,
       });
     }
-  }, [currentPage]);
+  }, [location]);
+
+  return null;
+}
+
+// AppContent sets up navigation hooks and references
+function AppContent() {
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Read and apply theme preference on mount to prevent white flash
@@ -41,145 +53,42 @@ function App() {
       document.documentElement.classList.remove('dark');
     }
 
-    // Path routing handler
-    const handleRouteChange = () => {
-      const path = window.location.pathname;
-      const legalPages = ['/privacy', '/terms', '/cookies', '/disclaimer'];
-      if (legalPages.includes(path)) {
-        setCurrentPage(path.replace('/', ''));
-      } else if (path === '/blog') {
-        setCurrentPage('blog');
-      } else if (path === '/blog/5-signs-your-business-is-losing-inventory') {
-        setCurrentPage('blog-detail');
-      } else {
-        setCurrentPage('home');
-        
-        // If it's a section path, scroll to it
-        if (path !== '/' && path.length > 1) {
-          const targetId = path.replace('/', '');
-          const element = document.getElementById(targetId);
-          if (element) {
-            setTimeout(() => {
-              element.scrollIntoView({ behavior: 'smooth' });
-            }, 150);
-          }
-        } else {
-          // Home route - scroll to top
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-      }
-    };
-
-    // Expose global navigate handler
+    // Expose global navigate handler for components using window.__navigate
     window.__navigate = (path) => {
-      window.history.pushState(null, '', path);
-      window.dispatchEvent(new Event('popstate'));
+      navigate(path);
     };
-
-    // Run once on load
-    handleRouteChange();
-
-    window.addEventListener('popstate', handleRouteChange);
-
-    // Scroll-spy observer setup
-    const observerOptions = {
-      root: null,
-      rootMargin: '-40% 0px -50% 0px', // Triggers when the section crosses the upper/middle viewport area
-      threshold: 0,
-    };
-
-    const observerCallback = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          setActiveSection(id);
-
-          // Update URL path silently as the user scrolls
-          const targetPath = id === 'home' || id === 'faq' ? '/' : `/${id}`;
-          if (window.location.pathname !== targetPath && window.location.pathname.match(/^(\/|\/about|\/why-us|\/services|\/deliverables|\/approach|\/industries|\/clients|\/careers|\/contact)?$/)) {
-            window.history.replaceState(null, '', targetPath);
-          }
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-    
-    // Select all section elements that have an ID attribute
-    const sections = document.querySelectorAll('section[id]');
-    sections.forEach((section) => observer.observe(section));
-
-    return () => {
-      window.removeEventListener('popstate', handleRouteChange);
-      sections.forEach((section) => observer.unobserve(section));
-    };
-  }, []);
-
-  const isHome = currentPage === 'home';
+  }, [navigate]);
 
   return (
     <div className="min-h-screen bg-brand-white dark:bg-gray-900 text-brand-black dark:text-white font-dmsans selection:bg-brand-purple-light selection:text-brand-purple-primary flex flex-col justify-between overflow-x-hidden w-full relative transition-colors duration-300">
       
-      {isHome ? (
-        <div>
-          {/* Navigation Bar - tracks the scroll-spied active section */}
-          <Navbar activeSection={activeSection} />
+      {/* Navigation Bar */}
+      <Navbar />
 
-          {/* Sequential content flow */}
-          <main className="pt-20 md:pt-24">
-            {/* 1. Hero Section */}
-            <Hero />
+      {/* GA4 Route tracker */}
+      <RouteTracker />
 
-            {/* 2. About Us Section */}
-            <About />
+      {/* Routing system */}
+      <Suspense fallback={loadingSpinner}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/industries" element={<IndustriesPage />} />
+          <Route path="/approach" element={<ApproachPage />} />
+          <Route path="/clients" element={<ClientsPage />} />
+          <Route path="/careers" element={<CareersPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/5-signs-your-business-is-losing-inventory" element={<ArticlePage />} />
+          <Route path="/faq" element={<FAQPage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="/terms-and-conditions" element={<TermsPage />} />
+          <Route path="*" element={<HomePage />} />
+        </Routes>
+      </Suspense>
 
-            {/* 3. Why Us Section */}
-            <WhyUs />
-
-            {/* 4. Services Section */}
-            <Services />
-
-            {/* 5. Deliverables Section */}
-            <Deliverables />
-
-            {/* 6. Approach Section */}
-            <Approach />
-
-            {/* 7. Industries We Serve Section */}
-            <Industries />
-
-            {/* 8. Global Reach & Clients Section */}
-            <GlobalReach />
-
-            {/* 9. Careers Section */}
-            <Careers />
-
-            {/* FAQ Accordion Section */}
-            <FAQ />
-
-            {/* 10. Contact Section */}
-            <Contact />
-          </main>
-
-          {/* 11. Footer Section */}
-          <Footer />
-
-          {/* Lead Capture Popup */}
-          <LeadPopup />
-        </div>
-      ) : (
-        <Suspense fallback={
-          <div className="min-h-screen flex items-center justify-center bg-brand-white dark:bg-gray-950">
-            <div className="w-8 h-8 border-2 border-purple-900 border-t-transparent dark:border-brand-green-lemon dark:border-t-transparent rounded-full animate-spin" />
-          </div>
-        }>
-          {currentPage === 'blog' || currentPage === 'blog-detail' ? (
-            <BlogPages currentPage={currentPage} />
-          ) : (
-            <LegalPages currentPage={currentPage} />
-          )}
-        </Suspense>
-      )}
+      {/* Footer */}
+      <Footer />
 
       {/* Fixed Side Dark Mode Toggle */}
       <ThemeToggle />
@@ -217,4 +126,10 @@ function App() {
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
+  );
+}

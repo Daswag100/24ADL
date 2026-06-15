@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Menu, X, Phone, ChevronDown } from 'lucide-react';
 
-export default function Navbar({ activeSection }) {
+export default function Navbar() {
+  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [companyMenuOpen, setCompanyMenuOpen] = useState(false);
@@ -83,7 +85,7 @@ export default function Navbar({ activeSection }) {
         <div className="hidden md:flex items-center gap-6">
           {/* Home */}
           {desktopLinks.slice(0, 1).map((link) => {
-            const isActive = activeSection === 'home';
+            const isActive = location.pathname === '/';
             return (
               <a
                 key={link.label}
@@ -106,7 +108,7 @@ export default function Navbar({ activeSection }) {
 
           {/* About Us — standalone */}
           {desktopLinks.slice(1, 2).map((link) => {
-            const isActive = activeSection === 'about';
+            const isActive = location.pathname === '/about';
             return (
               <a
                 key={link.label}
@@ -136,7 +138,7 @@ export default function Navbar({ activeSection }) {
             <button
               id="nav-link-company"
               className={`flex items-center font-dmsans text-[14px] transition-colors duration-200 font-medium cursor-pointer ${
-                ['about', 'approach', 'careers'].includes(activeSection)
+                ['/industries', '/approach', '/careers', '/faq'].includes(location.pathname)
                   ? 'text-brand-purple-primary dark:text-brand-green-lemon font-semibold'
                   : 'text-brand-gray-mid hover:text-brand-purple-primary dark:text-gray-400 dark:hover:text-white'
               }`}
@@ -173,8 +175,7 @@ export default function Navbar({ activeSection }) {
 
           {/* Services, Blog, Clients — after Company dropdown */}
           {desktopLinks.slice(2, 5).map((link) => {
-            const targetSection = link.href.replace('/', '');
-            const isActive = activeSection === targetSection;
+            const isActive = location.pathname === link.href;
             return (
               <a
                 key={link.label}
@@ -242,8 +243,7 @@ export default function Navbar({ activeSection }) {
         <div className="flex flex-col gap-3">
           {/* Home + About Us */}
           {desktopLinks.slice(0, 2).map((link) => {
-            const targetSection = link.href === '/' ? 'home' : link.href.replace('/', '');
-            const isActive = activeSection === targetSection;
+            const isActive = location.pathname === link.href;
             return (
               <a
                 key={link.label}
@@ -294,7 +294,7 @@ export default function Navbar({ activeSection }) {
                       handleLinkClick(e, item.href);
                     }}
                     className={`font-dmsans text-[14px] py-1 transition-colors block ${
-                      activeSection === item.href.replace('/', '')
+                      location.pathname === item.href
                         ? 'text-brand-purple-primary dark:text-brand-green-lemon font-bold'
                         : 'text-brand-gray-dark dark:text-gray-300 font-medium hover:text-brand-purple-primary dark:hover:text-white'
                     }`}
@@ -308,8 +308,7 @@ export default function Navbar({ activeSection }) {
 
           {/* Services, Blog, Clients, Contact */}
           {desktopLinks.slice(2).map((link) => {
-            const targetSection = link.href.replace('/', '');
-            const isActive = activeSection === targetSection;
+            const isActive = location.pathname === link.href;
             return (
               <a
                 key={link.label}
