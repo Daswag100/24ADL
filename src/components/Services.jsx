@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import {
   Wheat,
@@ -20,7 +20,28 @@ import {
 
 export default function Services() {
   const [activeTab, setActiveTab] = useState('agro');
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const sectionRef = useRef(null);
+
+  // Auto-open first item when section scrolls into view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setActiveIndex(prev => prev === null ? 0 : prev);
+        }
+      },
+      { threshold: 0.2 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // Reset to first item when tab switches
+  const handleTabChange = (tabId) => {
+    setActiveTab(tabId);
+    setActiveIndex(0);
+  };
 
   const agroServices = [
     {
@@ -134,7 +155,7 @@ export default function Services() {
   };
 
   return (
-    <section id="services" className="py-14 md:py-24 bg-white dark:bg-gray-900 transition-colors duration-300">
+    <section id="services" ref={sectionRef} className="py-14 md:py-24 bg-white dark:bg-gray-900 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         
         {/* Section Header */}
@@ -178,10 +199,7 @@ export default function Services() {
           {tabs.map((tab) => (
             <button
               key={tab.id}
-              onClick={() => {
-                setActiveTab(tab.id);
-                setActiveIndex(null); // Reset expanded index when tab changes
-              }}
+              onClick={() => handleTabChange(tab.id)}
               className={`px-5 py-2.5 rounded-full text-sm font-semibold font-syne transition-all duration-200 cursor-pointer ${
                 activeTab === tab.id
                   ? 'bg-[#4C1D95] text-white border-transparent'
