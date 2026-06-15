@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ArrowLeft, TrendingDown, Clock, Calendar, ArrowRight, CheckSquare, Square, ShieldCheck, Mail, MessageSquare, MessageCircle } from 'lucide-react';
+import { ArrowLeft, TrendingDown, Clock, Calendar, ArrowRight, CheckSquare, Square, ShieldCheck, Mail, MessageSquare, MessageCircle, Link } from 'lucide-react';
 
 export default function BlogPages({ currentPage }) {
   useEffect(() => {
@@ -207,6 +207,7 @@ function BlogListing({ onNavigate }) {
 function BlogPostDetail({ onNavigate }) {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeTocSection, setActiveTocSection] = useState('');
+  const [copied, setCopied] = useState(false);
 
   // Handle scroll progress
   useEffect(() => {
@@ -399,11 +400,11 @@ function BlogPostDetail({ onNavigate }) {
             </p>
 
             {/* Stat Callout Box (mobile responsive p-6/p-8 and text-4xl/text-5xl) */}
-            <div className="bg-brand-purple-dark text-center rounded-2xl p-6 md:p-8 my-10 shadow-sm border border-brand-purple-primary/10">
+            <div className="bg-purple-900 text-center rounded-2xl p-6 md:p-8 my-10 shadow-sm border border-purple-800/30">
               <div className="font-syne font-bold text-4xl md:text-5xl text-brand-green-lemon mb-2">
                 2-3%
               </div>
-              <div className="text-white/70 text-sm font-dmsans max-w-lg mx-auto leading-relaxed">
+              <div className="text-white/70 text-sm font-dmsans max-w-md mx-auto leading-relaxed text-center">
                 The average inventory shrinkage rate globally, but for businesses without independent verification, the figure is routinely far higher and far less visible.
               </div>
             </div>
@@ -700,8 +701,10 @@ function BlogPostDetail({ onNavigate }) {
 
           </div>
 
-          {/* 2 — Table of Contents Sidebar (desktop only, hidden on mobile) */}
-          <aside className="hidden lg:block sticky top-24 self-start w-[240px]">
+          {/* 2 — Sidebar (desktop only, hidden on mobile) */}
+          <aside className="hidden lg:flex flex-col gap-6 sticky top-24 self-start w-[240px]">
+
+            {/* TOC Card */}
             <div className="border border-gray-200 dark:border-gray-700 rounded-xl p-5 bg-white dark:bg-gray-900">
               <h4 className="font-syne text-xs font-bold text-gray-400 uppercase tracking-wide mb-4">
                 On This Page
@@ -726,6 +729,75 @@ function BlogPostDetail({ onNavigate }) {
                 })}
               </nav>
             </div>
+
+            {/* Share This Article Card */}
+            <div className="border border-gray-200 dark:border-gray-700 rounded-xl p-5 bg-white dark:bg-gray-900">
+              <h4 className="font-syne text-xs font-bold text-gray-400 uppercase tracking-wide mb-4">
+                Share This Article
+              </h4>
+              <div className="flex gap-3 items-center">
+                {/* LinkedIn */}
+                <a
+                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center hover:border-purple-400 dark:hover:border-purple-400 transition-colors text-gray-500 dark:text-gray-400 hover:text-purple-700 dark:hover:text-purple-400"
+                  aria-label="Share on LinkedIn"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  </svg>
+                </a>
+                {/* WhatsApp */}
+                <a
+                  href={`https://wa.me/?text=${encodeURIComponent(window.location.href)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center hover:border-green-400 transition-colors text-gray-500 dark:text-gray-400 hover:text-green-600"
+                  aria-label="Share on WhatsApp"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                </a>
+                {/* Copy Link */}
+                <div className="relative">
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(window.location.href);
+                      setCopied(true);
+                      setTimeout(() => setCopied(false), 2000);
+                    }}
+                    className="w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center hover:border-purple-400 transition-colors text-gray-500 dark:text-gray-400 hover:text-purple-700 dark:hover:text-purple-400"
+                    aria-label="Copy link"
+                  >
+                    <Link className="w-4 h-4" />
+                  </button>
+                  {copied && (
+                    <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">
+                      Copied!
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* CTA Card */}
+            <div className="bg-purple-900 rounded-xl p-6 text-center">
+              <h4 className="font-syne font-bold text-white text-lg mb-2">
+                Not Sure Where You Stand?
+              </h4>
+              <p className="text-white/60 text-sm mb-5 leading-relaxed">
+                Get an independent assessment of your inventory accuracy from our audit team.
+              </p>
+              <a
+                href="/contact"
+                onClick={(e) => { e.preventDefault(); if (window.__navigate) window.__navigate('/contact'); }}
+                className="block bg-green-500 hover:bg-green-600 text-black font-bold px-5 py-3 rounded-md w-full text-sm transition-colors"
+                style={{ fontFamily: 'Syne' }}
+              >
+                Request an Audit
+              </a>
+            </div>
+
           </aside>
 
         </div>
