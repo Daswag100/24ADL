@@ -43,34 +43,6 @@ function BlogListing({ onNavigate }) {
       icon: <TrendingDown className="h-20 w-20 text-white/15" />,
       tagColor: 'bg-green-500 text-black',
       featured: true,
-    },
-    {
-      id: 'collateral-management-agreement-cma',
-      title: 'Understanding Collateral Management Agreements (CMA) in Warehousing',
-      excerpt: 'How commercial lenders and commodity traders secure trade financing through independent collateral inspection and third-party control.',
-      category: 'Risk Mitigation',
-      date: 'Coming Soon',
-      readTime: '6 min read',
-      author: 'Audit Team',
-      authorInitials: 'AD',
-      icon: <ShieldCheck className="h-20 w-20 text-white/15" />,
-      tagColor: 'bg-brand-purple-primary/20 text-brand-purple-primary dark:bg-purple-950/40 dark:text-purple-300',
-      featured: false,
-      isPlaceholder: true,
-    },
-    {
-      id: 'fmcg-warehouse-shrinkage-steps',
-      title: 'How to Reduce FMCG Warehouse Shrinkage: A 5-Step Checklist',
-      excerpt: 'A practical guide for factory managers and logistics leads to tighten audit trails, establish dual custody, and stop stock pilferage.',
-      category: 'Best Practices',
-      date: 'Coming Soon',
-      readTime: '10 min read',
-      author: 'Operations Lead',
-      authorInitials: 'OL',
-      icon: <MessageSquare className="h-20 w-20 text-white/15" />,
-      tagColor: 'bg-brand-purple-primary/20 text-brand-purple-primary dark:bg-purple-950/40 dark:text-purple-300',
-      featured: false,
-      isPlaceholder: true,
     }
   ];
 
@@ -119,7 +91,7 @@ function BlogListing({ onNavigate }) {
 
       {/* Grid Content Section */}
       <main className="max-w-7xl mx-auto px-6 lg:px-10 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-md md:max-w-2xl lg:max-w-none mx-auto">
           {articles.map((art) => {
             if (art.isPlaceholder) {
               return (
