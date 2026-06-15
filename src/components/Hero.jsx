@@ -181,12 +181,28 @@ export default function Hero() {
           >
             <a
               href="#contact"
+              onClick={() => {
+                if (window.gtag) {
+                  window.gtag('event', 'cta_click', {
+                    event_category: 'Hero',
+                    event_label: 'Request an Audit',
+                  });
+                }
+              }}
               className="bg-brand-green-lemon text-brand-black font-syne font-bold text-sm sm:text-base px-7 py-4 rounded-md hover:bg-[#1cb054] transition-all duration-200 active:scale-[0.98] shadow-lg shadow-brand-green-lemon/10"
             >
               Request an Audit
             </a>
             <a
               href="#services"
+              onClick={() => {
+                if (window.gtag) {
+                  window.gtag('event', 'cta_click', {
+                    event_category: 'Hero',
+                    event_label: 'Our Services',
+                  });
+                }
+              }}
               className="bg-transparent border border-white/30 text-white font-syne font-bold text-sm sm:text-base px-7 py-4 rounded-md hover:bg-white/10 hover:border-white/50 transition-all duration-200 active:scale-[0.98]"
             >
               Our Services

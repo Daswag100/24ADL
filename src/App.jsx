@@ -193,6 +193,14 @@ function App() {
         href="https://wa.me/2348033179732"
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => {
+          if (window.gtag) {
+            window.gtag('event', 'whatsapp_click', {
+              event_category: 'Engagement',
+              event_label: 'WhatsApp Button',
+            });
+          }
+        }}
         className="fixed bottom-5 right-5 z-40 bg-[#25D366] text-white p-3.5 hover:bg-[#128C7E] shadow-xl rounded-full transition-all duration-300 active:scale-95 group flex items-center justify-center"
         aria-label="Contact us on WhatsApp"
       >

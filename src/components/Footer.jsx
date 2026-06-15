@@ -80,6 +80,14 @@ export default function Footer() {
                 href="https://wa.me/2348033179732"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => {
+                  if (window.gtag) {
+                    window.gtag('event', 'whatsapp_click', {
+                      event_category: 'Engagement',
+                      event_label: 'WhatsApp Button',
+                    });
+                  }
+                }}
                 className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white/50 transition-colors"
                 aria-label="WhatsApp Channel"
               >

@@ -37,6 +37,12 @@ export default function LeadPopup() {
     e.preventDefault();
     await submit({ fullName, company, email, service });
     setSubmitted(true);
+    if (window.gtag) {
+      window.gtag('event', 'form_submit', {
+        event_category: 'Lead Popup',
+        event_label: 'Request an Audit Popup',
+      });
+    }
   };
 
   return (

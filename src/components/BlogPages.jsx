@@ -684,6 +684,14 @@ function BlogPostDetail({ onNavigate }) {
                     href="https://wa.me/2348033179732" 
                     target="_blank" 
                     rel="noopener noreferrer"
+                    onClick={() => {
+                      if (window.gtag) {
+                        window.gtag('event', 'whatsapp_click', {
+                          event_category: 'Engagement',
+                          event_label: 'WhatsApp Button',
+                        });
+                      }
+                    }}
                     className="inline-flex items-center gap-2 justify-center border-2 border-purple-900 text-purple-900 dark:border-white dark:text-white font-bold px-8 py-4 rounded-md hover:bg-purple-900 hover:text-white dark:hover:bg-white dark:hover:text-purple-900 transition-colors w-full md:w-auto text-center"
                     style={{ fontFamily: 'Syne' }}
                   >
@@ -753,6 +761,14 @@ function BlogPostDetail({ onNavigate }) {
                   href={`https://wa.me/?text=${encodeURIComponent(window.location.href)}`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => {
+                    if (window.gtag) {
+                      window.gtag('event', 'whatsapp_click', {
+                        event_category: 'Engagement',
+                        event_label: 'WhatsApp Button',
+                      });
+                    }
+                  }}
                   className="w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center hover:border-green-400 transition-colors text-gray-500 dark:text-gray-400 hover:text-green-600"
                   aria-label="Share on WhatsApp"
                 >

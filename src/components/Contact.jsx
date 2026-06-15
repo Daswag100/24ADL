@@ -24,6 +24,12 @@ export default function Contact() {
       message,
     });
     setSubmitted(true);
+    if (window.gtag) {
+      window.gtag('event', 'form_submit', {
+        event_category: 'Contact',
+        event_label: 'Contact Form',
+      });
+    }
   };
 
   const handleReset = () => {
