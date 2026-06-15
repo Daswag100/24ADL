@@ -2,15 +2,25 @@ import { Mail, Phone, MapPin } from 'lucide-react';
 
 export default function Footer() {
   const navLinks = [
-    { label: 'Home', href: '#' },
-    { label: 'About Us', href: '#about' },
-    { label: 'Services', href: '#services' },
-    { label: 'Industries', href: '#industries' },
-    { label: 'Approach', href: '#approach' },
-    { label: 'Clients', href: '#clients' },
-    { label: 'Careers', href: '#careers' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Home', href: '/' },
+    { label: 'About Us', href: '/about' },
+    { label: 'Services', href: '/services' },
+    { label: 'Industries', href: '/industries' },
+    { label: 'Approach', href: '/approach' },
+    { label: 'Clients', href: '/clients' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'Careers', href: '/careers' },
+    { label: 'Contact', href: '/contact' },
   ];
+
+  const handleLinkClick = (e, href) => {
+    e.preventDefault();
+    if (window.__navigate) {
+      window.__navigate(href);
+    } else {
+      window.location.pathname = href;
+    }
+  };
 
   return (
     <footer className="bg-[#050505] text-white border-t border-white/8 pt-16 pb-12 pb-safe">
@@ -21,11 +31,15 @@ export default function Footer() {
           
           {/* Column 1 - Brand Info & Socials */}
           <div className="flex flex-col gap-5">
-            <a href="#" className="flex items-center group w-fit">
+            <a 
+              href="/" 
+              onClick={(e) => handleLinkClick(e, '/')}
+              className="flex items-center group w-fit"
+            >
               <img
                 src="/24ADL_Logo__Coloured_.png"
                 className="h-8 w-auto object-contain"
-                alt="24ADL Logo"
+                alt="24ADL Inspection and Audit Services logo"
               />
             </a>
             <p className="font-dmsans text-sm text-white/40 leading-relaxed max-w-sm">
@@ -87,6 +101,7 @@ export default function Footer() {
                 <a
                   key={idx}
                   href={link.href}
+                  onClick={(e) => handleLinkClick(e, link.href)}
                   className="font-dmsans text-sm text-white/50 hover:text-brand-purple-mid transition-colors duration-200"
                 >
                   {link.label}
@@ -103,11 +118,11 @@ export default function Footer() {
             <div className="flex flex-col gap-3">
               {/* Phone */}
               <a
-                href="tel:+2347030637458"
+                href="tel:+2348033179732"
                 className="flex items-center gap-3 font-dmsans text-sm text-white/50 hover:text-brand-purple-mid transition-colors duration-200 w-fit"
               >
                 <Phone className="h-4 w-4 text-[#22C55E]" />
-                <span>+234 7030637458</span>
+                <span>+234 8033179732</span>
               </a>
 
               {/* Email */}
@@ -130,10 +145,16 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8 text-center sm:text-left">
-          {/* Copyright */}
-          <div className="font-dmsans text-xs text-white/20">
-            &copy; 2026 24ADL. All rights reserved.
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mt-8 pt-8 border-t border-white/5 text-center md:text-left">
+          {/* Copyright & Legal Links */}
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-xs text-white/30 font-dmsans">
+            <span>&copy; 2026 24ADL. All rights reserved.</span>
+            <div className="flex flex-wrap gap-x-4 gap-y-1 justify-center">
+              <a href="/privacy" onClick={(e) => handleLinkClick(e, '/privacy')} className="hover:text-brand-green-lemon transition-colors">Privacy Policy</a>
+              <a href="/terms" onClick={(e) => handleLinkClick(e, '/terms')} className="hover:text-brand-green-lemon transition-colors">Terms & Conditions</a>
+              <a href="/cookies" onClick={(e) => handleLinkClick(e, '/cookies')} className="hover:text-brand-green-lemon transition-colors">Cookie Policy</a>
+              <a href="/disclaimer" onClick={(e) => handleLinkClick(e, '/disclaimer')} className="hover:text-brand-green-lemon transition-colors">Disclaimer</a>
+            </div>
           </div>
           {/* Tagline */}
           <div className="font-syne font-bold text-xs text-brand-green-lemon tracking-wide uppercase">

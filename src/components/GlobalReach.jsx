@@ -60,7 +60,7 @@ export default function GlobalReach() {
           <img
             src="/images/PHOTO-2026-04-06-23-48-31_8_jpg.jpeg"
             className="w-full h-full object-cover object-center"
-            alt="Global operations warehouse"
+            alt="Global operations warehouse with stacked pallet inventory"
           />
           <div className="absolute inset-0 bg-purple-900/30 rounded-2xl pointer-events-none" />
         </div>

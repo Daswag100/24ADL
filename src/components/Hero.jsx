@@ -98,7 +98,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen w-full overflow-hidden flex flex-col justify-center pt-32 pb-24 bg-cover bg-center bg-no-repeat"
+      className="relative min-h-screen lg:h-screen lg:min-h-0 w-full overflow-hidden flex flex-col justify-center pt-20 pb-12 lg:pt-20 lg:pb-10 bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: "url('/images/PHOTO-2026-04-06-23-48-31_3_jpg.jpeg')"
       }}
@@ -117,7 +117,7 @@ export default function Hero() {
             initial={{ y: 16, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white rounded-full px-4 py-1.5 text-xs sm:text-sm w-fit mb-8"
+            className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white rounded-full px-4 py-1.5 text-xs sm:text-sm w-fit mb-4 lg:mb-3"
           >
             <span className="w-2 h-2 bg-brand-green-lemon rounded-full animate-pulse" />
             <span className="font-dmsans font-medium tracking-wide uppercase text-[11px] sm:text-xs">
@@ -129,7 +129,7 @@ export default function Hero() {
           {/* Headline H1 — Static, large, white */}
           <h1 
             className="font-syne font-bold text-white tracking-tight select-none leading-[1.05]"
-            style={{ fontSize: 'clamp(2.8rem, 8vw, 6rem)' }}
+            style={{ fontSize: 'clamp(2.4rem, 5.5vw, 4.2rem)' }}
           >
             <span className="block">Ensuring</span>
             <span className="block">Accuracy.</span>
@@ -137,7 +137,7 @@ export default function Hero() {
 
           {/* Line 3 — Typewriter, smaller, green */}
           <div 
-            className="mb-8 w-full select-none"
+            className="mb-3 lg:mb-2 w-full select-none"
             style={{ overflow: 'hidden', whiteSpace: 'nowrap' }}
           >
             <span
@@ -168,7 +168,7 @@ export default function Hero() {
             initial={{ y: 16, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.7, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="font-dmsans text-base sm:text-lg lg:text-xl text-white/70 max-w-xl leading-relaxed font-light mb-10"
+            className="font-dmsans text-base sm:text-lg lg:text-xl text-white/70 max-w-xl leading-relaxed font-light mb-5 lg:mb-4"
           >
             We help businesses prevent unnoticed inventory losses through independent verification, across agro and non-agro sectors, from Lagos to global markets.
           </motion.p>
@@ -178,7 +178,7 @@ export default function Hero() {
             initial={{ y: 16, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.9, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-row flex-wrap gap-4 mb-20"
+            className="flex flex-row flex-wrap gap-4 mb-6 lg:mb-6"
           >
             <a
               href="#contact"
@@ -200,7 +200,7 @@ export default function Hero() {
             initial={{ y: 16, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 1.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="border-t border-white/10 pt-10"
+            className="border-t border-white/10 pt-5 lg:pt-4"
           >
             <div className="flex flex-row flex-wrap gap-8 sm:gap-16">
               

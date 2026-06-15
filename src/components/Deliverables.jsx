@@ -72,7 +72,7 @@ export default function Deliverables() {
                   <img
                     src="/images/PHOTO-2026-04-06-23-48-31_11_jpg.jpeg"
                     className="w-full h-52 object-cover rounded-t-2xl rounded-b-none object-top"
-                    alt="Deliverable audit"
+                    alt="Professional digital report representing final inventory audit deliverables"
                   />
                 </div>
 

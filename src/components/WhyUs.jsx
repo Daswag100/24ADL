@@ -13,7 +13,7 @@ export default function WhyUs() {
       desc: 'We have no commercial interest in your stock figures. Our findings are objective, our methodology consistent, and our reports answer only to the facts, not to what anyone hopes to find.',
       descClass: 'text-white/55',
       photo: '/images/PHOTO-2026-04-06-23-48-31_13_jpg.jpeg',
-      photoAlt: 'Independent auditor',
+      photoAlt: 'Independent auditor performing stock inventory count',
       photoClass: 'object-top'
     },
     {
@@ -36,7 +36,7 @@ export default function WhyUs() {
       desc: "The report doesn't end at the count. We deliver variance analysis, control assessments, and practical recommendations, allowing you to act on what we find rather than just filing it.",
       descClass: 'text-black/60',
       photo: '/images/PHOTO-2026-04-06-23-48-31_10_jpg.jpeg',
-      photoAlt: 'Actionable Insights',
+      photoAlt: 'Actionable Insights graph and data metrics representation',
       photoClass: 'object-center'
     },
     {

@@ -94,10 +94,10 @@ export default function Contact() {
                     Phone
                   </span>
                   <a
-                    href="tel:+2347030637458"
+                    href="tel:+2348033179732"
                     className="font-dmsans text-base text-green-400 font-medium hover:underline"
                   >
-                    +234 7030637458
+                    +234 8033179732
                   </a>
                 </div>
               </div>

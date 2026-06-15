@@ -34,6 +34,14 @@ export default function About() {
     '/images/PHOTO-2026-04-06-23-48-32_jpg.jpeg',
   ];
 
+  const slideshowAlts = [
+    'Warehouse inspector checking stack levels',
+    'Auditor verifying agricultural commodity bags in warehouse',
+    'Supermarket shelf inventory inspection',
+    'Retail store stock auditing on shelves',
+    'Industrial packaging and inventory tracking',
+  ];
+
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -154,7 +162,7 @@ export default function About() {
                   animate={{ opacity: 1, transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] } }}
                   exit={{ opacity: 0, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } }}
                   className="absolute inset-0 w-full h-full object-cover object-center"
-                  alt="24ADL Physical Verification and Auditing"
+                  alt={slideshowAlts[currentIndex]}
                 />
               </AnimatePresence>
               
