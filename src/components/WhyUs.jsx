@@ -27,7 +27,7 @@ export default function WhyUs() {
       descClass: 'text-gray-600 dark:text-gray-300',
       photo: '/images/warehouse.jpg',
       photoAlt: 'Agro and Non-Agro inventory depth auditing',
-      photoClass: 'object-center'
+      photoClass: 'object-top'
     },
     {
       num: '03',
