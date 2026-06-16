@@ -1,23 +1,61 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { ChevronDown } from 'lucide-react';
 
 export default function Industries({ showPreviewLink = false }) {
   const [showAll, setShowAll] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const industries = [
-    'Agro-processing & Commodity Trade',
-    'Warehousing & Distribution',
-    'Retail & Supermarkets',
-    'Manufacturing & Industrial Operations',
-    'Logistics & Supply Chain',
-    'Oil & Gas Operations',
-    'Banks & Financial Institutions',
-    'Inventory-Backed Lending Operations',
-    'Pharmaceutical & Healthcare Supply Chains',
-    'Import & Export Operations',
-    'FMCG Distribution Networks',
-    'NGOs & Donor-Funded Projects',
+    {
+      title: 'Agro-processing & Commodity Trade',
+      description: 'We support businesses involved in raw commodity handling, processing, aggregation, storage, and trading. This includes grain dealers, produce aggregators, exporters, processors, and warehouse operators that need accurate stock visibility, quality control, and inventory verification.'
+    },
+    {
+      title: 'Warehousing & Distribution',
+      description: 'We work with warehouses and distribution centers that handle stock movement, storage, dispatch, and reconciliation. Our services help these businesses reduce discrepancies, improve stock accuracy, and maintain better control over goods in transit and storage.'
+    },
+    {
+      title: 'Retail & Supermarkets',
+      description: 'We serve retail businesses and supermarket chains that manage fast-moving stock across multiple shelves, branches, or storage points. Our focus is on reducing shrinkage, improving stock counts, and helping management understand where inventory losses may be occurring.'
+    },
+    {
+      title: 'Manufacturing & Industrial Operations',
+      description: 'We support manufacturers and industrial operators who rely on raw materials, work-in-progress items, spare parts, and finished goods. Our audit and verification approach helps ensure stock records reflect actual production and operational usage.'
+    },
+    {
+      title: 'Logistics & Supply Chain',
+      description: 'We work with logistics providers, fulfillment centers, and supply chain operators that move goods across different locations. We help improve accountability, traceability, and reconciliation between dispatched, received, and stored items.'
+    },
+    {
+      title: 'Oil & Gas Operations',
+      description: 'We support oil and gas businesses with inventory-related verification across consumables, equipment, spare parts, and operational stores. The goal is to improve accountability, reduce losses, and strengthen stock control in high-value operational environments.'
+    },
+    {
+      title: 'Banks & Financial Institutions',
+      description: 'We serve banks and financial institutions that maintain physical assets, branch supplies, records, consumables, and controlled items. Our support helps improve asset visibility, internal control, and operational accountability.'
+    },
+    {
+      title: 'Inventory-Backed Lending Operations',
+      description: 'We assist lenders, financiers, and institutions involved in inventory-backed financing. Our verification services help confirm stock existence, condition, and movement, supporting stronger lending decisions and risk management.'
+    },
+    {
+      title: 'Pharmaceutical & Healthcare Supply Chains',
+      description: 'We work with pharmaceutical distributors, hospitals, clinics, and healthcare supply chains that manage sensitive and high-value stock. Our services help improve stock accuracy, reduce expiry-related losses, and strengthen control over critical inventory.'
+    },
+    {
+      title: 'Import & Export Operations',
+      description: 'We support importers and exporters that handle goods across ports, bonded warehouses, and distribution channels. Our role is to help verify stock quantities, improve documentation, and reduce mismatch between expected and actual inventory.'
+    },
+    {
+      title: 'FMCG Distribution Networks',
+      description: 'We serve fast-moving consumer goods companies and distributors that deal with high-volume, high-turnover stock. Our services help improve stock movement tracking, warehouse accuracy, and distribution accountability.'
+    },
+    {
+      title: 'NGOs & Donor-Funded Projects',
+      description: 'We support NGOs, development agencies, and donor-funded projects that manage project materials, consumables, relief items, or inventory-based interventions. Our work helps ensure proper accountability, transparent record-keeping, and reliable stock reporting.'
+    }
   ];
 
   return (
@@ -72,23 +110,67 @@ export default function Industries({ showPreviewLink = false }) {
         </motion.div>
 
         {/* Industries Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-14">
           {industries.map((ind, index) => {
             const isHiddenOnMobile = index >= 6 && !showAll;
+            const isOpen = hoveredIndex === index;
+
             return (
               <div
                 key={index}
-                className={`bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-5 py-4 items-center gap-3 hover:bg-brand-purple-light/25 dark:hover:bg-purple-950/20 hover:border-brand-purple-primary dark:hover:border-brand-green-lemon hover:-translate-y-0.5 hover:shadow-md transition-all duration-200 cursor-pointer active:scale-[0.99] group ${
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                onClick={() => setHoveredIndex(isOpen ? null : index)}
+                className={`bg-white dark:bg-gray-800 border rounded-xl px-5 py-4 flex flex-col justify-between hover:shadow-md transition-all duration-300 cursor-pointer group ${
+                  isOpen
+                    ? 'border-brand-purple-primary dark:border-brand-green-lemon bg-brand-purple-light/5 dark:bg-purple-950/10'
+                    : 'border-gray-200 dark:border-gray-700 hover:border-brand-purple-primary dark:hover:border-brand-green-lemon'
+                } ${
                   isHiddenOnMobile ? 'hidden sm:flex' : 'flex'
                 }`}
               >
-                {/* Purple Dot */}
-                <span className="w-2 h-2 rounded-full bg-purple-600 dark:bg-brand-green-lemon shrink-0 group-hover:bg-brand-purple-primary dark:group-hover:bg-brand-green-lemon group-hover:scale-125 transition-all duration-200" />
-                
-                {/* Industry Name */}
-                <span className="font-dmsans text-sm font-medium text-gray-800 dark:text-gray-200 group-hover:text-brand-purple-primary dark:group-hover:text-brand-green-lemon transition-colors duration-200">
-                  {ind}
-                </span>
+                {/* Header Row */}
+                <div className="flex items-center justify-between w-full">
+                  <div className="flex items-center gap-3">
+                    {/* Purple/Green Dot */}
+                    <span className={`w-2 h-2 rounded-full shrink-0 transition-all duration-300 ${
+                      isOpen 
+                        ? 'bg-brand-purple-primary dark:bg-brand-green-lemon scale-125' 
+                        : 'bg-purple-600 dark:bg-brand-green-lemon group-hover:scale-125'
+                    }`} />
+                    
+                    {/* Industry Name */}
+                    <span className={`font-dmsans text-sm font-medium transition-colors duration-300 ${
+                      isOpen 
+                        ? 'text-brand-purple-primary dark:text-brand-green-lemon font-semibold' 
+                        : 'text-gray-800 dark:text-gray-200 group-hover:text-brand-purple-primary dark:group-hover:text-brand-green-lemon'
+                    }`}>
+                      {ind.title}
+                    </span>
+                  </div>
+
+                  <ChevronDown className={`h-4.5 w-4.5 text-gray-400 dark:text-gray-550 transition-transform duration-300 shrink-0 ${
+                    isOpen ? 'rotate-180 text-brand-purple-primary dark:text-brand-green-lemon' : ''
+                  }`} />
+                </div>
+
+                {/* Description - Accordion style using Framer Motion */}
+                <motion.div
+                  initial={false}
+                  animate={{
+                    height: isOpen ? 'auto' : 0,
+                    opacity: isOpen ? 1 : 0,
+                  }}
+                  transition={{
+                    duration: 0.25,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="overflow-hidden w-full"
+                >
+                  <p className="font-dmsans text-xs sm:text-sm text-gray-500 dark:text-gray-400 leading-relaxed mt-3 pt-3 border-t border-gray-100 dark:border-gray-750">
+                    {ind.description}
+                  </p>
+                </motion.div>
               </div>
             );
           })}
