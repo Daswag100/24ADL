@@ -79,7 +79,7 @@ export default function HomePage() {
       <About />
 
       {/* 3. Explore 24ADL Navigation Grid */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-900 border-t border-b border-gray-100 dark:border-gray-800/40 transition-colors duration-300">
+      <section className="py-20 bg-[#FAFAF9] dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800/40 transition-colors duration-300">
         <div className="max-w-6xl mx-auto px-6">
           
           {/* Section Header with Fade Up */}
