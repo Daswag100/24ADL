@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ArrowLeft, TrendingDown, Clock, Calendar, ArrowRight, CheckSquare, Square, ShieldCheck, Mail, MessageSquare, MessageCircle, Link } from 'lucide-react';
+import warehouseImg from '../assets/WAREHOUSE1.jpeg';
 
 export default function BlogPages({ currentPage }) {
   useEffect(() => {
@@ -150,9 +151,13 @@ function BlogListing({ onNavigate }) {
               >
                 <div>
                   {/* Header Image Area (mobile optimized h-40 md:h-48) */}
-                  <div className="h-40 md:h-48 bg-gradient-to-br from-brand-purple-dark to-brand-purple-primary flex items-center justify-center relative overflow-hidden">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,_var(--tw-gradient-stops))] from-brand-green-lemon/10 via-transparent to-transparent opacity-60"></div>
-                    {art.icon}
+                  <div className="h-40 md:h-48 relative overflow-hidden bg-gray-100 dark:bg-gray-800">
+                    <img
+                      src={warehouseImg}
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                      alt={art.title}
+                    />
+                    <div className="absolute inset-0 bg-purple-900/10 pointer-events-none" />
                     <div className="bg-brand-green-lemon text-brand-black text-xs font-bold px-3 py-1 rounded-full absolute top-4 left-4">
                       {art.category}
                     </div>
@@ -368,6 +373,15 @@ function BlogPostDetail({ onNavigate }) {
           <p className="font-dmsans text-lg text-gray-500 dark:text-gray-400 font-light leading-relaxed mb-6">
             Inventory shrinkage is costing Nigerian businesses millions every year, and most don't realise it's happening until significant damage is done.
           </p>
+
+          {/* Featured Image */}
+          <div className="w-full h-56 sm:h-80 md:h-[400px] rounded-2xl overflow-hidden mb-8 shadow-sm">
+            <img
+              src={warehouseImg}
+              className="w-full h-full object-cover object-center"
+              alt="Warehouse inventory verification audit in progress"
+            />
+          </div>
 
           <div className="flex items-center gap-3 text-sm text-gray-500 dark:text-gray-400">
             <div className="w-8 h-8 rounded-full bg-brand-purple-light dark:bg-purple-950 flex items-center justify-center text-brand-purple-primary dark:text-brand-green-lemon text-xs font-bold shrink-0">
