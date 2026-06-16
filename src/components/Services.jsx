@@ -21,27 +21,13 @@ import {
 
 export default function Services({ showPreviewLink = false }) {
   const [activeTab, setActiveTab] = useState('agro');
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(null);
   const sectionRef = useRef(null);
 
-  // Auto-open first item when section scrolls into view
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setActiveIndex(prev => prev === null ? 0 : prev);
-        }
-      },
-      { threshold: 0.2 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
-  // Reset to first item when tab switches
+  // Reset to collapsed when tab switches
   const handleTabChange = (tabId) => {
     setActiveTab(tabId);
-    setActiveIndex(0);
+    setActiveIndex(null);
   };
 
   const agroServices = [
