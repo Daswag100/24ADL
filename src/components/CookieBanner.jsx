@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Cookie, X } from 'lucide-react';
 
@@ -68,12 +69,12 @@ export default function CookieBanner() {
           {/* Description */}
           <p className="text-sm text-white/70 leading-relaxed font-light">
             We use cookies to improve your browsing experience and analyze our traffic. By clicking "Accept All", you agree to our use of cookies as detailed in our{' '}
-            <a 
-              href="#cookies" 
+            <Link 
+              to="/cookies" 
               className="text-brand-green-lemon hover:underline font-medium"
             >
               Cookie Policy
-            </a>.
+            </Link>.
           </p>
 
           {/* Action Buttons */}

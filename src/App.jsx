@@ -21,6 +21,8 @@ const ArticlePage = lazy(() => import('./pages/ArticlePage'));
 const FAQPage = lazy(() => import('./pages/FAQPage'));
 const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'));
 const TermsPage = lazy(() => import('./pages/TermsPage'));
+const CookiePolicyPage = lazy(() => import('./pages/CookiePolicyPage'));
+const DisclaimerPage = lazy(() => import('./pages/DisclaimerPage'));
 
 const loadingSpinner = (
   <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-950">
@@ -100,6 +102,8 @@ function AppContent() {
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/terms-and-conditions" element={<TermsPage />} />
+          <Route path="/cookies" element={<CookiePolicyPage />} />
+          <Route path="/disclaimer" element={<DisclaimerPage />} />
           <Route path="*" element={<HomePage />} />
         </Routes>
       </Suspense>
