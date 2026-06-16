@@ -223,7 +223,7 @@ export default function Services({ showPreviewLink = false }) {
           }}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-2"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-2 items-start"
         >
           {getActiveCards().map((service, index) => {
             const IconComponent = service.icon;

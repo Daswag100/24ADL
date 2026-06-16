@@ -110,7 +110,7 @@ export default function Industries({ showPreviewLink = false }) {
         </motion.div>
 
         {/* Industries Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-14 items-start">
           {industries.map((ind, index) => {
             const isHiddenOnMobile = index >= 6 && !showAll;
             const isOpen = hoveredIndex === index;
