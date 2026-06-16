@@ -220,7 +220,7 @@ export default function Hero() {
               
               {/* Stat 1 */}
               <div className="flex flex-col">
-                <span className="font-syne font-extrabold text-5xl sm:text-6xl lg:text-7xl text-white mb-2 block min-w-[120px] lg:min-w-[150px]">
+                <span className="font-syne font-bold text-4xl sm:text-5xl lg:text-6xl text-white mb-2 block min-w-[120px] lg:min-w-[150px]">
                   {count2022}
                 </span>
                 <span className="font-dmsans text-xs sm:text-sm text-white/55 tracking-wider uppercase">
@@ -230,7 +230,7 @@ export default function Hero() {
 
               {/* Stat 2 */}
               <div className="flex flex-col">
-                <span className="font-syne font-extrabold text-5xl sm:text-6xl lg:text-7xl text-white mb-2 block min-w-[80px] lg:min-w-[100px]">
+                <span className="font-syne font-bold text-4xl sm:text-5xl lg:text-6xl text-white mb-2 block min-w-[80px] lg:min-w-[100px]">
                   {count9 === 9 ? '9+' : count9}
                 </span>
                 <span className="font-dmsans text-xs sm:text-sm text-white/55 tracking-wider uppercase">
@@ -240,7 +240,7 @@ export default function Hero() {
 
               {/* Stat 3 */}
               <div className="flex flex-col">
-                <span className="font-syne font-extrabold text-5xl sm:text-6xl lg:text-7xl text-white mb-2 block min-w-[50px] lg:min-w-[70px]">
+                <span className="font-syne font-bold text-4xl sm:text-5xl lg:text-6xl text-white mb-2 block min-w-[50px] lg:min-w-[70px]">
                   {count4}
                 </span>
                 <span className="font-dmsans text-xs sm:text-sm text-white/55 tracking-wider uppercase">
