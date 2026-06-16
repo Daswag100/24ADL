@@ -4,9 +4,12 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ThemeToggle from './components/ThemeToggle';
 import CookieBanner from './components/CookieBanner';
+import LeadPopup from './components/LeadPopup';
 import HomePage from './pages/HomePage';
 
 // Lazy loaded page components
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const WhyUsPage = lazy(() => import('./pages/WhyUsPage'));
 const ServicesPage = lazy(() => import('./pages/ServicesPage'));
 const IndustriesPage = lazy(() => import('./pages/IndustriesPage'));
 const ApproachPage = lazy(() => import('./pages/ApproachPage'));
@@ -84,6 +87,8 @@ function AppContent() {
       <Suspense fallback={loadingSpinner}>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/why-us" element={<WhyUsPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/industries" element={<IndustriesPage />} />
           <Route path="/approach" element={<ApproachPage />} />
@@ -107,6 +112,9 @@ function AppContent() {
 
       {/* Floating Cookie Consent Banner */}
       <CookieBanner />
+
+      {/* Global Lead Capture Popup */}
+      <LeadPopup />
 
       {/* Floating WhatsApp Button */}
       <a

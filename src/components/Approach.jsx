@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { ClipboardList, AlertTriangle, Eye, BarChart2, FileText } from 'lucide-react';
 
-export default function Approach() {
+export default function Approach({ showPreviewLink = false }) {
   const steps = [
     {
       num: '01',
@@ -137,6 +138,17 @@ export default function Approach() {
             ))}
           </motion.div>
         </div>
+
+        {showPreviewLink && (
+          <div className="mt-12 flex justify-center">
+            <Link
+              to="/approach"
+              className="inline-flex items-center text-green-400 font-semibold hover:underline group cursor-pointer"
+            >
+              See Our Full Process <span className="ml-1 group-hover:translate-x-1 transition-transform">→</span>
+            </Link>
+          </div>
+        )}
 
       </div>
     </section>

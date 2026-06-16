@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion';
+import { useLocation, Link } from 'react-router-dom';
 
-export default function GlobalReach() {
+export default function GlobalReach({ showPreviewLink = false }) {
+  const location = useLocation();
+  const isHomepage = location.pathname === '/';
   const clients = [
     { name: 'JB Cocoa Sdn Bhd', location: 'Malaysia' },
     { name: 'COAF Agri', location: 'Dubai, UAE' },
@@ -131,13 +134,30 @@ export default function GlobalReach() {
             </div>
 
             {/* CTA Button: full-width on mobile, w-auto on desktop */}
-            <div className="mt-8 flex">
-              <a
-                href="#contact"
-                className="w-full text-center sm:w-auto bg-[#22C55E] text-black font-syne font-bold text-sm sm:text-base px-7 py-3.5 rounded-md hover:bg-[#1cb054] transition-colors active:scale-[0.98] inline-block shadow-lg shadow-[#22C55E]/10"
-              >
-                Work With Us
-              </a>
+            <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
+              {isHomepage ? (
+                <a
+                  href="#contact"
+                  className="w-full text-center sm:w-auto bg-[#22C55E] text-black font-syne font-bold text-sm sm:text-base px-7 py-3.5 rounded-md hover:bg-[#1cb054] transition-colors active:scale-[0.98] inline-block shadow-lg shadow-[#22C55E]/10"
+                >
+                  Work With Us
+                </a>
+              ) : (
+                <Link
+                  to="/contact"
+                  className="w-full text-center sm:w-auto bg-[#22C55E] text-black font-syne font-bold text-sm sm:text-base px-7 py-3.5 rounded-md hover:bg-[#1cb054] transition-colors active:scale-[0.98] inline-block shadow-lg shadow-[#22C55E]/10 text-center"
+                >
+                  Work With Us
+                </Link>
+              )}
+              {showPreviewLink && (
+                <Link
+                  to="/clients"
+                  className="w-full text-center sm:w-auto inline-flex items-center justify-center text-green-400 font-semibold hover:underline group cursor-pointer"
+                >
+                  View Our Global Reach <span className="ml-1 group-hover:translate-x-1 transition-transform">→</span>
+                </Link>
+              )}
             </div>
           </div>
 

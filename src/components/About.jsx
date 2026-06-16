@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle, Scale, ClipboardList, Clock } from 'lucide-react';
+import { CheckCircle, Scale, Shield, Eye } from 'lucide-react';
 
 export default function About() {
   const values = [
@@ -12,17 +12,17 @@ export default function About() {
     {
       icon: <Scale className="h-5 w-5 text-brand-purple-primary dark:text-brand-green-lemon" />,
       title: 'Integrity',
-      text: 'We maintain independence and professionalism, with no conflict of interest, ever.',
+      text: 'Professional ethics and honest conduct are the foundation of everything we do.',
     },
     {
-      icon: <ClipboardList className="h-5 w-5 text-brand-purple-primary dark:text-brand-green-lemon" />,
-      title: 'Accountability',
-      text: 'We support businesses in strengthening operational control and reporting reliability.',
+      icon: <Shield className="h-5 w-5 text-brand-purple-primary dark:text-brand-green-lemon" />,
+      title: 'Independence',
+      text: 'We maintain absolute autonomy and objectivity, with no conflict of interest, ever.',
     },
     {
-      icon: <Clock className="h-5 w-5 text-brand-purple-primary dark:text-brand-green-lemon" />,
-      title: 'Reliability',
-      text: 'Consistent, dependable audit support, delivered on time, every time.',
+      icon: <Eye className="h-5 w-5 text-brand-purple-primary dark:text-brand-green-lemon" />,
+      title: 'Transparency',
+      text: 'Clear, open communication and reporting backed by verifiable on-site evidence.',
     },
   ];
 
@@ -119,9 +119,15 @@ export default function About() {
           <div className="flex flex-col">
             <motion.p
               variants={itemVariants}
-              className="font-dmsans text-lg text-brand-gray-mid dark:text-gray-400 font-light leading-relaxed max-w-lg mb-10"
+              className="font-dmsans text-lg text-brand-gray-mid dark:text-gray-400 font-light leading-relaxed max-w-lg mb-4"
             >
               Established in 2022, 24ADL is a fast-growing audit and inspection firm providing independent stock audit and inventory verification services across agro and non-agro sectors worldwide.
+            </motion.p>
+            <motion.p
+              variants={itemVariants}
+              className="font-dmsans text-lg text-brand-gray-mid dark:text-gray-400 font-light leading-relaxed max-w-lg mb-10"
+            >
+              We operate with strict adherence to international auditing standards, offering lenders, bank partners, and commodity trading houses the third-party assurance they need to verify inventory value and secure their global supply chains.
             </motion.p>
 
             {/* Value Cards Vertical Stack */}

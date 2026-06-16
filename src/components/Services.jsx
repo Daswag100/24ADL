@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import {
   Wheat,
   FlaskConical,
@@ -18,7 +19,7 @@ import {
   ChevronDown,
 } from 'lucide-react';
 
-export default function Services() {
+export default function Services({ showPreviewLink = false }) {
   const [activeTab, setActiveTab] = useState('agro');
   const [activeIndex, setActiveIndex] = useState(0);
   const sectionRef = useRef(null);
@@ -246,7 +247,6 @@ export default function Services() {
               <motion.div
                 key={index}
                 onClick={() => setActiveIndex(isOpen ? null : index)}
-                onMouseEnter={() => setActiveIndex(index)}
                 variants={{
                   hidden: { y: 24, opacity: 0 },
                   visible: {
@@ -300,6 +300,17 @@ export default function Services() {
             );
           })}
         </motion.div>
+
+        {showPreviewLink && (
+          <div className="flex justify-center mt-12">
+            <Link
+              to="/services"
+              className="bg-brand-green-lemon hover:bg-[#1fa950] text-brand-black font-syne font-bold py-3.5 px-8 rounded-md transition-all shadow-md active:scale-[0.98] inline-block text-center cursor-pointer shadow-brand-green-lemon/10"
+            >
+              View All Services
+            </Link>
+          </div>
+        )}
 
       </div>
     </section>

@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
-export default function Industries() {
+export default function Industries({ showPreviewLink = false }) {
   const [showAll, setShowAll] = useState(false);
 
   const industries = [
@@ -92,6 +93,17 @@ export default function Industries() {
             );
           })}
         </div>
+
+        {showPreviewLink && (
+          <div className="mt-10 flex justify-center">
+            <Link
+              to="/industries"
+              className="inline-flex items-center text-purple-700 dark:text-brand-green-lemon font-semibold hover:underline group cursor-pointer"
+            >
+              See All Industries <span className="ml-1 group-hover:translate-x-1 transition-transform">→</span>
+            </Link>
+          </div>
+        )}
 
         {/* Mobile Toggle Button - Only displays on screens < 640px */}
         <div className="sm:hidden mt-8 flex justify-center">
