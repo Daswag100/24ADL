@@ -27,7 +27,9 @@ body {
 
 p {
   text-align: justify;
-  hyphens: auto;
+  hyphens: none;
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 @utility cursor-blink {
