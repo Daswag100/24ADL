@@ -6,14 +6,21 @@ import {
   Globe, 
   ShieldCheck, 
   Users, 
-  MessageSquare
+  MessageSquare,
+  Award,
+  HelpCircle
 } from 'lucide-react';
 import Hero from '../components/Hero';
 import About from '../components/About';
-import Services from '../components/Services';
 
 export default function HomePage() {
   const cards = [
+    {
+      title: 'Our Services',
+      route: '/services',
+      icon: ShieldCheck,
+      description: 'Agro, non-agro, and customized collateral verification and reconciliation support.',
+    },
     {
       title: 'Industries We Serve',
       route: '/industries',
@@ -35,7 +42,7 @@ export default function HomePage() {
     {
       title: 'Why Choose 24ADL',
       route: '/why-us',
-      icon: ShieldCheck,
+      icon: Award,
       description: 'Independent, experienced, and built on a foundation of zero conflict of interest.',
     },
     {
@@ -43,6 +50,12 @@ export default function HomePage() {
       route: '/careers',
       icon: Users,
       description: 'Join a growing audit firm working across sectors and borders.',
+    },
+    {
+      title: 'Frequently Asked Questions',
+      route: '/faq',
+      icon: HelpCircle,
+      description: 'Find answers to common questions about our audit fees, timelines, and compliance.',
     },
     {
       title: 'Contact Us',
@@ -65,10 +78,7 @@ export default function HomePage() {
       {/* 2. About Us Section (preview only) */}
       <About />
 
-      {/* 3. Services Section (tabs and cards) */}
-      <Services showPreviewLink={false} />
-
-      {/* 4. Explore 24ADL Navigation Grid */}
+      {/* 3. Explore 24ADL Navigation Grid */}
       <section className="py-20 bg-gray-50 dark:bg-gray-900 border-t border-b border-gray-100 dark:border-gray-800/40 transition-colors duration-300">
         <div className="max-w-6xl mx-auto px-6">
           
