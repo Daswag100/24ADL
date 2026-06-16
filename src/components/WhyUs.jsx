@@ -25,6 +25,9 @@ export default function WhyUs() {
       titleClass: 'text-purple-900 dark:text-white',
       desc: 'Sector knowledge that runs deep in both agricultural and non-agricultural operations, rather than a firm that retrofits one playbook for everything.',
       descClass: 'text-gray-600 dark:text-gray-300',
+      photo: '/images/warehouse.jpg',
+      photoAlt: 'Agro and Non-Agro inventory depth auditing',
+      photoClass: 'object-center'
     },
     {
       num: '03',
@@ -48,6 +51,9 @@ export default function WhyUs() {
       titleClass: 'text-gray-900 dark:text-white',
       desc: 'Clients across Malaysia, Netherlands, Switzerland, USA, Guinea, Dubai, and Nigeria. The experience to handle complex, cross-border audit engagements of any scale.',
       descClass: 'text-gray-500 dark:text-gray-400',
+      photo: '/images/warehouse2.jpg',
+      photoAlt: 'Global exposure and cross-border audit scale',
+      photoClass: 'object-center'
     },
   ];
 
