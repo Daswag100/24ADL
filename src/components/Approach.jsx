@@ -39,7 +39,7 @@ export default function Approach({ showPreviewLink = false }) {
   return (
     <section
       id="approach"
-      className="relative py-14 md:py-24 bg-gray-900 text-white overflow-hidden bg-cover bg-center"
+      className="relative flex-1 flex flex-col justify-center py-14 md:py-24 bg-gray-900 text-white overflow-hidden bg-cover bg-center"
       style={{ backgroundImage: "url('/images/PHOTO-2026-04-06-23-48-31_6_jpg.jpeg')" }}
     >
       {/* Heavy dark overlay */}
