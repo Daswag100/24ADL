@@ -21,13 +21,13 @@ import {
 
 export default function Services({ showPreviewLink = false }) {
   const [activeTab, setActiveTab] = useState('agro');
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
   const sectionRef = useRef(null);
 
   // Reset to collapsed when tab switches
   const handleTabChange = (tabId) => {
     setActiveTab(tabId);
-    setActiveIndex(null);
+    setHoveredIndex(null);
   };
 
   const agroServices = [
@@ -227,12 +227,14 @@ export default function Services({ showPreviewLink = false }) {
         >
           {getActiveCards().map((service, index) => {
             const IconComponent = service.icon;
-            const isOpen = activeIndex === index;
+            const isOpen = hoveredIndex === index;
 
             return (
               <motion.div
                 key={index}
-                onClick={() => setActiveIndex(isOpen ? null : index)}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                onClick={() => setHoveredIndex(isOpen ? null : index)}
                 variants={{
                   hidden: { y: 24, opacity: 0 },
                   visible: {
@@ -243,7 +245,7 @@ export default function Services({ showPreviewLink = false }) {
                 }}
                 className={`transition-colors duration-300 cursor-pointer border rounded-xl p-5 flex flex-col justify-between bg-white dark:bg-gray-800 ${
                   isOpen
-                    ? 'border-purple-500 dark:border-brand-green-lemon shadow-sm'
+                    ? 'border-purple-500 dark:border-brand-green-lemon shadow-sm bg-brand-purple-light/5 dark:bg-purple-950/10'
                     : 'border-gray-200 dark:border-gray-700 hover:border-purple-300 dark:hover:border-purple-500'
                 }`}
               >
@@ -254,18 +256,24 @@ export default function Services({ showPreviewLink = false }) {
                     <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 bg-violet-50 dark:bg-purple-950/50">
                       <IconComponent className="h-5 w-5 text-purple-700 dark:text-brand-green-lemon" />
                     </div>
-                    <span className="font-syne font-bold text-base text-gray-900 dark:text-white">
+                    <span className={`font-syne font-bold text-base transition-colors duration-300 ${
+                      isOpen
+                        ? 'text-brand-purple-primary dark:text-brand-green-lemon'
+                        : 'text-gray-900 dark:text-white'
+                    }`}>
                       {service.title}
                     </span>
                   </div>
                   <ChevronDown
-                    className={`h-5 w-5 text-gray-400 transition-transform duration-300 shrink-0 ${
-                      isOpen ? 'rotate-180' : ''
+                    className={`h-5 w-5 transition-transform duration-300 shrink-0 ${
+                      isOpen
+                        ? 'rotate-180 text-brand-purple-primary dark:text-brand-green-lemon'
+                        : 'text-gray-400'
                     }`}
                   />
                 </div>
 
-                {/* Expanded Detail (Framer Motion height auto from 0, opacity 1 from 0) */}
+                {/* Expanded Detail */}
                 <motion.div
                   initial={false}
                   animate={{
@@ -273,10 +281,10 @@ export default function Services({ showPreviewLink = false }) {
                     opacity: isOpen ? 1 : 0,
                   }}
                   transition={{
-                    duration: 0.3,
+                    duration: 0.25,
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className="overflow-hidden"
+                  className="overflow-hidden w-full"
                   onClick={(e) => e.stopPropagation()}
                 >
                   <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mt-3 pt-3 border-t border-gray-100 dark:border-gray-800 font-dmsans">
