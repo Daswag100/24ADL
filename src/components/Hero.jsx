@@ -98,10 +98,9 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative w-full overflow-hidden flex flex-col justify-center pt-20 pb-12 lg:pt-20 lg:pb-10 bg-cover bg-center bg-no-repeat"
+      className="relative w-full min-h-screen overflow-hidden flex flex-col justify-center pt-24 pb-16 bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: "url('/images/PHOTO-2026-04-06-23-48-31_3_jpg.jpeg')",
-        minHeight: '80vh',
       }}
     >
       {/* Dark Overlay for Readability */}
