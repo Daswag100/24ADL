@@ -8,13 +8,19 @@ import {
   Users, 
   MessageSquare,
   Award,
-  HelpCircle
+  HelpCircle,
+  Info
 } from 'lucide-react';
 import Hero from '../components/Hero';
-import About from '../components/About';
 
 export default function HomePage() {
   const cards = [
+    {
+      title: 'About Us',
+      route: '/about',
+      icon: Info,
+      description: "Learn about 24ADL's founding values, operational standards, and our independent auditing framework.",
+    },
     {
       title: 'Our Services',
       route: '/services',
@@ -75,8 +81,7 @@ export default function HomePage() {
       {/* 1. Hero Section */}
       <Hero />
 
-      {/* 2. About Us Section (preview only) */}
-      <About />
+
 
       {/* 3. Explore 24ADL Navigation Grid */}
       <section className="py-20 bg-[#FAFAF9] dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800/40 transition-colors duration-300">

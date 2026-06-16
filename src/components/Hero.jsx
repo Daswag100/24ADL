@@ -98,7 +98,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative w-full min-h-screen overflow-hidden flex flex-col justify-center pt-24 pb-16 bg-cover bg-center bg-no-repeat"
+      className="relative w-full min-h-screen overflow-hidden flex flex-col justify-center pt-20 pb-10 bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: "url('/images/PHOTO-2026-04-06-23-48-31_3_jpg.jpeg')",
       }}
@@ -128,8 +128,8 @@ export default function Hero() {
           {/* Headline H1 with Word-by-Word Animation & Typewriter */}
           {/* Headline H1 — Static, large, white */}
           <h1 
-            className="font-syne font-bold text-white tracking-tight select-none leading-[1.05]"
-            style={{ fontSize: 'clamp(2.4rem, 5.5vw, 4.2rem)' }}
+            className="font-syne font-extrabold text-white tracking-tight select-none leading-[1.05]"
+            style={{ fontSize: 'clamp(3rem, 7vw, 5.5rem)' }}
           >
             <span className="block">Ensuring</span>
             <span className="block">Accuracy.</span>
@@ -137,13 +137,13 @@ export default function Hero() {
 
           {/* Line 3 — Typewriter, smaller, green */}
           <div 
-            className="mb-3 lg:mb-2 w-full select-none"
+            className="mb-4 lg:mb-3 w-full select-none"
           >
             <span
-              className="inline-block font-syne font-bold"
+              className="inline-block font-syne font-extrabold"
               style={{
                 color: '#22C55E',
-                fontSize: 'clamp(1.2rem, 4.5vw, 2rem)',
+                fontSize: 'clamp(1.6rem, 4.5vw, 2.5rem)',
                 lineHeight: '1.3',
               }}
             >
@@ -166,7 +166,7 @@ export default function Hero() {
             initial={{ y: 16, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.7, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="font-dmsans text-base sm:text-lg lg:text-xl text-white/70 max-w-xl leading-relaxed font-light mb-5 lg:mb-4"
+            className="font-dmsans text-lg sm:text-xl lg:text-2xl text-white max-w-2xl leading-relaxed font-bold mb-6 lg:mb-5"
           >
             We help businesses prevent unnoticed inventory losses through independent verification, across agro and non-agro sectors, from Lagos to global markets.
           </motion.p>
@@ -214,13 +214,13 @@ export default function Hero() {
             initial={{ y: 16, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 1.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="border-t border-white/10 pt-5 lg:pt-4"
+            className="border-t border-white/10 pt-8 pb-4 mt-10 lg:mt-12"
           >
             <div className="flex flex-row flex-wrap gap-8 sm:gap-16">
               
               {/* Stat 1 */}
               <div className="flex flex-col">
-                <span className="font-syne font-bold text-3xl sm:text-4xl text-white mb-1.5 min-w-[70px]">
+                <span className="font-syne font-extrabold text-5xl sm:text-6xl lg:text-7xl text-white mb-2 block min-w-[120px] lg:min-w-[150px]">
                   {count2022}
                 </span>
                 <span className="font-dmsans text-xs sm:text-sm text-white/55 tracking-wider uppercase">
@@ -230,7 +230,7 @@ export default function Hero() {
 
               {/* Stat 2 */}
               <div className="flex flex-col">
-                <span className="font-syne font-bold text-3xl sm:text-4xl text-white mb-1.5 min-w-[50px]">
+                <span className="font-syne font-extrabold text-5xl sm:text-6xl lg:text-7xl text-white mb-2 block min-w-[80px] lg:min-w-[100px]">
                   {count9 === 9 ? '9+' : count9}
                 </span>
                 <span className="font-dmsans text-xs sm:text-sm text-white/55 tracking-wider uppercase">
@@ -240,7 +240,7 @@ export default function Hero() {
 
               {/* Stat 3 */}
               <div className="flex flex-col">
-                <span className="font-syne font-bold text-3xl sm:text-4xl text-white mb-1.5 min-w-[30px]">
+                <span className="font-syne font-extrabold text-5xl sm:text-6xl lg:text-7xl text-white mb-2 block min-w-[50px] lg:min-w-[70px]">
                   {count4}
                 </span>
                 <span className="font-dmsans text-xs sm:text-sm text-white/55 tracking-wider uppercase">
