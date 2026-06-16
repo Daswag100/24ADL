@@ -128,7 +128,7 @@ export default function Hero() {
           {/* Headline H1 with Word-by-Word Animation & Typewriter */}
           {/* Headline H1 — Static, large, white */}
           <h1 
-            className="font-syne font-extrabold text-white tracking-tight select-none leading-[1.05]"
+            className="font-syne font-bold text-white tracking-tight select-none leading-[1.05]"
             style={{ fontSize: 'clamp(3rem, 7vw, 5.5rem)' }}
           >
             <span className="block">Ensuring</span>
@@ -140,7 +140,7 @@ export default function Hero() {
             className="mb-4 lg:mb-3 w-full select-none"
           >
             <span
-              className="inline-block font-syne font-extrabold"
+              className="inline-block font-syne font-bold"
               style={{
                 color: '#22C55E',
                 fontSize: 'clamp(1.6rem, 4.5vw, 2.5rem)',
@@ -166,7 +166,7 @@ export default function Hero() {
             initial={{ y: 16, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.7, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="font-dmsans text-xl sm:text-2xl lg:text-[26px] text-white max-w-2xl leading-relaxed font-normal mb-6 lg:mb-5"
+            className="font-dmsans text-lg sm:text-xl lg:text-2xl text-white max-w-2xl leading-relaxed font-light mb-6 lg:mb-5"
           >
             We help businesses prevent unnoticed inventory losses through independent verification, across agro and non-agro sectors, from Lagos to global markets.
           </motion.p>
