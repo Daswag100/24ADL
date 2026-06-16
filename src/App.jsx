@@ -100,7 +100,9 @@ function AppContent() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/5-signs-your-business-is-losing-inventory" element={<ArticlePage />} />
           <Route path="/faq" element={<FAQPage />} />
+          <Route path="/privacy" element={<PrivacyPolicyPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="/terms" element={<TermsPage />} />
           <Route path="/terms-and-conditions" element={<TermsPage />} />
           <Route path="/cookies" element={<CookiePolicyPage />} />
           <Route path="/disclaimer" element={<DisclaimerPage />} />
