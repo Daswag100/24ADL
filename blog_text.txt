@@ -1,0 +1,124 @@
+﻿Inventory Management
+5 Signs Your Business Is Losing Inventory Without Knowing It
+Inventory shrinkage is costing Nigerian businesses millions every year  and most don't realise it's happening until significant damage is done.
+By 
+Mmesoma Ejiogu  
+, 24ADL Inspection &amp; Audit Services
+ 
+â€¢June 2026â€¢
+ 
+8 min read
+You reconciled your records. Your team ran the numbers. On paper, everything balances. But your profits are quietly shrinking, your reorder cycles feel off, and there's a nagging feeling that the stock on the shelf doesn't quite match what your system says should be there.
+If any of that sounds familiar, you may be experiencing one of the most common
+,
+ and most damaging challenges in inventory management:Â undetected inventory loss.
+Across industries from 
+agro
+-commodity warehouses to FMCG distribution, from pharmaceutical stores to manufacturing plants  businesses in Nigeria are losing inventory without knowing it. The loss compounds silently over months, often only surfacing when cash flow tightens or a major discrepancy forces a physical count.
+2â€“3%
+ 
+The average inventory shrinkage rate globally  but for businesses without independent verification, the figure is routinely far higher and far less visible.
+In this article, we walk through five clear warning signs that your business may be losing inventory you don't know about 
+,
+and what you can do to take back control.
+What Is Inventory Loss â€” And Why Does It Go Unnoticed?
+Inventory loss, often calledÂ 
+shrinkage
+, refers to the gap between the stock your records say you have and the stock that physically exists. It happens for several reasons:
+Theft
+,
+ employee pilferage, vendor short-delivery, shoplifting in retail environments.
+Administrative errors
+,
+ miscounting, incorrect data entry, unrecorded write-offs.
+Supplier fraud
+:
+ deliveries that are short on quantity or quality but signed off in full.
+Spoilage and damage
+:
+ particularly acute in 
+agro
+ and perishable goods sectors.
+Process failures
+:
+ goods leaving the warehouse without being properly recorded.
+The reason most inventory loss goes unnoticed is simple:Â the people counting the stock are also responsible for it. Internal teams have inherent blind spots
+, 
+intentional or otherwise. Without an independent eye, discrepancies get absorbed, explained away, or never questioned at all.
+"The most dangerous inventory problem is not the one you've found. It's the one you haven't looked for."
+The 5 Warning Signs
+1
+Your Gross Margins Are Shrinking Without a Clear Explanation
+If your revenue is holding steady or even growing  but your gross margins are quietly declining, the culprit is often invisible inventory loss. When stock disappears without being recorded, it inflates 
+your cost of goods sold artificially, compressing margins in ways that look like pricing problems or supplier cost increases.
+Business owners and finance teams often spend weeks re-examining supplier contracts and pricing structures when the real answer lies in the warehouse, not the spreadsheet.
+Watch For:Â Gross margin erosion of more than 0.5% over two consecutive quarters with no identifiable cost driver. This is a strong signal that a physical stock count and reconciliation is overdue.
+2
+Your Stock Records and Physical Counts Never Quite Agree
+Every business that runs periodic stock counts expects some variance. But when the gap between your system records and your physical count is consistently above 1â€“2%, and the discrepancy keeps appearing in the same product lines or locations, you have a pattern 
+,
+ and patterns have causes.
+Many businesses normalise these gaps over time. "We always come up short on Product X" becomes an accepted part of operations rather than a signal to investigate. That normalisation is exactly how chronic theft, systematic under-delivery, or recording failures become embedded in day-to-day operations.
+Watch For:Â Recurring variances on specific SKUs, product categories, or warehouse bays. Consistency in where variances occur is a strong indicator of a systemic issue rather than random counting error.
+3
+You're Reordering Faster Than Your Sales Volumes Justify
+If your sales data shows consistent volume but your purchasing team is placing reorders more frequently than the numbers suggest is necessary, there is stock disappearing somewhere between delivery and sale. This is one of the most reliable early signals of inventory loss in distribution and retail businesses.
+In Nigeria's FMCG and 
+agro
+ sectors, this pattern is especially common in businesses that rely on manual handoff processes between suppliers, warehouse staff, and sales teams â€” each transition point is a moment where discrepancies can be created and buried.
+Watch For:Â Your reorder cycle shortening without a corresponding increase in documented sales. If you're buying more but not selling more, stock is going somewhere else.
+4
+Your Team Can't Produce Clean Documentation for Deliveries
+A healthy supply chain is a documented supply chain. When goods are delivered, there should be a delivery note. When they're received into the warehouse, there should be a goods-received note (GRN) signed off by a responsible party. When they're dispatched to a customer or branch, there should be a dispatch note. When stock is written off due to damage or expiry, there should be an authorised write-off form.
+If any link in that documentation chain is weak, missing, or inconsistently applied, you have a governance gap that inventory loss can and will flow through. In businesses where documentation is informal or verbal, there is no audit trail â€” and without an audit trail, loss is nearly impossible to trace.
+Watch For:Â Delivery documentation that is incomplete, unsigned, or backdated. GRNs that don't match purchase orders. Write-off records that are vague or authorised by the same person who manages the stock.
+5
+You've Never Had an Independent Stock Audit
+This is, perhaps, the most significant warning sign of all â€” not a symptom, but a structural vulnerability. If every stock count your business has ever done has been conducted by internal staff, you have never had an objective, independent assessment of whether your inventory position is accurate.
+Internal audits are valuable, but they carry inherent limitations: the same people who manage the stock are verifying it, the same systems that may have recording errors are being used to confirm those records, and there is no independent check on whether the process itself is sound.
+An independent stock audit breaks all three of those constraints. It introduces a fresh, objective perspective, uses independent counting methodology, and produces findings that are not shaped by internal relationships, pressures, or blind spots.
+Watch For:Â If your answer to "when did you last have an independent stock verification?" is "never" or "I can't remember," it's time. The longer independent verification is absent, the more opportunity exists for undetected loss to accumulate.
+What Happens When You Ignore the Signs?
+Unaddressed inventory loss compounds. What starts as a manageable 1% shrinkage rate can, over 24â€“36 months without intervention, grow into a structural problem that distorts financial reporting, erodes lender confidence, causes stockouts that damage customer relationships, and â€” in the most serious cases â€” funds fraud that becomes very difficult to untangle.
+We have worked with businesses across 
+agro
+, retail, manufacturing, and distribution sectors where the cumulative inventory loss, once properly quantified through an independent audit, ran into tens of millions of naira. In almost every case, the warning signs had been present for months or years â€” they simply hadn't been acted on.
+"Independent verification is not an accusation â€” it is a standard of professional management. The businesses that do it regularly are the ones that catch problems early, while the cost of correction is still manageable."
+What an Independent Stock Audit Actually Involves
+A professional independent stock audit is not simply a recount of your existing stock records. It is a systematic, methodical process designed to give you an accurate, unbiased picture of your true inventory position. At 24ADL, our process typically involves:
+Pre-audit planning:Â We review your existing inventory records, count procedures, documentation systems, and physical layout before the audit begins.
+Physical count:Â Our team conducts an independent physical count using structured counting sheets, barcode scanning (where applicable), and multi-layer verification for high-value items.
+Reconciliation:Â We compare the physical count against your system records, purchase orders, GRNs, and dispatch records â€” identifying every variance and its likely source.
+Reporting:Â You receive a detailed report documenting the verified inventory position, all variances identified, root cause analysis, and specific recommendations for process improvement.
+Follow-up verification:Â For clients who want ongoing assurance, we offer periodic verification cycles to track whether corrective actions are working.
+Quick Self-Assessment: Do You Need an Independent Audit?
+Gross margins have declined without an obvious external cause
+Physical counts consistently differ from system records by more than 1%
+You're reordering more frequently than sales volumes suggest
+Delivery and warehouse documentation is incomplete or informal
+You have never had an independent stock audit conducted
+You operate in a sector with high shrinkage risk (
+agro
+, FMCG, pharma, manufacturing)
+You are preparing for investor due diligence or a financing round
+You have recently experienced staff turnover in your warehouse or procurement team
+If you checked three or more of the above, an independent audit is strongly recommended.
+Taking the Next Step
+Inventory confidence is not a luxury â€” it is a foundation of sound business management. The businesses that invest in independent verification are the ones that can present clean, credible inventory figures to investors, banks, and boards. They're the ones that catch problems while they're still correctable. And they're the ones that build the kind of operational culture where inventory discipline becomes self-reinforcing over time.
+Whether you're a manufacturing business in Lagos, an 
+agro
+-commodity trader serving multiple states, or a retail chain managing multiple locations, the principles are the same: independent eyes see what internal teams cannot.
+If you recognise any of the five signs in this article in your own business, the time to act is now â€” not after the next quarterly close, and not after you've tried one more internal reconciliation that comes back inconclusive.
+Request a Stock Audit â†’
+Or message us on WhatsApp
+Home
+Services
+Blog
+Contact
+Privacy
+ 
+Policy
+Terms
+ &amp; Conditions
+Â© 2026 24ADL Inspection &amp; Audit Services | 24adlinspection.com
+Independent Stock Audit &amp; Inventory Verification | Nigeria &amp; World

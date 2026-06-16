@@ -166,7 +166,7 @@ export default function Hero() {
             initial={{ y: 16, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.7, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="font-dmsans text-lg sm:text-xl lg:text-2xl text-white max-w-2xl leading-relaxed font-bold mb-6 lg:mb-5"
+            className="font-dmsans text-xl sm:text-2xl lg:text-[26px] text-white max-w-2xl leading-relaxed font-normal mb-6 lg:mb-5"
           >
             We help businesses prevent unnoticed inventory losses through independent verification, across agro and non-agro sectors, from Lagos to global markets.
           </motion.p>

@@ -166,6 +166,7 @@ export default function Industries({ showPreviewLink = false }) {
                     ease: [0.22, 1, 0.36, 1],
                   }}
                   className="overflow-hidden w-full"
+                  onClick={(e) => e.stopPropagation()}
                 >
                   <p className="font-dmsans text-xs sm:text-sm text-gray-500 dark:text-gray-400 leading-relaxed mt-3 pt-3 border-t border-gray-100 dark:border-gray-750">
                     {ind.description}

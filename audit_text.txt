@@ -1,0 +1,43 @@
+﻿Re
+duce the size of this frame, it exceeds the screen size
+Take out the scrolling features 
+The author name 'Louis 
+Adun
+' in keywords should be removed from keyword targeting
+,
+ it adds no SEO value and takes up space better used for service terms.
+Add the privacy 
+policy ,
+ and legal documents
+The fonts too should be worked 
+on.
+(
+ 
+Professional services sites should use no more than two typeface families: one for headings (strong, authoritative) and one for body text (clean, readable).
+Ensure all images have descriptive alt text.
+The canonical is set to https://24adlinspection.com (without www), but the destination URL resolves to 
+https://www.24adlinspection.com/ 
+,
+this
+ canonical mismatch should be corrected. The canonical should match the primary URL exactly
+Create robots.txt and XML sitemap; submit sitemap to Google Search Console
+https://www.24adlinspection.com/#
+ (Why is there a â€˜#â€™ in the pathway?)
+ Take out the â€˜#â€™ 
+webdesign
+ because for SEO.  Let all the sections be a standalone page.
+Add section for blog article.
+Add this number 
++2348033179732
+Optimize LCP
+Â by making the LCP image discoverable from the HTML immediately
+Minimise render-blocking JavaScript and CSS.
+Set up Google Search Console to monitor search performance, crawl errors, and indexing.
+Set up conversion tracking for any CTA form submissions or WhatsApp button clicks.
+Under the 
+Agro
+ and non-
+agro
+ services, expand the services area. Each click should have a dropdown
+Add a floating WhatsApp chat button
+Add FAQ section to address common client questions about the audit process.

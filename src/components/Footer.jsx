@@ -29,7 +29,7 @@ export default function Footer() {
             >
               <img
                 src="/24ADL_Logo__Coloured_.png"
-                className="h-8 w-auto object-contain"
+                className="h-8 w-auto object-contain brightness-0 invert"
                 alt="24ADL Inspection and Audit Services logo"
               />
             </Link>
@@ -100,7 +100,7 @@ export default function Footer() {
                 <Link
                   key={idx}
                   to={link.href}
-                  className="font-dmsans text-sm text-white/50 hover:text-brand-purple-mid transition-colors duration-200"
+                  className="font-dmsans text-sm text-white/50 hover:text-white transition-colors duration-200"
                 >
                   {link.label}
                 </Link>
@@ -117,14 +117,14 @@ export default function Footer() {
               {/* Phone */}
               <a
                 href="tel:+2348033179732"
-                className="flex items-center gap-3 font-dmsans text-sm text-white/50 hover:text-brand-purple-mid transition-colors duration-200 w-fit"
+                className="flex items-center gap-3 font-dmsans text-sm text-white/50 hover:text-white transition-colors duration-200 w-fit"
               >
                 <Phone className="h-4 w-4 text-[#22C55E]" />
                 <span>+234 8033179732</span>
               </a>
               <a
                 href="tel:+2347030637458"
-                className="flex items-center gap-3 font-dmsans text-sm text-white/50 hover:text-brand-purple-mid transition-colors duration-200 w-fit"
+                className="flex items-center gap-3 font-dmsans text-sm text-white/50 hover:text-white transition-colors duration-200 w-fit"
               >
                 <Phone className="h-4 w-4 text-[#22C55E]" />
                 <span>+234 7030637458</span>
@@ -133,7 +133,7 @@ export default function Footer() {
               {/* Email */}
               <a
                 href="mailto:info@24adlinspection.com"
-                className="flex items-center gap-3 font-dmsans text-sm text-white/50 hover:text-brand-purple-mid transition-colors duration-200 w-fit break-all"
+                className="flex items-center gap-3 font-dmsans text-sm text-white/50 hover:text-white transition-colors duration-200 w-fit break-all"
               >
                 <Mail className="h-4 w-4 text-[#22C55E]" />
                 <span>info@24adlinspection.com</span>
@@ -152,13 +152,13 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 mt-8 pt-8 border-t border-white/5 text-center md:text-left">
           {/* Copyright & Legal Links */}
-          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-xs text-white/30 font-dmsans">
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-xs text-white font-dmsans">
             <span>&copy; 2026 24ADL. All rights reserved.</span>
             <div className="flex flex-wrap gap-x-4 gap-y-1 justify-center">
-              <Link to="/privacy-policy" className="hover:text-brand-green-lemon transition-colors">Privacy Policy</Link>
-              <Link to="/terms-and-conditions" className="hover:text-brand-green-lemon transition-colors">Terms & Conditions</Link>
-              <Link to="/cookies" className="hover:text-brand-green-lemon transition-colors">Cookie Policy</Link>
-              <Link to="/disclaimer" className="hover:text-brand-green-lemon transition-colors">Disclaimer</Link>
+              <Link to="/privacy-policy" className="hover:text-white/80 transition-colors">Privacy Policy</Link>
+              <Link to="/terms-and-conditions" className="hover:text-white/80 transition-colors">Terms & Conditions</Link>
+              <Link to="/cookies" className="hover:text-white/80 transition-colors">Cookie Policy</Link>
+              <Link to="/disclaimer" className="hover:text-white/80 transition-colors">Disclaimer</Link>
             </div>
           </div>
           {/* Tagline */}

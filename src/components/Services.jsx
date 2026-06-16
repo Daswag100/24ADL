@@ -277,6 +277,7 @@ export default function Services({ showPreviewLink = false }) {
                     ease: [0.22, 1, 0.36, 1],
                   }}
                   className="overflow-hidden"
+                  onClick={(e) => e.stopPropagation()}
                 >
                   <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mt-3 pt-3 border-t border-gray-100 dark:border-gray-800 font-dmsans">
                     {service.description}

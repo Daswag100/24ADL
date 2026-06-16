@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 
 export default function Navbar() {
   const location = useLocation();
@@ -65,7 +65,7 @@ export default function Navbar() {
           <div className="flex items-center overflow-hidden">
             <img
               src="/24ADL_Logo__Coloured_.png"
-              className="h-7 max-w-[140px] sm:h-8 sm:max-w-[180px] w-auto object-contain"
+              className="h-7 max-w-[140px] sm:h-8 sm:max-w-[180px] w-auto object-contain dark:brightness-0 dark:invert"
               alt="24ADL Inspection and Audit Services logo"
             />
           </div>
@@ -181,19 +181,7 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* Right CTA / Mobile Toggle */}
         <div className="flex items-center gap-4">
-          <a
-            id="nav-phone-link"
-            href="tel:+2348033179732"
-            className="hidden lg:flex items-center gap-2 font-dmsans text-sm font-semibold text-brand-purple-primary dark:text-brand-green-lemon hover:opacity-80 transition-opacity"
-          >
-            <Phone className="h-4 w-4" />
-            <span className="flex flex-col leading-tight">
-              <span>+234 8033179732</span>
-              <span>+234 7030637458</span>
-            </span>
-          </a>
 
           <Link
             id="nav-cta-contact"
@@ -303,26 +291,7 @@ export default function Navbar() {
             );
           })}
 
-          <div className="flex flex-col gap-1 border-t border-gray-50 dark:border-gray-800/50 mt-1 pt-2">
-            <a
-              id="nav-phone-link-mobile"
-              href="tel:+2348033179732"
-              onClick={() => setIsOpen(false)}
-              className="flex items-center gap-2 font-dmsans text-[15px] py-1 text-brand-purple-primary dark:text-brand-green-lemon font-semibold hover:opacity-80 transition-opacity"
-            >
-              <Phone className="h-4 w-4" />
-              <span>+234 8033179732</span>
-            </a>
-            <a
-              id="nav-phone-link-mobile-2"
-              href="tel:+2347030637458"
-              onClick={() => setIsOpen(false)}
-              className="flex items-center gap-2 font-dmsans text-[15px] py-1 text-brand-purple-primary dark:text-brand-green-lemon font-semibold hover:opacity-80 transition-opacity"
-            >
-              <Phone className="h-4 w-4" />
-              <span>+234 7030637458</span>
-            </a>
-          </div>
+
         </div>
       </div>
     </nav>

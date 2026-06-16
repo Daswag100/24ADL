@@ -37,7 +37,7 @@ export default function LegalPages({ currentPage }) {
           >
             <img
               src="/24ADL_Logo__Coloured_.png"
-              className="h-7 max-w-[140px] sm:h-8 sm:max-w-[180px] w-auto object-contain"
+              className="h-7 max-w-[140px] sm:h-8 sm:max-w-[180px] w-auto object-contain dark:brightness-0 dark:invert"
               alt="24ADL Inspection and Audit Services logo"
             />
           </a>
