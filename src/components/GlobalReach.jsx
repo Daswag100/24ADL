@@ -14,6 +14,8 @@ export default function GlobalReach({ showPreviewLink = false }) {
     { name: 'Tiberius', location: 'Switzerland' },
     { name: 'Daarnhouwer & Co BV', location: 'Netherlands' },
     { name: 'Avista Resort', location: 'Lagos, Nigeria' },
+    // TODO: Replace text placeholder with real S&D France logo file when supplied
+    { name: 'S&D France', location: 'France' },
   ];
 
   const regions = ['Africa', 'Europe', 'Asia', 'North America', 'Middle East'];

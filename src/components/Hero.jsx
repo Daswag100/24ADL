@@ -168,7 +168,7 @@ export default function Hero() {
             transition={{ delay: 0.7, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="font-dmsans text-lg sm:text-xl lg:text-2xl text-white max-w-2xl leading-relaxed font-light mb-6 lg:mb-5"
           >
-            We help businesses prevent unnoticed inventory losses through independent verification, across agro and non-agro sectors, from Lagos to global markets.
+            We help businesses prevent unnoticed inventory losses by checking stock, through a trusted, neutral source, separate from the business's own records, across agro and non-agro sectors, from Lagos to global markets.
           </motion.p>
 
           {/* Buttons CTA */}

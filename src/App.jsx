@@ -18,6 +18,7 @@ const CareersPage = lazy(() => import('./pages/CareersPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const BlogPage = lazy(() => import('./pages/BlogPage'));
 const ArticlePage = lazy(() => import('./pages/ArticlePage'));
+const StockArticlePage = lazy(() => import('./pages/StockArticlePage'));
 const FAQPage = lazy(() => import('./pages/FAQPage'));
 const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'));
 const TermsPage = lazy(() => import('./pages/TermsPage'));
@@ -99,6 +100,7 @@ function AppContent() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/5-signs-your-business-is-losing-inventory" element={<ArticlePage />} />
+          <Route path="/blog/5-signs-your-business-is-losing-stock" element={<StockArticlePage />} />
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/privacy" element={<PrivacyPolicyPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />

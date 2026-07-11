@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ArrowLeft, TrendingDown, Clock, Calendar, ArrowRight, CheckSquare, Square, ShieldCheck, Mail, MessageSquare, MessageCircle, Link } from 'lucide-react';
 import warehouseImg from '../assets/WAREHOUSE1.jpeg';
+import adl8Img from '../assets/adl8.jpeg';
 
 export default function BlogPages({ currentPage }) {
   useEffect(() => {
@@ -24,6 +25,10 @@ export default function BlogPages({ currentPage }) {
     return <BlogPostDetail onNavigate={handleLinkClick} />;
   }
 
+  if (currentPage === 'blog-stock-detail') {
+    return <BlogPostStockDetail onNavigate={handleLinkClick} />;
+  }
+
   return null;
 }
 
@@ -44,7 +49,20 @@ function BlogListing({ onNavigate }) {
       icon: <TrendingDown className="h-20 w-20 text-white/15" />,
       tagColor: 'bg-green-500 text-black',
       featured: true,
-    }
+    },
+    {
+      id: '5-signs-your-business-is-losing-stock',
+      title: '5 Signs Your Business Is Losing Stock Without Knowing It',
+      excerpt: 'Businesses lose an average of 2 to 3 percent of their stock every year without realising it. Here are five signs to watch for before the damage becomes serious.',
+      category: 'Stock Control',
+      date: 'June 2026',
+      readTime: '6 min read',
+      author: 'Mmesoma Ejiogu',
+      authorInitials: 'ME',
+      image: adl8Img,
+      tagColor: 'bg-purple-600 text-white',
+      featured: false,
+    },
   ];
 
   return (
@@ -153,12 +171,12 @@ function BlogListing({ onNavigate }) {
                   {/* Header Image Area (mobile optimized h-40 md:h-48) */}
                   <div className="h-40 md:h-48 relative overflow-hidden bg-gray-100 dark:bg-gray-800">
                     <img
-                      src={warehouseImg}
+                      src={art.image || warehouseImg}
                       className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                       alt={art.title}
                     />
                     <div className="absolute inset-0 bg-purple-900/10 pointer-events-none" />
-                    <div className="bg-brand-green-lemon text-brand-black text-xs font-bold px-3 py-1 rounded-full absolute top-4 left-4">
+                    <div className={`text-xs font-bold px-3 py-1 rounded-full absolute top-4 left-4 ${art.tagColor || 'bg-brand-green-lemon text-brand-black'}`}>
                       {art.category}
                     </div>
                   </div>
@@ -836,6 +854,416 @@ function BlogPostDetail({ onNavigate }) {
       {/* Footer copyright */}
       <footer className="border-t border-gray-200 dark:border-gray-800 py-8 bg-gray-50 dark:bg-gray-900 text-center text-xs text-gray-400 dark:text-gray-500">
         <p>© 2026 24ADL Inspection & Audit Services | 24adlinspection.com</p>
+      </footer>
+
+    </div>
+  );
+}
+
+// ==========================================
+// BLOG POST STOCK DETAIL — "5 Signs Your Business Is Losing Stock Without Knowing It"
+// ==========================================
+function BlogPostStockDetail({ onNavigate }) {
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [activeTocSection, setActiveTocSection] = useState('');
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalHeight > 0) {
+        const progress = (window.scrollY / totalHeight) * 100;
+        setScrollProgress(progress);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const sectionIds = ['sign-1', 'sign-2', 'sign-3', 'sign-4', 'sign-5', 'ignore-signs', 'what-we-do', 'checklist'];
+    const observerOptions = { root: null, rootMargin: '-20% 0px -50% 0px', threshold: 0 };
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => { if (entry.isIntersecting) setActiveTocSection(entry.target.id); });
+    };
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    sectionIds.forEach((id) => { const el = document.getElementById(id); if (el) observer.observe(el); });
+    return () => sectionIds.forEach((id) => { const el = document.getElementById(id); if (el) observer.unobserve(el); });
+  }, []);
+
+  const handleTocClick = (e, id) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const tocLinks = [
+    { id: 'sign-1', label: 'Sign 1: Profit dropping' },
+    { id: 'sign-2', label: 'Sign 2: Count never matches' },
+    { id: 'sign-3', label: 'Sign 3: Reordering more often' },
+    { id: 'sign-4', label: 'Sign 4: Incomplete records' },
+    { id: 'sign-5', label: 'Sign 5: No outside check' },
+    { id: 'ignore-signs', label: 'What Happens If You Ignore' },
+    { id: 'what-we-do', label: 'What We Do at 24ADL' },
+    { id: 'checklist', label: 'Does This Sound Like You?' },
+  ];
+
+  const signs = [
+    {
+      id: 'sign-1',
+      num: '1',
+      title: 'Your profit is going down but nothing has changed',
+      body: [
+        "You're still selling. Customers are still coming. But at the end of the month, the money left over keeps getting smaller.",
+        "One common reason people miss: stock is leaving the warehouse without being recorded. When that happens, your expenses look higher than they should, even when your sales are fine.",
+        "Before you blame your suppliers or your pricing, check your warehouse first.",
+      ],
+      ask: 'Has my profit been dropping for the last two to three months with no clear reason?',
+    },
+    {
+      id: 'sign-2',
+      num: '2',
+      title: 'Your stock count never matches your records',
+      body: [
+        "After every count, there's always a small difference between what your records say and what's actually on the shelf. A small gap is normal. But when the gap keeps growing, or keeps happening with the same products, something is wrong.",
+        "Many business owners just accept it. \"We always come up short on that product.\" But that thinking is exactly how small losses turn into big ones over time.",
+      ],
+      ask: 'Do the same products keep coming up short every time I count?',
+    },
+    {
+      id: 'sign-3',
+      num: '3',
+      title: "You're reordering stock more often than you used to",
+      body: [
+        "Your sales haven't gone up. But somehow you're running out of stock faster and placing orders more frequently.",
+        "If you're buying more but not selling more, where is the stock going?",
+        "This is a very common pattern in warehouses and distribution businesses. Stock passes through many hands, supplier, warehouse staff, sales team, and at each point, something can go missing.",
+      ],
+      ask: 'Am I spending more on restocking without a real increase in sales?',
+    },
+    {
+      id: 'sign-4',
+      num: '4',
+      title: 'Your delivery and warehouse records are incomplete',
+      body: [
+        "Every time stock comes in or goes out, it should be written down. A delivery note when goods arrive. A signed receipt when they enter the warehouse. A record when they leave.",
+        "When those documents are missing, unsigned, or not done at all, nobody can trace what happened to the stock. And when there's no trail, losses are very easy to hide.",
+      ],
+      ask: 'Can I account for every delivery and dispatch with a signed document?',
+    },
+    {
+      id: 'sign-5',
+      num: '5',
+      title: 'Nobody from outside has ever checked your stock',
+      body: [
+        "This is the biggest one.",
+        "If every stock count your business has ever done was handled by your own staff, you have never had a truly honest, outside picture of what's really in your warehouse.",
+        "This is not about accusing anyone. It's simply that the people counting the stock are also the people responsible for it. They may miss things, sometimes on purpose, sometimes not. Either way, an outside check removes that blind spot.",
+      ],
+      ask: "When last did someone outside my business verify my stock? If the answer is never, read on.",
+    },
+  ];
+
+  const checklistItems = [
+    'Profits dropping with no clear reason',
+    'Stock counts and records never matching',
+    'Restocking more than your sales justify',
+    'Delivery documents missing or incomplete',
+    'Never had an outside stock check',
+  ];
+
+  return (
+    <div className="min-h-screen bg-brand-white dark:bg-gray-950 text-brand-black dark:text-white font-dmsans transition-colors duration-300">
+
+      {/* Reading Progress Bar */}
+      <div className="fixed top-0 left-0 right-0 h-1 bg-gray-200 dark:bg-gray-800 z-[60] w-full">
+        <div
+          className="bg-green-500 h-full"
+          style={{ width: `${scrollProgress}%`, transition: 'width 0.1s linear' }}
+        />
+      </div>
+
+      {/* Blog Mini Header */}
+      <header className="sticky top-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 px-6 py-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <a href="/" onClick={(e) => onNavigate(e, '/')} className="flex items-center">
+            <img
+              src="/24ADL_Logo__Coloured_.png"
+              className="h-7 max-w-[140px] sm:h-8 sm:max-w-[180px] w-auto object-contain dark:brightness-0 dark:invert"
+              alt="24ADL Inspection and Audit Services logo"
+            />
+          </a>
+          <a
+            href="/blog"
+            onClick={(e) => onNavigate(e, '/blog')}
+            className="flex items-center gap-2 font-syne font-bold text-sm text-brand-purple-primary dark:text-brand-green-lemon hover:opacity-85 transition-opacity"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Back to Blog</span>
+          </a>
+        </div>
+      </header>
+
+      {/* Header Block */}
+      <div className="bg-gray-50 dark:bg-gray-900 py-16 border-b border-gray-200 dark:border-gray-800">
+        <div className="max-w-3xl mx-auto px-5 sm:px-6">
+          <span className="bg-purple-100 dark:bg-purple-900/40 text-purple-800 dark:text-purple-300 text-xs font-bold px-3 py-1 rounded-full inline-block mb-4">
+            Stock Control
+          </span>
+          <h1 className="font-syne font-bold text-3xl md:text-5xl text-gray-900 dark:text-white leading-tight mb-4">
+            5 Signs Your Business Is Losing Stock Without Knowing It
+          </h1>
+          <p className="font-dmsans text-lg text-gray-500 dark:text-gray-400 font-light leading-relaxed mb-6">
+            Businesses lose an average of 2 to 3 percent of their stock every year without realising it. Here are five signs to watch for before the damage becomes serious.
+          </p>
+
+          {/* Featured Image */}
+          <div className="w-full h-56 sm:h-80 md:h-[400px] rounded-2xl overflow-hidden mb-8 shadow-sm">
+            <img
+              src={adl8Img}
+              className="w-full h-full object-cover object-center"
+              alt="24ADL inspector conducting quality and inspection check on agro commodity stock."
+            />
+          </div>
+
+          <div className="flex items-center gap-3 text-sm text-gray-500 dark:text-gray-400">
+            <div className="w-8 h-8 rounded-full bg-brand-purple-light dark:bg-purple-950 flex items-center justify-center text-brand-purple-primary dark:text-brand-green-lemon text-xs font-bold shrink-0">
+              ME
+            </div>
+            <span>
+              By <strong>Mmesoma Ejiogu</strong>, 24ADL Inspection &amp; Audit Services &middot; June 2026 &middot; 6 min read
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Layout Wrapper */}
+      <div className="max-w-5xl mx-auto px-5 sm:px-6 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_240px] gap-12 items-start">
+
+          {/* Main Content */}
+          <div className="max-w-3xl w-full text-gray-700 dark:text-gray-300 text-base leading-relaxed">
+
+            {/* Intro */}
+            <p className="mb-5 md:mb-6">
+              Did you know businesses lose an average of 2 to 3 percent of their stock every year, without even realising it?
+            </p>
+            <p className="mb-5 md:mb-6">
+              That might sound small. But for a business doing 10 million naira in stock, that is up to 300,000 naira gone quietly. And for many businesses in Nigeria, the real number is even higher.
+            </p>
+            <p className="mb-5 md:mb-6">
+              The tricky part is that it rarely looks like a problem at first. Your team has done the count. The numbers are on paper. But something still feels off.
+            </p>
+            <p className="mb-8 font-semibold text-gray-800 dark:text-gray-200">
+              Here are five signs to watch for.
+            </p>
+
+            {/* 5 Signs */}
+            {signs.map((sign) => (
+              <div key={sign.id} id={sign.id} className="mb-12 scroll-mt-20">
+                <div className="w-12 h-12 rounded-full bg-brand-purple-primary dark:bg-purple-800 text-white flex items-center justify-center font-bold text-xl mb-4 font-syne">
+                  {sign.num}
+                </div>
+                <h2 className="font-syne font-bold text-xl md:text-2xl text-gray-900 dark:text-white mb-4">
+                  {sign.title}
+                </h2>
+                {sign.body.map((para, i) => (
+                  <p key={i} className="mb-4">{para}</p>
+                ))}
+                <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-xl p-4 mt-4">
+                  <div className="text-xs font-bold text-purple-700 dark:text-purple-400 uppercase tracking-wide mb-1">
+                    Ask yourself:
+                  </div>
+                  <div className="text-sm text-gray-700 dark:text-gray-300 italic">
+                    {sign.ask}
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            {/* What Happens If You Ignore */}
+            <h2 id="ignore-signs" className="font-syne font-bold text-2xl text-gray-900 dark:text-white mt-12 mb-4 scroll-mt-20">
+              What Happens If You Ignore These Signs?
+            </h2>
+            <p className="mb-5 md:mb-6">
+              A small loss today becomes a big problem tomorrow.
+            </p>
+            <p className="mb-5 md:mb-6">
+              Over two to three years, unaddressed stock loss can quietly damage your finances, make it harder to get loans or investment, cause shortages that frustrate your customers, and in some cases, hide theft that becomes very hard to recover from.
+            </p>
+            <p className="mb-5 md:mb-6">
+              The good news is catching it early is not complicated.
+            </p>
+
+            {/* What We Do */}
+            <h2 id="what-we-do" className="font-syne font-bold text-2xl text-gray-900 dark:text-white mt-12 mb-4 scroll-mt-20">
+              What We Do at 24ADL
+            </h2>
+            <p className="mb-5 md:mb-6">
+              We come in as a neutral, outside party. We physically count your stock, compare it with your records, and give you a simple, clear report: what's there, what's missing, and what likely caused it.
+            </p>
+            <p className="mb-8">
+              No jargon. No complicated reports you can't read. Just honest answers.
+            </p>
+
+            {/* Checklist Box */}
+            <div id="checklist" className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-5 md:p-8 my-10 scroll-mt-20">
+              <h3 className="font-syne font-bold text-xl text-gray-900 dark:text-white mb-5">
+                Does This Sound Like Your Business?
+              </h3>
+              <div className="space-y-3 mb-6">
+                {checklistItems.map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-3">
+                    <span className="text-gray-400 dark:text-gray-500 shrink-0 mt-0.5">
+                      <Square className="w-5 h-5" />
+                    </span>
+                    <span className="font-dmsans text-sm text-gray-700 dark:text-gray-300">{item}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="text-sm italic text-gray-500 dark:text-gray-400 pt-4 border-t border-gray-200/50 dark:border-gray-700/50">
+                If three or more apply, it's time to take action.
+              </p>
+            </div>
+
+            {/* CTA Block */}
+            <div className="bg-purple-50 dark:bg-gray-900 text-gray-900 dark:text-white rounded-2xl p-10 mt-12 text-center border border-gray-200 dark:border-gray-800 relative overflow-hidden shadow-sm">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,_var(--tw-gradient-stops))] from-brand-green-lemon/5 via-transparent to-transparent opacity-40" />
+              <div className="relative z-10 max-w-xl mx-auto">
+                <h3 className="font-syne font-bold text-2xl mb-2">
+                  Let's Help You Find Out What's Really in Your Warehouse.
+                </h3>
+                <p className="text-gray-500 dark:text-gray-400 text-sm font-light mb-8">
+                  Reach out to 24ADL today to get an honest, independent picture of your stock.
+                </p>
+                <div className="flex flex-col md:flex-row gap-3 md:gap-4 justify-center items-center mt-6">
+                  <a
+                    href="/contact"
+                    onClick={(e) => onNavigate(e, '/contact')}
+                    className="inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-black font-bold px-8 py-4 rounded-md transition-colors w-full md:w-auto text-center"
+                    style={{ fontFamily: 'Syne' }}
+                  >
+                    Request a Stock Audit
+                  </a>
+                  <a
+                    href="https://wa.me/2348033179732"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => {
+                      if (window.gtag) {
+                        window.gtag('event', 'whatsapp_click', { event_category: 'Engagement', event_label: 'WhatsApp Blog CTA' });
+                      }
+                    }}
+                    className="inline-flex items-center gap-2 justify-center border-2 border-purple-900 text-purple-900 dark:border-white dark:text-white font-bold px-8 py-4 rounded-md hover:bg-purple-900 hover:text-white dark:hover:bg-white dark:hover:text-purple-900 transition-colors w-full md:w-auto text-center"
+                    style={{ fontFamily: 'Syne' }}
+                  >
+                    <MessageCircle size={18} />
+                    Reach out to us on WhatsApp
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center text-sm text-gray-400 dark:text-gray-500 mt-8 font-dmsans">
+              Independent Stock Audit &amp; Inventory Verification | Nigeria &amp; World
+            </div>
+          </div>
+
+          {/* Sidebar */}
+          <aside className="hidden lg:flex flex-col gap-6 sticky top-24 self-start w-[240px]">
+
+            {/* TOC */}
+            <div className="border border-gray-200 dark:border-gray-700 rounded-xl p-5 bg-white dark:bg-gray-900">
+              <h4 className="font-syne text-xs font-bold text-gray-400 uppercase tracking-wide mb-4">On This Page</h4>
+              <nav className="space-y-2.5 text-sm">
+                {tocLinks.map((item) => {
+                  const isActive = activeTocSection === item.id;
+                  return (
+                    <a
+                      key={item.id}
+                      href={`#${item.id}`}
+                      onClick={(e) => handleTocClick(e, item.id)}
+                      className={`block transition-colors cursor-pointer text-left leading-snug ${
+                        isActive
+                          ? 'text-purple-700 dark:text-green-400 font-semibold'
+                          : 'text-gray-500 hover:text-purple-700 dark:hover:text-green-400'
+                      }`}
+                    >
+                      {item.label}
+                    </a>
+                  );
+                })}
+              </nav>
+            </div>
+
+            {/* Share */}
+            <div className="border border-gray-200 dark:border-gray-700 rounded-xl p-5 bg-white dark:bg-gray-900">
+              <h4 className="font-syne text-xs font-bold text-gray-400 uppercase tracking-wide mb-4">Share This Article</h4>
+              <div className="flex gap-3 items-center">
+                <a
+                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center hover:border-purple-400 transition-colors text-gray-500 dark:text-gray-400 hover:text-purple-700 dark:hover:text-purple-400"
+                  aria-label="Share on LinkedIn"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  </svg>
+                </a>
+                <a
+                  href={`https://wa.me/?text=${encodeURIComponent(window.location.href)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center hover:border-green-400 transition-colors text-gray-500 dark:text-gray-400 hover:text-green-600"
+                  aria-label="Share on WhatsApp"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                </a>
+                <div className="relative">
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(window.location.href);
+                      setCopied(true);
+                      setTimeout(() => setCopied(false), 2000);
+                    }}
+                    className="w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center hover:border-purple-400 transition-colors text-gray-500 dark:text-gray-400 hover:text-purple-700 dark:hover:text-purple-400"
+                    aria-label="Copy link"
+                  >
+                    <Link className="w-4 h-4" />
+                  </button>
+                  {copied && (
+                    <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">
+                      Copied!
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* CTA Sidebar Card */}
+            <div className="bg-purple-900 rounded-xl p-6 text-center">
+              <h4 className="font-syne font-bold text-white text-lg mb-2">Worried About Stock Loss?</h4>
+              <p className="text-white/60 text-sm mb-5 leading-relaxed">
+                Get an independent outside check of your warehouse from our audit team.
+              </p>
+              <a
+                href="/contact"
+                onClick={(e) => { e.preventDefault(); if (window.__navigate) window.__navigate('/contact'); }}
+                className="block bg-green-500 hover:bg-green-600 text-black font-bold px-5 py-3 rounded-md w-full text-sm transition-colors"
+                style={{ fontFamily: 'Syne' }}
+              >
+                Request an Audit
+              </a>
+            </div>
+
+          </aside>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer className="border-t border-gray-200 dark:border-gray-800 py-8 bg-gray-50 dark:bg-gray-900 text-center text-xs text-gray-400 dark:text-gray-500">
+        <p>© 2026 24ADL Inspection &amp; Audit Services | 24adlinspection.com</p>
       </footer>
 
     </div>

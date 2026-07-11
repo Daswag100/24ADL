@@ -7,6 +7,7 @@ import {
   Warehouse,
   TrendingDown,
   Thermometer,
+  Microscope,
   ShoppingCart,
   Factory,
   Truck,
@@ -55,6 +56,11 @@ export default function Services({ showPreviewLink = false }) {
       icon: Thermometer,
       title: 'Storage Condition Monitoring',
       description: 'Continuous audit and monitoring of temperature, humidity, and ventilation controls within your storage areas. This prevents early spoilage, maintains product quality, and ensures strict adherence to international safety standards.',
+    },
+    {
+      icon: Microscope,
+      title: 'Quality Analysis & Inspection',
+      description: 'Receiving the right quantity does not always mean receiving the right quality. In agro, poor handling, bad storage, or dishonest grading directly affects the value of your goods, even when the numbers on paper look fine. Moisture, contamination, and wrong grades are easy to miss without a proper check. We inspect your commodities at any point in the supply chain, checking grade, condition, and moisture levels, so you always know exactly what you are receiving and what it is truly worth.',
     },
   ];
 
